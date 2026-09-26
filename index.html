@@ -1,0 +1,438 @@
+<title>PMOS 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FBF7F2;
+    --surface:#FFFFFF;
+    --surface-2:#F4EEE5;
+    --border:#E7DFD2;
+    --ink:#1A1A2E;
+    --ink-muted:#58595B;
+    --ink-soft:#8A857C;
+    --orange:#F26522;
+    --orange-deep:#C94E14;
+    --orange-tint:#FDE9DB;
+    --green:#00A651;
+    --green-deep:#067A3D;
+    --green-tint:#DCF3E7;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 10px 26px -14px rgba(26,26,46,.22);
+    --focus:#1A1A2E;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      color-scheme: dark;
+      --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
+      --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
+      --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
+      --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
+      --focus:#F3F0EA;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
+    --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
+    --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
+    --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
+    --focus:#F3F0EA;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Lato', Arial, sans-serif;
+    padding-inline:18px; line-height:1.5; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:760px; margin-inline:auto;}
+  h1,h2,h3,h4{
+    font-family:'Roboto', Arial, sans-serif; font-weight:900;
+    line-height:1.12; text-wrap:balance; margin:0; color:var(--ink); letter-spacing:-.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'Roboto',sans-serif; font-size:.68rem; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  section{padding-block:36px; border-top:1px solid var(--border);}
+  section:first-of-type{border-top:none;}
+  .section-head{margin-bottom:20px; display:flex; flex-direction:column; gap:6px;}
+  .section-head h2{font-size:1.5rem;}
+  .lede{color:var(--ink-muted); font-size:.94rem; max-width:56ch;}
+
+  .btn{
+    appearance:none; border:1.5px solid transparent; cursor:pointer;
+    font-family:'Roboto',sans-serif; font-weight:700; font-size:.9rem;
+    padding:.85em 1.3em; border-radius:10px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:.5em; justify-content:center; width:100%;
+    transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+  .btn-primary{background:var(--ink); color:var(--bg);}
+  .btn-primary:hover{filter:brightness(1.15);}
+  .btn-ghost{background:var(--surface); border-color:var(--border); color:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; width:100vw;
+    padding:34px 18px 44px;
+    background:
+      radial-gradient(120% 90% at 8% -10%, rgba(255,255,255,.18), transparent 55%),
+      linear-gradient(155deg, #F26522 0%, #C94E14 32%, #1A1A2E 68%, #06381F 100%);
+    color:#FBF7F2;
+    overflow:hidden;
+  }
+  .hero .btn-primary{ background:#FFFFFF; color:#1A1A2E; }
+  .hero .btn-primary:hover{ filter:brightness(.96); }
+  .hero::after{
+    content:""; position:absolute; inset:0; opacity:.14; pointer-events:none;
+    background-image: radial-gradient(circle, #fff 1.5px, transparent 1.5px);
+    background-size:22px 22px;
+  }
+  .hero-inner{position:relative; max-width:760px; margin-inline:auto;}
+  .hero-logo{
+    background:#fff; border-radius:10px; padding:6px 10px; display:inline-flex;
+    align-items:center; box-shadow:var(--shadow); margin-bottom:20px;
+  }
+  .hero-logo img{height:26px; display:block;}
+  .hero .eyebrow{color:rgba(255,255,255,.78);}
+  .hero h1{font-size:clamp(1.9rem,7.5vw,2.5rem); color:#fff; margin-top:8px;}
+  .hero h1 em{font-style:normal; color:#FFD8A8;}
+  .hero .sub{
+    font-family:'Lato',sans-serif; font-style:italic; font-weight:400;
+    font-size:1.02rem; color:rgba(255,255,255,.86); margin-top:8px; max-width:44ch;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;
+  }
+  .hero-meta span{
+    font-size:.8rem; font-weight:700; color:#fff; background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:.4em .85em;
+    display:flex; align-items:center; gap:.4em;
+  }
+  .hero-meta .cpd{background:var(--orange-tint); color:var(--orange-deep); border-color:transparent;}
+  .hero-tagline{
+    margin-top:22px; font-weight:700; font-size:1rem; color:#fff;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.24);
+    border-radius:12px; padding:12px 16px; backdrop-filter:blur(6px);
+    max-width:46ch;
+  }
+  .hero-cta{margin-top:26px; max-width:320px;}
+
+  /* ---------- Who should attend ---------- */
+  .attend-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0 14px;}
+  .attend-list li{
+    display:flex; align-items:center; gap:9px; padding-block:11px;
+    border-top:1px solid var(--border); font-weight:700; font-size:.88rem;
+  }
+  .attend-list li:nth-child(-n+2){border-top:none;}
+  .attend-list li::before{
+    content:""; width:9px; height:9px; border-radius:50%; background:var(--green); flex:none;
+  }
+
+  /* ---------- Programme ---------- */
+  .sched{border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface);}
+  .sched-row{ padding:13px 15px; border-top:1px solid var(--border); }
+  .sched-row:first-child{border-top:none;}
+  .sched-row.break{background:var(--surface-2);}
+  .sched-time{
+    font-family:'Roboto',sans-serif; font-size:.72rem; font-weight:700; color:var(--ink-soft);
+    display:block; margin-bottom:3px;
+  }
+  .sched-title{font-weight:700; font-size:.92rem;}
+  .sched-title small{display:block; font-weight:400; color:var(--ink-muted); font-size:.8rem; margin-top:2px;}
+  .sched-faculty{font-size:.8rem; color:var(--ink-muted); margin-top:4px; font-weight:700;}
+  .tag-row{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
+  .tag{
+    font-size:.66rem; font-weight:700; border-radius:999px; padding:.2em .65em; letter-spacing:.02em;
+  }
+  .tag-panel{background:var(--green-tint); color:var(--green-deep);}
+  .tag-public{background:var(--orange-tint); color:var(--orange-deep);}
+
+
+
+  /* ---------- Venue ---------- */
+  .venue-card{
+    background:var(--ink); color:#fff; border-radius:16px; padding:22px;
+    background-image:radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--orange) 55%, transparent), transparent 55%);
+  }
+  .venue-card .eyebrow{color:rgba(255,255,255,.65);}
+  .venue-card h3{color:#fff; font-size:1.2rem; margin-top:6px;}
+  .venue-card p{color:rgba(255,255,255,.78); margin-top:8px; font-size:.88rem;}
+
+  /* ---------- Registration ---------- */
+  .price-grid{display:flex; flex-direction:column; gap:10px;}
+  .price-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    padding:16px; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  }
+  .price-card.featured{border-color:var(--orange); background:var(--orange-tint);}
+  .price-card h4{font-size:.94rem;}
+  .price-card p{font-size:.78rem; color:var(--ink-muted); margin-top:2px;}
+  .price-amt{font-family:'Roboto',sans-serif; font-weight:900; font-size:1.3rem; white-space:nowrap;}
+  .incl-row{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;
+  }
+  .incl{
+    font-size:.78rem; font-weight:700; color:var(--green-deep); background:var(--green-tint);
+    border-radius:999px; padding:.4em .8em; display:flex; align-items:center; gap:.4em;
+  }
+  .sponsor-note{
+    margin-top:16px; font-size:.82rem; color:var(--ink-muted); background:var(--surface-2);
+    border-radius:10px; padding:12px 14px;
+  }
+  .sponsor-note b{color:var(--ink);}
+  .reg-cta{margin-top:20px;}
+  .reg-note{font-size:.74rem; color:var(--ink-soft); margin-top:10px; text-align:center;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--border); padding-block:14px;}
+  .faq-item:first-child{padding-top:0;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:14px;
+    cursor:pointer; font-weight:700; font-size:.9rem; list-style:none; font-family:'Roboto',sans-serif;
+  }
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q .plus{color:var(--orange); font-size:1.1rem; flex:none; transition:transform .15s ease;}
+  details[open] .plus{transform:rotate(45deg);}
+  .faq-a{color:var(--ink-muted); font-size:.86rem; margin-top:8px; max-width:60ch;}
+
+  /* ---------- Footer ---------- */
+  footer{padding-block:30px 40px; border-top:1px solid var(--border); font-size:.8rem; color:var(--ink-muted);}
+  .foot-logo img{height:22px; display:block; margin-bottom:10px;}
+  .contact-line{display:flex; gap:8px; align-items:center; margin-top:5px; flex-wrap:wrap;}
+  .copy-btn{
+    border:1px solid var(--border); background:var(--surface); border-radius:6px; padding:.15em .5em;
+    font-size:.68rem; cursor:pointer; color:var(--ink-muted);
+  }
+  .foot-copy{color:var(--ink-soft); font-size:.68rem; margin-top:14px;}
+</style>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+      <p class="eyebrow">Multidisciplinary Conference · For Doctors</p>
+      <h1>PMOS 2026: <em>From Hormones to Whole Health</em></h1>
+      <p class="sub">An integrated approach to PMOS — formerly known as PCOS</p>
+      <div class="hero-meta">
+        <span>📅 15 Nov 2026</span>
+        <span>🕘 9:00 AM–5:00 PM</span>
+        <span>📍 Hyderabad</span>
+        <span class="cpd">🎓 2 CPD Credits by TSMC</span>
+      </div>
+      <p class="hero-tagline">One condition. Multiple systems. One integrated care pathway.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#register">Register now</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="who">
+    <div class="section-head">
+      <p class="eyebrow">Who should attend</p>
+      <h2>Built for the full care team</h2>
+    </div>
+    <ul class="attend-list">
+      <li>Gynaecologists</li>
+      <li>Endocrinologists</li>
+      <li>Reproductive medicine / IVF specialists</li>
+      <li>Dermatologists</li>
+      <li>Dietitians &amp; nutritionists</li>
+      <li>Psychiatrists</li>
+      <li>General &amp; family physicians</li>
+      <li>Residents &amp; fellows</li>
+    </ul>
+  </section>
+
+  <section id="programme">
+    <div class="section-head">
+      <p class="eyebrow">Scientific Programme</p>
+      <h2>Scientific Programme Schedule</h2>
+    </div>
+    <div class="sched">
+      <div class="sched-row">
+        <span class="sched-time">9:00–9:15</span>
+        <div class="sched-title">Registration, welcome &amp; networking</div>
+        <div class="sched-faculty">All delegates</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">9:15–9:30</span>
+        <div class="sched-title">PMOS beyond the ovary — why multidisciplinary care matters</div>
+        <div class="sched-faculty">Prof. Rakesh Sahay</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">9:30–10:00</span>
+        <div class="sched-title">PMOS in 2026 — diagnosis to lifelong metabolic &amp; reproductive health</div>
+        <div class="sched-faculty">Endocrinology</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">10:00–10:30</span>
+        <div class="sched-title">PMOS across the life course<small>Adolescence, reproductive years &amp; perimenopause</small></div>
+        <div class="sched-faculty">Dr. Nandini Muppidi</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">10:30–11:00</span>
+        <div class="sched-title">Fertility &amp; PMOS<small>Ovulation, weight, insulin resistance, IVF &amp; when to escalate</small></div>
+        <div class="sched-faculty">Dr. Saroja / Dr. Durga</div>
+        <div class="tag-row"><span class="tag tag-panel">Panel</span></div>
+      </div>
+      <div class="sched-row break">
+        <span class="sched-time">11:00–11:30</span>
+        <div class="sched-title">Tea / coffee break &amp; industry interaction</div>
+        <div class="sched-faculty">All delegates</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">11:30–12:00</span>
+        <div class="sched-title">PMOS, insulin resistance &amp; GLP-1 therapy<small>What we know, what we don't, and who may benefit</small></div>
+        <div class="sched-faculty">Dr. Shyam</div>
+        <div class="tag-row"><span class="tag tag-panel">Panel</span><span class="tag tag-public">Public livestream</span></div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">12:00–12:30</span>
+        <div class="sched-title">Skin, hair &amp; PMOS<small>Acne, hirsutism, alopecia &amp; dermatological management</small></div>
+        <div class="sched-faculty">Dr. Uma Chakravadhanula</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">12:30–1:00</span>
+        <div class="sched-title">Nutrition in PMOS<small>Indian diets &amp; practical meal strategies</small></div>
+        <div class="sched-faculty">Dietitian</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">1:00–1:30</span>
+        <div class="sched-title">The mind–metabolism connection<small>Depression, anxiety, eating behaviour, body image &amp; sexual health</small></div>
+        <div class="sched-faculty">Dr. Sunil Reddy Anubolu</div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">1:30–2:00</span>
+        <div class="sched-title">Multidisciplinary case board<small>One patient, six specialists</small></div>
+        <div class="sched-faculty">Multidisciplinary panel</div>
+        <div class="tag-row"><span class="tag tag-panel">Panel</span></div>
+      </div>
+      <div class="sched-row">
+        <span class="sched-time">2:00–5:00</span>
+        <div class="sched-title">Interactive case discussions &amp; networking<small>Complex cases across gynaecology, endocrinology, dermatology, nutrition, psychiatry &amp; reproductive medicine</small></div>
+        <div class="sched-faculty">All delegates</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="venue">
+    <div class="venue-card">
+      <p class="eyebrow">Venue</p>
+      <h3>Lemon Tree Premier, HITEC City, Hyderabad</h3>
+      <p>Sunday, 15 November 2026 · 9:00 AM – 5:00 PM. Detailed directions shared on registration confirmation.</p>
+    </div>
+  </section>
+
+  <section id="register">
+    <div class="section-head">
+      <p class="eyebrow">Registration</p>
+      <h2>Reserve your seat</h2>
+      <p class="lede">Limited in-person seats. Pass includes lunch and refreshments.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div>
+          <h4>Delegate pass</h4>
+          <p>Full-day programme + case discussions</p>
+        </div>
+        <div class="price-amt">₹1000</div>
+      </div>
+      <div class="price-card">
+        <div>
+          <h4>Student pass</h4>
+          <p>Valid student ID required at check-in</p>
+        </div>
+        <div class="price-amt">₹500</div>
+      </div>
+      <div class="price-card">
+        <div>
+          <h4>Researcher / Academician pass</h4>
+          <p>Full-day programme + case discussions</p>
+        </div>
+        <div class="price-amt">₹500</div>
+      </div>
+    </div>
+
+    <div class="incl-row">
+      <span class="incl">✓ Lunch included</span>
+      <span class="incl">✓ Refreshments included</span>
+      <span class="incl">✓ 2 CPD credits</span>
+    </div>
+
+    <div class="sponsor-note">For sponsored registrations, if eligible, email <b>raghav.m@ideaclinics.com</b></div>
+
+    <div class="reg-cta">
+      <a class="btn btn-primary" href="#" id="razorpay-btn">Register &amp; pay via Razorpay</a>
+    </div>
+    <p class="reg-note">Payment link to be connected · button is a placeholder for now</p>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Good to know</h2>
+    </div>
+    <details class="faq-item" open>
+      <summary class="faq-q">Does my pass include the public GLP-1 session?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — the 11:30 AM session on insulin resistance &amp; GLP-1 therapy is part of the main programme and also streamed publicly; delegates attend it live, in the room.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What's included in the pass?<span class="plus">+</span></summary>
+      <p class="faq-a">Full access to the scientific programme, the afternoon case discussions, lunch, refreshments, and 2 CPD credits accredited by TSMC.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Is there a discount for students or researchers?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — student and researcher/academician passes are ₹500. A valid ID may be requested at check-in.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Can I get a sponsored registration?<span class="plus">+</span></summary>
+      <p class="faq-a">If eligible, email raghav.m@ideaclinics.com before registering.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Is PMOS the same as PCOS?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — PMOS is the terminology used throughout this programme, formerly and commonly known as PCOS.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+    <div class="contact-line">Email: <span id="email-addr">raghav.m@ideaclinics.com</span> <button class="copy-btn" data-copy="email-addr">Copy</button></div>
+    <p class="foot-copy">Organised by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity. Mock layout — final fees, venue address and payment link to be confirmed.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = document.getElementById(btn.dataset.copy).textContent;
+      var done = function(){ var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = old; }, 1200); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else { done(); }
+    });
+  });
+  var rz = document.getElementById('razorpay-btn');
+  if (rz) {
+    rz.addEventListener('click', function(e){
+      e.preventDefault();
+      rz.textContent = 'Razorpay link coming soon';
+      setTimeout(function(){ rz.textContent = 'Register & pay via Razorpay'; }, 1600);
+    });
+  }
+})();
+</script>
