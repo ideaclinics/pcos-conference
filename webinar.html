@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PMOS Public Webinar</title>
-<meta name="description" content="Free public webinar: PMOS, insulin resistance and metabolic health — what every woman should know in 2026. 15 November 2026, live online.">
+<meta name="description" content="Free public webinar: PMOS, insulin resistance and metabolic health — what every woman should know in 2026. A live online session, 15 November 2026, with a 5-doctor panel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -102,11 +102,27 @@
     background-size:22px 22px;
   }
   .hero-inner{position:relative; max-width:720px; margin-inline:auto;}
+  .hero-top-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
   .hero-logo{
     background:#fff; border-radius:10px; padding:6px 10px; display:inline-flex;
-    align-items:center; box-shadow:var(--shadow); margin-bottom:18px;
+    align-items:center; box-shadow:var(--shadow);
   }
   .hero-logo img{height:24px; display:block;}
+  .live-badge{
+    display:inline-flex; align-items:center; gap:7px; font-family:'Roboto',sans-serif;
+    font-weight:900; font-size:.76rem; letter-spacing:.03em; text-transform:uppercase;
+    color:var(--ink); background:#fff; border-radius:999px; padding:.5em 1em;
+    box-shadow:var(--shadow);
+  }
+  .live-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--green); flex:none;
+    box-shadow:0 0 0 0 rgba(0,166,81,.6); animation:live-pulse 1.8s infinite;
+  }
+  @keyframes live-pulse{
+    0%{box-shadow:0 0 0 0 rgba(0,166,81,.55);}
+    70%{box-shadow:0 0 0 7px rgba(0,166,81,0);}
+    100%{box-shadow:0 0 0 0 rgba(0,166,81,0);}
+  }
   .hero .eyebrow{color:rgba(255,255,255,.82);}
   .hero h1{font-size:clamp(1.8rem,7vw,2.3rem); color:#fff; margin-top:8px;}
   .hero .sub{
@@ -183,20 +199,22 @@
   .myth-hint{font-size:.68rem; color:var(--ink-soft); margin-top:auto;}
   .myth-face.back .myth-hint{color:var(--green-deep); opacity:.8;}
 
-  /* ---------- Speaker ---------- */
-  .speaker-card{
-    background:var(--surface); border:1px solid var(--border); border-radius:16px;
-    padding:20px; display:flex; gap:16px; align-items:center;
+  /* ---------- Speaker panel ---------- */
+  .panel-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media (min-width:520px){ .panel-grid{grid-template-columns:repeat(3,1fr);} }
+  .panel-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    padding:16px 12px; text-align:center;
   }
-  .speaker-photo{
-    width:72px; height:72px; border-radius:50%; flex:none;
+  .panel-photo{
+    width:62px; height:62px; border-radius:50%; margin:0 auto 10px;
     background:var(--surface-2); border:1.5px dashed var(--border); color:var(--ink-soft);
     display:flex; align-items:center; justify-content:center;
   }
-  .speaker-photo svg{width:34px; height:34px; opacity:.5;}
-  .speaker-card h4{font-size:1rem;}
-  .speaker-card .role{font-size:.82rem; color:var(--ink-muted); margin-top:3px; font-weight:700;}
-  .speaker-card .tbc{font-size:.68rem; color:var(--ink-soft); border:1px dashed var(--border); border-radius:5px; padding:.12em .5em; display:inline-block; margin-top:7px;}
+  .panel-photo svg{width:28px; height:28px; opacity:.5;}
+  .panel-card h4{font-size:.84rem; line-height:1.25;}
+  .panel-card .role{font-size:.72rem; color:var(--ink-muted); margin-top:4px; font-weight:700;}
+  .panel-note{font-size:.76rem; color:var(--ink-soft); margin-top:14px; text-align:center;}
 
   /* ---------- Signup ---------- */
   form.reg-form{
@@ -244,14 +262,17 @@
 
   <div class="hero">
     <div class="hero-inner">
-      <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
-      <p class="eyebrow">Free Public Webinar</p>
+      <div class="hero-top-row">
+        <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+        <span class="live-badge"><span class="live-dot"></span>Online session</span>
+      </div>
+      <p class="eyebrow">Free Public Webinar · Watch From Home</p>
       <h1>PMOS, Insulin Resistance &amp; Metabolic Health</h1>
-      <p class="sub">What every woman should know in 2026 — in plain language, from the doctors who treat it.</p>
+      <p class="sub">What every woman should know in 2026 — a free live video session, in plain language, from the doctors who treat it.</p>
       <div class="hero-meta">
         <span>📅 15 Nov 2026</span>
         <span>🕦 11:30–12:00 PM</span>
-        <span>💻 Live online</span>
+        <span>👥 5-doctor panel</span>
         <span class="free">✨ Free to join</span>
       </div>
 
@@ -265,7 +286,7 @@
       <div class="hero-cta">
         <a class="btn btn-primary" href="#signup">Save my free seat</a>
       </div>
-      <p class="hero-sub-note">30 minutes · live Q&amp;A included · recording sent to all registrants</p>
+      <p class="hero-sub-note">Join by video from any phone or laptop · 5-doctor panel · live Q&amp;A</p>
     </div>
   </div>
 
@@ -364,16 +385,37 @@
   <section id="speaker">
     <div class="section-head">
       <p class="eyebrow">Hosted by</p>
-      <h2>Your speaker</h2>
+      <h2>Your panel of doctors</h2>
+      <p class="lede">Five specialists, one session — answering your questions from every angle.</p>
     </div>
-    <div class="speaker-card">
-      <div class="speaker-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
-      <div>
-        <h4>Dr. Shyam</h4>
-        <p class="role">Insulin resistance &amp; metabolic health, IDEA Clinics</p>
-        <span class="tbc">Photo to follow</span>
+    <div class="panel-grid">
+      <div class="panel-card">
+        <div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <h4>Dr. Shyam Kalavalapalli</h4>
+        <p class="role">Endocrinologist</p>
+      </div>
+      <div class="panel-card">
+        <div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <h4>Dr. Nandini Muppidi</h4>
+        <p class="role">Gynaecologist</p>
+      </div>
+      <div class="panel-card">
+        <div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <h4>Dr. Uma Chakravadhunala</h4>
+        <p class="role">Dermatologist &amp; Cosmetologist</p>
+      </div>
+      <div class="panel-card">
+        <div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <h4>Dr. Divya Meghana</h4>
+        <p class="role">Psychiatrist</p>
+      </div>
+      <div class="panel-card">
+        <div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <h4>Dr. Manjula A</h4>
+        <p class="role">Gynaecologist</p>
       </div>
     </div>
+    <p class="panel-note">Photos to follow — placeholders shown for now.</p>
   </section>
 
   <section id="signup">
