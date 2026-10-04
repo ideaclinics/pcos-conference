@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PMOS Public Webinar</title>
+<meta name="description" content="Free public webinar: PMOS, insulin resistance and metabolic health — what every woman should know in 2026. 15 November 2026, live online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FBF7F2;
+    --surface:#FFFFFF;
+    --surface-2:#F4EEE5;
+    --border:#E7DFD2;
+    --ink:#1A1A2E;
+    --ink-muted:#58595B;
+    --ink-soft:#8A857C;
+    --orange:#F26522;
+    --orange-deep:#C94E14;
+    --orange-tint:#FDE9DB;
+    --green:#00A651;
+    --green-deep:#067A3D;
+    --green-tint:#DCF3E7;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 10px 26px -14px rgba(26,26,46,.22);
+    --focus:#1A1A2E;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      color-scheme: dark;
+      --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
+      --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
+      --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
+      --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
+      --focus:#F3F0EA;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
+    --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
+    --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
+    --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
+    --focus:#F3F0EA;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Lato', Arial, sans-serif;
+    padding-inline:18px; line-height:1.55; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:720px; margin-inline:auto;}
+  h1,h2,h3,h4{
+    font-family:'Roboto', Arial, sans-serif; font-weight:900;
+    line-height:1.14; text-wrap:balance; margin:0; color:var(--ink); letter-spacing:-.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'Roboto',sans-serif; font-size:.68rem; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  section{padding-block:38px; border-top:1px solid var(--border);}
+  section:first-of-type{border-top:none;}
+  .section-head{margin-bottom:20px; display:flex; flex-direction:column; gap:6px;}
+  .section-head h2{font-size:1.5rem;}
+  .lede{color:var(--ink-muted); font-size:.94rem; max-width:56ch;}
+
+  .btn{
+    appearance:none; border:1.5px solid transparent; cursor:pointer;
+    font-family:'Roboto',sans-serif; font-weight:700; font-size:.9rem;
+    padding:.85em 1.3em; border-radius:10px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:.5em; justify-content:center; width:100%;
+    transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+  .btn-primary{background:var(--ink); color:var(--bg);}
+  .btn-primary:hover{filter:brightness(1.15);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; width:100vw;
+    padding:34px 18px 40px;
+    background:
+      radial-gradient(120% 90% at 8% -10%, rgba(255,255,255,.2), transparent 55%),
+      linear-gradient(155deg, #F26522 0%, #C94E14 30%, #00A651 100%);
+    color:#FBF7F2;
+    overflow:hidden;
+  }
+  .hero .btn-primary{ background:#FFFFFF; color:#1A1A2E; }
+  .hero .btn-primary:hover{ filter:brightness(.96); }
+  .hero::after{
+    content:""; position:absolute; inset:0; opacity:.14; pointer-events:none;
+    background-image: radial-gradient(circle, #fff 1.5px, transparent 1.5px);
+    background-size:22px 22px;
+  }
+  .hero-inner{position:relative; max-width:720px; margin-inline:auto;}
+  .hero-logo{
+    background:#fff; border-radius:10px; padding:6px 10px; display:inline-flex;
+    align-items:center; box-shadow:var(--shadow); margin-bottom:18px;
+  }
+  .hero-logo img{height:24px; display:block;}
+  .hero .eyebrow{color:rgba(255,255,255,.82);}
+  .hero h1{font-size:clamp(1.8rem,7vw,2.3rem); color:#fff; margin-top:8px;}
+  .hero .sub{
+    font-family:'Lato',sans-serif; font-style:italic; font-weight:400;
+    font-size:1rem; color:rgba(255,255,255,.9); margin-top:8px; max-width:44ch;
+  }
+  .hero-meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+  .hero-meta span{
+    font-size:.78rem; font-weight:700; color:#fff; background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.4em .85em;
+    display:flex; align-items:center; gap:.4em;
+  }
+  .hero-meta .free{background:#fff; color:var(--green-deep); border-color:transparent;}
+
+  /* Countdown */
+  .countdown{
+    margin-top:22px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; max-width:380px;
+  }
+  .countdown div{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.26);
+    border-radius:12px; padding:10px 4px; text-align:center; backdrop-filter:blur(6px);
+  }
+  .countdown b{
+    display:block; font-family:'Roboto',sans-serif; font-weight:900; font-size:1.4rem;
+    font-variant-numeric:tabular-nums;
+  }
+  .countdown span{font-size:.62rem; text-transform:uppercase; letter-spacing:.08em; opacity:.85;}
+  .hero-cta{margin-top:24px; max-width:320px; display:flex; flex-direction:column; gap:8px;}
+  .hero-sub-note{font-size:.76rem; color:rgba(255,255,255,.78); text-align:center;}
+
+  /* ---------- Who it's for ---------- */
+  .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media (min-width:480px){ .audience-grid{grid-template-columns:repeat(4,1fr);} }
+  .audience-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    padding:16px 12px; text-align:center;
+  }
+  .audience-card .ic{font-size:1.5rem; display:block; margin-bottom:8px;}
+  .audience-card p{font-size:.8rem; font-weight:700;}
+
+  /* ---------- What you'll learn ---------- */
+  .learn-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .learn-list li{
+    display:flex; gap:12px; align-items:flex-start; background:var(--surface);
+    border:1px solid var(--border); border-radius:12px; padding:13px 15px; font-size:.9rem; font-weight:500;
+  }
+  .learn-list li::before{
+    content:"✓"; flex:none; width:22px; height:22px; border-radius:50%;
+    background:var(--green-tint); color:var(--green-deep); font-weight:900; font-size:.75rem;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  /* ---------- Myth vs fact (interactive flip cards) ---------- */
+  .myth-grid{display:flex; flex-direction:column; gap:12px;}
+  .myth-card{
+    perspective:1200px; cursor:pointer; height:128px;
+  }
+  .myth-card-inner{
+    position:relative; width:100%; height:100%; transition:transform .5s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .myth-card.flipped .myth-card-inner{transform:rotateY(180deg);}
+  .myth-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:14px;
+    padding:16px 18px; display:flex; flex-direction:column; justify-content:center; gap:6px;
+    border:1px solid var(--border);
+  }
+  .myth-face.front{background:var(--surface);}
+  .myth-face.back{background:var(--green-tint); transform:rotateY(180deg); border-color:transparent;}
+  .myth-tag{font-size:.64rem; font-weight:900; letter-spacing:.09em; text-transform:uppercase;}
+  .myth-face.front .myth-tag{color:var(--orange-deep);}
+  .myth-face.back .myth-tag{color:var(--green-deep);}
+  .myth-text{font-size:.88rem; font-weight:700; line-height:1.35;}
+  .myth-hint{font-size:.68rem; color:var(--ink-soft); margin-top:auto;}
+  .myth-face.back .myth-hint{color:var(--green-deep); opacity:.8;}
+
+  /* ---------- Speaker ---------- */
+  .speaker-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:20px; display:flex; gap:16px; align-items:center;
+  }
+  .speaker-photo{
+    width:72px; height:72px; border-radius:50%; flex:none;
+    background:var(--surface-2); border:1.5px dashed var(--border); color:var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .speaker-photo svg{width:34px; height:34px; opacity:.5;}
+  .speaker-card h4{font-size:1rem;}
+  .speaker-card .role{font-size:.82rem; color:var(--ink-muted); margin-top:3px; font-weight:700;}
+  .speaker-card .tbc{font-size:.68rem; color:var(--ink-soft); border:1px dashed var(--border); border-radius:5px; padding:.12em .5em; display:inline-block; margin-top:7px;}
+
+  /* ---------- Signup ---------- */
+  form.reg-form{
+    background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:.8rem; font-weight:700; color:var(--ink-muted);}
+  .field label .req{color:var(--orange-deep);}
+  .field input, .field select{
+    font-family:'Lato',sans-serif; font-size:.92rem; padding:.7em .85em;
+    border:1px solid var(--border); border-radius:9px; background:var(--bg); color:var(--ink);
+  }
+  .field input:focus, .field select:focus{outline:2px solid var(--focus); outline-offset:1px;}
+  .checkbox-row{display:flex; gap:10px; align-items:flex-start; font-size:.84rem; color:var(--ink-muted);}
+  .checkbox-row input{margin-top:3px;}
+  .reg-note{font-size:.76rem; color:var(--ink-soft); text-align:center;}
+  .success-box{
+    background:var(--green-tint); border:1px solid color-mix(in srgb, var(--green) 40%, var(--border));
+    border-radius:12px; padding:16px 18px; display:none; flex-direction:column; gap:4px;
+  }
+  .success-box.show{display:flex;}
+  .success-box b{color:var(--green-deep); font-size:.98rem;}
+  .success-box span{font-size:.84rem; color:var(--ink-muted);}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--border); padding-block:14px;}
+  .faq-item:first-child{padding-top:0;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:14px;
+    cursor:pointer; font-weight:700; font-size:.9rem; list-style:none; font-family:'Roboto',sans-serif;
+  }
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q .plus{color:var(--orange); font-size:1.1rem; flex:none; transition:transform .15s ease;}
+  details[open] .plus{transform:rotate(45deg);}
+  .faq-a{color:var(--ink-muted); font-size:.86rem; margin-top:8px; max-width:60ch;}
+
+  footer{padding-block:30px 44px; border-top:1px solid var(--border); font-size:.8rem; color:var(--ink-muted); text-align:center;}
+  .foot-logo img{height:20px; display:inline-block; margin-bottom:10px;}
+  .foot-copy{color:var(--ink-soft); font-size:.68rem; margin-top:12px;}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+      <p class="eyebrow">Free Public Webinar</p>
+      <h1>PMOS, Insulin Resistance &amp; Metabolic Health</h1>
+      <p class="sub">What every woman should know in 2026 — in plain language, from the doctors who treat it.</p>
+      <div class="hero-meta">
+        <span>📅 15 Nov 2026</span>
+        <span>🕦 11:30–12:00 PM</span>
+        <span>💻 Live online</span>
+        <span class="free">✨ Free to join</span>
+      </div>
+
+      <div class="countdown" id="countdown" aria-label="Time until the webinar">
+        <div><b id="cd-days">00</b><span>Days</span></div>
+        <div><b id="cd-hours">00</b><span>Hrs</span></div>
+        <div><b id="cd-mins">00</b><span>Min</span></div>
+        <div><b id="cd-secs">00</b><span>Sec</span></div>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#signup">Save my free seat</a>
+      </div>
+      <p class="hero-sub-note">30 minutes · live Q&amp;A included · recording sent to all registrants</p>
+    </div>
+  </div>
+
+  <section id="who">
+    <div class="section-head">
+      <p class="eyebrow">Who it's for</p>
+      <h2>No medical background needed</h2>
+      <p class="lede">This session is for anyone who wants clear, honest answers about PMOS — not a lecture for doctors.</p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card"><span class="ic">🙋‍♀️</span><p>Women with PMOS</p></div>
+      <div class="audience-card"><span class="ic">👨‍👩‍👧</span><p>Family &amp; caregivers</p></div>
+      <div class="audience-card"><span class="ic">🧑‍🎓</span><p>Students</p></div>
+      <div class="audience-card"><span class="ic">💬</span><p>Anyone curious</p></div>
+    </div>
+  </section>
+
+  <section id="learn">
+    <div class="section-head">
+      <p class="eyebrow">What you'll walk away with</p>
+      <h2>30 minutes, 7 real answers</h2>
+    </div>
+    <ul class="learn-list">
+      <li>What PMOS actually means — beyond irregular periods</li>
+      <li>Understanding insulin resistance &amp; metabolic risk, in plain terms</li>
+      <li>Which tests actually matter (and which ones don't)</li>
+      <li>The role of lifestyle, nutrition &amp; physical activity</li>
+      <li>Where medicines like metformin and GLP-1 therapies may fit</li>
+      <li>Common myths about weight and PMOS — busted live</li>
+      <li>When it's time to see a doctor</li>
+    </ul>
+  </section>
+
+  <section id="myths">
+    <div class="section-head">
+      <p class="eyebrow">Tap to reveal</p>
+      <h2>Myth or fact?</h2>
+      <p class="lede">A quick preview of what gets cleared up in the session. Tap any card.</p>
+    </div>
+    <div class="myth-grid" id="myth-grid">
+      <div class="myth-card" tabindex="0" role="button" aria-label="Flip card">
+        <div class="myth-card-inner">
+          <div class="myth-face front">
+            <span class="myth-tag">Claim</span>
+            <p class="myth-text">"PMOS just means you'll struggle to lose weight — that's it."</p>
+            <span class="myth-hint">Tap to reveal →</span>
+          </div>
+          <div class="myth-face back">
+            <span class="myth-tag">Myth</span>
+            <p class="myth-text">PMOS affects metabolism, fertility, skin and mental health too — weight is only one part of the picture.</p>
+          </div>
+        </div>
+      </div>
+      <div class="myth-card" tabindex="0" role="button" aria-label="Flip card">
+        <div class="myth-card-inner">
+          <div class="myth-face front">
+            <span class="myth-tag">Claim</span>
+            <p class="myth-text">"If my periods are regular, I can't have PMOS."</p>
+            <span class="myth-hint">Tap to reveal →</span>
+          </div>
+          <div class="myth-face back">
+            <span class="myth-tag">Myth</span>
+            <p class="myth-text">Some women with PMOS have regular cycles. Diagnosis looks at more than just periods.</p>
+          </div>
+        </div>
+      </div>
+      <div class="myth-card" tabindex="0" role="button" aria-label="Flip card">
+        <div class="myth-card-inner">
+          <div class="myth-face front">
+            <span class="myth-tag">Claim</span>
+            <p class="myth-text">"Every woman with PMOS needs an insulin test."</p>
+            <span class="myth-hint">Tap to reveal →</span>
+          </div>
+          <div class="myth-face back">
+            <span class="myth-tag">Myth</span>
+            <p class="myth-text">Routine insulin tests aren't always useful — glucose testing is usually the more meaningful one. We'll explain why.</p>
+          </div>
+        </div>
+      </div>
+      <div class="myth-card" tabindex="0" role="button" aria-label="Flip card">
+        <div class="myth-card-inner">
+          <div class="myth-face front">
+            <span class="myth-tag">Claim</span>
+            <p class="myth-text">"PMOS has nothing to do with long-term health risk."</p>
+            <span class="myth-hint">Tap to reveal →</span>
+          </div>
+          <div class="myth-face back">
+            <span class="myth-tag">Fact</span>
+            <p class="myth-text">PMOS is linked to higher long-term risk of diabetes and heart disease — which is exactly why early, informed care matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="speaker">
+    <div class="section-head">
+      <p class="eyebrow">Hosted by</p>
+      <h2>Your speaker</h2>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-photo"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+      <div>
+        <h4>Dr. Shyam</h4>
+        <p class="role">Insulin resistance &amp; metabolic health, IDEA Clinics</p>
+        <span class="tbc">Photo to follow</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup">
+    <div class="section-head">
+      <p class="eyebrow">Reserve your spot</p>
+      <h2>Join free, from anywhere</h2>
+      <p class="lede">We'll email your link to join before 15 November. Can't make it live? We'll send the recording too.</p>
+    </div>
+    <form class="reg-form" id="form-webinar">
+      <div class="field"><label for="w-name">Full name <span class="req">*</span></label><input id="w-name" required></div>
+      <div class="field"><label for="w-email">Email <span class="req">*</span></label><input id="w-email" type="email" required></div>
+      <div class="field"><label for="w-mobile">Mobile / WhatsApp number <span class="req">*</span></label><input id="w-mobile" type="tel" required></div>
+      <div class="field"><label for="w-city">City</label><input id="w-city"></div>
+      <div class="field">
+        <label for="w-learn">What would you most like to learn about?</label>
+        <select id="w-learn">
+          <option value="">Select one</option>
+          <option>PMOS basics</option>
+          <option>Insulin resistance</option>
+          <option>Weight &amp; metabolism</option>
+          <option>Nutrition</option>
+          <option>Fertility</option>
+          <option>GLP-1 medicines</option>
+          <option>Mental health</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <label class="checkbox-row"><input type="checkbox" id="w-ack" required>I understand this is an educational session and not a substitute for individual medical consultation.</label>
+      <button type="submit" class="btn btn-primary">Save my free seat</button>
+      <p class="reg-note">No cost. Takes 30 seconds.</p>
+      <div class="success-box" id="success-webinar">
+        <b>You're on the list 🎉</b>
+        <span>We'll email your link to join before 15 November — keep an eye on your inbox.</span>
+      </div>
+    </form>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Good to know</h2>
+    </div>
+    <details class="faq-item" open>
+      <summary class="faq-q">Is this really free?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — completely free. We just ask you to register so we can send your joining link.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Do I need a medical background to attend?<span class="plus">+</span></summary>
+      <p class="faq-a">Not at all. It's designed for women, families and anyone curious about PMOS — explained in plain language.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Will there be time for questions?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — part of the 30 minutes is set aside for live audience Q&amp;A.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What if I can't attend live?<span class="plus">+</span></summary>
+      <p class="faq-a">Register anyway — we'll email the recording to everyone who signs up.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Is PMOS the same as PCOS?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes — PMOS is the terminology used in this programme, formerly and commonly known as PCOS.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Does this replace a doctor's visit?<span class="plus">+</span></summary>
+      <p class="faq-a">No — it's health education, not individual medical advice. We'll point you to next steps if you need a consultation.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+    <p>A free public session by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
+    <p class="foot-copy">Mock layout — speaker photo and final joining link to be confirmed.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Countdown to 15 Nov 2026, 11:30 AM IST (UTC+5:30)
+  var target = new Date('2026-11-15T11:30:00+05:30').getTime();
+  function tick(){
+    var now = Date.now();
+    var diff = Math.max(0, target - now);
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var set = function(id, v){ var el = document.getElementById(id); if (el) el.textContent = String(v).padStart(2,'0'); };
+    set('cd-days', d); set('cd-hours', h); set('cd-mins', m); set('cd-secs', s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Myth flip cards
+  document.querySelectorAll('.myth-card').forEach(function(card){
+    function flip(){ card.classList.toggle('flipped'); }
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+    });
+  });
+
+  // Mock form submit
+  var form = document.getElementById('form-webinar');
+  var success = document.getElementById('success-webinar');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.classList.add('show');
+      success.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  }
+})();
+</script>
+</body>
+</html>
