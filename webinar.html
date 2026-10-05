@@ -261,6 +261,24 @@
   .faq-a{color:var(--ink-muted); font-size:.86rem; margin-top:8px; max-width:60ch;}
 
   footer{padding-block:30px 44px; border-top:1px solid var(--border); font-size:.8rem; color:var(--ink-muted); text-align:center;}
+
+  /* ---------- Sticky register bar ---------- */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:var(--surface); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px -8px rgba(26,26,46,.18);
+    padding:10px 18px calc(10px + env(safe-area-inset-bottom, 0px));
+    display:flex; justify-content:center;
+    transform:translateY(120%); transition:transform .25s ease;
+  }
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta-inner{width:100%; max-width:720px; display:flex; align-items:center; gap:12px;}
+  .sticky-cta-text{display:none; flex-direction:column; flex:1; min-width:0;}
+  .sticky-cta-text b{font-size:.84rem; font-family:'Roboto',sans-serif;}
+  .sticky-cta-text span{font-size:.72rem; color:var(--ink-muted);}
+  @media (min-width:420px){ .sticky-cta-text{display:flex;} }
+  .sticky-cta .btn{width:auto; flex:none; padding:.75em 1.4em;}
+  @media (max-width:419px){ .sticky-cta .btn{width:100%;} }
   .foot-logo img{height:20px; display:inline-block; margin-bottom:10px;}
   .foot-copy{color:var(--ink-soft); font-size:.68rem; margin-top:12px;}
 </style>
@@ -268,7 +286,7 @@
 <body>
 <main class="wrap">
 
-  <div class="hero">
+  <div class="hero" id="hero">
     <div class="hero-inner">
       <div class="hero-top-row">
         <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
@@ -498,6 +516,16 @@
 
 </main>
 
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <b>Free · 15 Nov, 11 AM–12 PM</b>
+      <span>Live online · 5-doctor panel</span>
+    </div>
+    <a class="btn btn-primary" href="#signup">Save my free seat</a>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
@@ -522,6 +550,37 @@
   }
   tick();
   setInterval(tick, 1000);
+
+  // Sticky register bar — hidden while the hero (with its own CTA) or the
+  // real signup form is on screen, shown everywhere else.
+  (function(){
+    var bar = document.getElementById('sticky-cta');
+    var hero = document.getElementById('hero');
+    var signup = document.getElementById('signup');
+    if (!bar || !window.IntersectionObserver) return;
+
+    var heroVisible = true;
+    var signupVisible = false;
+
+    function sync(){
+      var shouldShow = !heroVisible && !signupVisible;
+      bar.classList.toggle('show', shouldShow);
+    }
+
+    var heroObserver = new IntersectionObserver(function(entries){
+      heroVisible = entries[0].isIntersecting;
+      sync();
+    }, { threshold: 0.15 });
+    heroObserver.observe(hero);
+
+    if (signup) {
+      var signupObserver = new IntersectionObserver(function(entries){
+        signupVisible = entries[0].isIntersecting;
+        sync();
+      }, { threshold: 0.1 });
+      signupObserver.observe(signup);
+    }
+  })();
 
   // Myth flip cards
   document.querySelectorAll('.myth-card').forEach(function(card){
