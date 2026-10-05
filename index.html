@@ -382,7 +382,6 @@
     <div class="reg-cta">
       <a class="btn btn-primary" href="#" id="razorpay-btn">Register &amp; pay via Razorpay</a>
     </div>
-    <p class="reg-note">Payment link to be connected · button is a placeholder for now</p>
   </section>
 
   <section id="faq">
@@ -418,7 +417,7 @@
   <div class="wrap">
     <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
     <div class="contact-line">Email: <span id="email-addr">raghav.m@ideaclinics.com</span> <button class="copy-btn" data-copy="email-addr">Copy</button></div>
-    <p class="foot-copy">Organised by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity. Mock layout — final fees, venue address and payment link to be confirmed.</p>
+    <p class="foot-copy">Organised by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
   </div>
 </footer>
 
@@ -433,14 +432,6 @@
       } else { done(); }
     });
   });
-  var rz = document.getElementById('razorpay-btn');
-  if (rz) {
-    rz.addEventListener('click', function(e){
-      e.preventDefault();
-      rz.textContent = 'Razorpay link coming soon';
-      setTimeout(function(){ rz.textContent = 'Register & pay via Razorpay'; }, 1600);
-    });
-  }
 })();
 </script>
 </body>
