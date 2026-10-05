@@ -239,6 +239,14 @@
   .success-box.show{display:flex;}
   .success-box b{color:var(--green-deep); font-size:.98rem;}
   .success-box span{font-size:.84rem; color:var(--ink-muted);}
+  .error-box{
+    background:var(--orange-tint); border:1px solid color-mix(in srgb, var(--orange) 40%, var(--border));
+    border-radius:12px; padding:16px 18px; display:none; flex-direction:column; gap:4px;
+  }
+  .error-box.show{display:flex;}
+  .error-box b{color:var(--orange-deep); font-size:.98rem;}
+  .error-box span{font-size:.84rem; color:var(--ink-muted);}
+  .btn[disabled]{opacity:.6; cursor:not-allowed;}
 
   /* ---------- FAQ ---------- */
   .faq-item{border-bottom:1px solid var(--border); padding-block:14px;}
@@ -444,11 +452,15 @@
         </select>
       </div>
       <label class="checkbox-row"><input type="checkbox" id="w-ack" required>I understand this is an educational session and not a substitute for individual medical consultation.</label>
-      <button type="submit" class="btn btn-primary">Save my free seat</button>
+      <button type="submit" class="btn btn-primary" id="w-submit">Save my free seat</button>
       <p class="reg-note">No cost. Takes 30 seconds.</p>
       <div class="success-box" id="success-webinar">
         <b>You're on the list 🎉</b>
         <span>We'll email your link to join before 15 November — keep an eye on your inbox.</span>
+      </div>
+      <div class="error-box" id="error-webinar">
+        <b>Something went wrong</b>
+        <span>We couldn't save your registration. Please try again in a moment.</span>
       </div>
     </form>
   </section>
@@ -520,14 +532,52 @@
     });
   });
 
-  // Mock form submit
+  // Webinar signup — submits to /api/register (Cloudflare Pages Function -> D1)
   var form = document.getElementById('form-webinar');
   var success = document.getElementById('success-webinar');
+  var errorBox = document.getElementById('error-webinar');
+  var submitBtn = document.getElementById('w-submit');
   if (form) {
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      success.classList.add('show');
-      success.scrollIntoView({behavior:'smooth', block:'nearest'});
+      errorBox.classList.remove('show');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving…';
+
+      var payload = {
+        form_type: 'webinar',
+        full_name: document.getElementById('w-name').value.trim(),
+        email: document.getElementById('w-email').value.trim(),
+        mobile: document.getElementById('w-mobile').value.trim(),
+        city: document.getElementById('w-city').value.trim(),
+        topic_interest: document.getElementById('w-learn').value,
+        acknowledged: document.getElementById('w-ack').checked
+      };
+
+      fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+      .then(function(result){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save my free seat';
+        if (result.ok && result.data.ok) {
+          form.reset();
+          success.classList.add('show');
+          success.scrollIntoView({behavior:'smooth', block:'nearest'});
+        } else {
+          errorBox.classList.add('show');
+          errorBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
+      })
+      .catch(function(){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save my free seat';
+        errorBox.classList.add('show');
+        errorBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
     });
   }
 })();
