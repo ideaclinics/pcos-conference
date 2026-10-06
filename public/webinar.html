@@ -238,6 +238,7 @@
   }
   .success-box.show{display:flex;}
   .success-box b{color:var(--green-deep); font-size:.98rem;}
+  .success-box .cal-links a{color:var(--green-deep); font-weight:700; text-decoration:underline;}
   .success-box span{font-size:.84rem; color:var(--ink-muted);}
   .error-box{
     background:var(--orange-tint); border:1px solid color-mix(in srgb, var(--orange) 40%, var(--border));
@@ -469,11 +470,13 @@
         </select>
       </div>
       <label class="checkbox-row"><input type="checkbox" id="w-ack" required>I understand this is an educational session and not a substitute for individual medical consultation.</label>
+      <label class="checkbox-row"><input type="checkbox" id="w-wa" checked>Send my confirmation and joining link on WhatsApp.</label>
       <button type="submit" class="btn btn-primary" id="w-submit">Save my free seat</button>
       <p class="reg-note">No cost. Takes 30 seconds.</p>
       <div class="success-box" id="success-webinar">
         <b>You're on the list 🎉</b>
-        <span>We'll email your link to join before 15 November — keep an eye on your inbox.</span>
+        <span>We'll send your joining link before 15 November. Add the session to your calendar so you don't miss it.</span>
+        <span class="cal-links"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=PMOS+Webinar%3A+Insulin+Resistance+%26+Metabolic+Health&dates=20261115T053000Z/20261115T063000Z&details=Free+online+session+by+IDEA+Clinics.+Joining+link+will+be+sent+before+the+session.&ctz=Asia/Kolkata" target="_blank" rel="noopener">Google Calendar</a> · <a href="/pmos-webinar.ics" download>Apple / Outlook</a></span>
       </div>
       <div class="error-box" id="error-webinar">
         <b>Something went wrong</b>
@@ -608,7 +611,8 @@
         mobile: document.getElementById('w-mobile').value.trim(),
         city: document.getElementById('w-city').value.trim(),
         topic_interest: document.getElementById('w-learn').value,
-        acknowledged: document.getElementById('w-ack').checked
+        acknowledged: document.getElementById('w-ack').checked,
+        wants_updates: document.getElementById('w-wa').checked
       };
 
       fetch('/api/register', {

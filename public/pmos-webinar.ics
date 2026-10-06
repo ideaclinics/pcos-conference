@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//IDEA Clinics//PMOS 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:pmos-webinar-20261115@ideaclinics.com
+DTSTAMP:20261006T060000Z
+DTSTART:20261115T053000Z
+DTEND:20261115T063000Z
+SUMMARY:PMOS Webinar: Insulin Resistance & Metabolic Health
+DESCRIPTION:Free online session by IDEA Clinics. Joining link will be sent before the session.\n\nhttps://pmos.ideaclinics.com/webinar.html
+URL:https://pmos.ideaclinics.com/webinar.html
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:PMOS Webinar starts in 1 hour
+END:VALARM
+END:VEVENT
+END:VCALENDAR

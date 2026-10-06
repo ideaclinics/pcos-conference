@@ -1,6 +1,37 @@
 // POST /api/register -> writes conference/webinar registrations to D1 (binding: DB)
 const REQUIRED_BASE = ["form_type", "full_name", "email", "mobile"];
 
+// Sends the "pmos_webinar" WhatsApp template via Interakt. Runs only if the
+// INTERAKT_API_KEY secret is set and the person opted in. Never blocks signup.
+async function sendWhatsApp(env, data) {
+  if (!env.INTERAKT_API_KEY || data.form_type !== "webinar" || !data.wants_updates) return;
+  let digits = String(data.mobile).replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
+  if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
+  if (digits.length !== 10) return;
+  const firstName = String(data.full_name).trim().split(/\s+/)[0] || "there";
+  try {
+    await fetch("https://api.interakt.ai/v1/public/message/", {
+      method: "POST",
+      headers: {
+        Authorization: "Basic " + env.INTERAKT_API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        countryCode: "+91",
+        phoneNumber: digits,
+        callbackData: "pmos_webinar_signup",
+        type: "Template",
+        template: {
+          name: "pmos_webinar",
+          languageCode: "en",
+          bodyValues: [firstName],
+        },
+      }),
+    });
+  } catch (e) {}
+}
+
 function cors(resp) {
   resp.headers.set("Access-Control-Allow-Origin", "*");
   resp.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -90,6 +121,7 @@ export async function onRequestPost(context) {
       )
       .run();
 
+    if (context.ctx && context.ctx.waitUntil) context.ctx.waitUntil(sendWhatsApp(env, data));
     return cors(
       new Response(JSON.stringify({ ok: true }), {
         status: 200,
