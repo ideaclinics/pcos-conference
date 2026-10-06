@@ -1,5 +1,8 @@
 // POST /api/register -> writes conference/webinar registrations to D1 (binding: DB)
-const REQUIRED_BASE = ["form_type", "full_name", "email", "mobile"];
+const REQUIRED_BASE = ["form_type", "full_name", "mobile"];
+const FORM_TYPES = ["conference", "webinar", "foot_doctor", "foot_public"];
+// Email is mandatory for every form except the public foot webcast.
+const EMAIL_OPTIONAL = ["foot_public"];
 
 // Sends the "pmos_webinar" WhatsApp template via Interakt. Runs only if the
 // INTERAKT_API_KEY secret is set and the person opted in. Never blocks signup.
@@ -81,9 +84,18 @@ export async function onRequestPost(context) {
     }
   }
 
-  if (!["conference", "webinar"].includes(data.form_type)) {
+  if (!FORM_TYPES.includes(data.form_type)) {
     return cors(
       new Response(JSON.stringify({ ok: false, error: "Invalid form_type." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      })
+    );
+  }
+
+  if (!EMAIL_OPTIONAL.includes(data.form_type) && (!data.email || String(data.email).trim() === "")) {
+    return cors(
+      new Response(JSON.stringify({ ok: false, error: "Missing required field: email" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       })
@@ -104,7 +116,7 @@ export async function onRequestPost(context) {
       .bind(
         data.form_type,
         data.full_name,
-        data.email,
+        data.email || "",
         data.mobile,
         data.city || null,
         data.state || null,
