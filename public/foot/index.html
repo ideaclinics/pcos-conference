@@ -412,6 +412,30 @@
   .final p{color:rgba(255,255,255,.88); font-size:.9rem;}
   .shift{list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; font-size:.84rem; font-weight:700;}
   .shift li span{color:#FFB486;}
+
+  /* ---------- Contrast fixes ---------- */
+  .faq-q .plus{color:#A63E0C; font-size:1.3rem; font-weight:900;}
+  @media (prefers-color-scheme: dark){ .faq-q .plus{color:#FFA268;} }
+  :root{ --ink-soft:#66615A; }
+  :root[data-theme="dark"]{ --ink-soft:#A9A5BD; }
+  .hero{ background:
+      radial-gradient(120% 90% at 8% -10%, rgba(255,255,255,.12), transparent 55%),
+      linear-gradient(155deg, #1A1A2E 0%, #0B4D2E 55%, #067A3D 100%); }
+  .live-badge{ color:#1A1A2E; }
+  .hero-meta .free{ color:#067A3D; }
+  .hero .eyebrow, .hero .sub, .hero-meta span{ color:#fff; }
+  .btn-orange{ background:#B9440C; color:#fff; }
+  .btn-green{ background:#067A3D; color:#fff; }
+  .path-card.doc .tag, details.more > summary, .journey b{ color:#A63E0C; }
+  .chain button{ color:#4A4A55; }
+  .chain button[aria-selected="true"], .seg button[aria-selected="true"]{ color:#fff; background:#1A1A2E; }
+  .seg button{ color:#4A4A55; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --ink-soft:#A9A5BD; }
+    .path-card.doc .tag, details.more > summary, .journey b{ color:#FFA268; }
+    .chain button, .seg button{ color:#D9D6E6; }
+    .chain button[aria-selected="true"], .seg button[aria-selected="true"]{ background:#F3F0EA; color:#1A1A2E; }
+  }
 </style>
 </head>
 <body>
