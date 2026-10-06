@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F15738">
 <title>Diabetic Foot 2026 | IDEA Clinics</title>
 <meta name="description" content="Diabetic Foot 2026. A doctors' workshop in Hyderabad and a live public webcast on protecting the diabetic foot. 15 November 2026, World Diabetes Day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +114,23 @@
   .sticky.show{visibility:visible; transform:none; transition:transform .2s ease;}
   .sticky .btn{max-width:600px; margin-inline:auto; min-height:52px;}
   @media (prefers-reduced-motion:reduce){ .sticky{transition:none;} }
+
+  /* Top gradient: orange fading to white, with a faint ECG-paper grid. CSS only. */
+  body{position:relative;}
+  body::before, body::after{content:""; position:absolute; left:0; right:0; top:0; height:360px; z-index:-1; pointer-events:none;}
+  body::before{background:linear-gradient(180deg,#F15738 0%,#F4745A 30%,#F9B3A3 62%,#FDE6E0 85%,#fff 100%);}
+  body::after{
+    background:
+      linear-gradient(rgba(255,255,255,.34) 1px, transparent 1px) 0 0/84px 84px,
+      linear-gradient(90deg, rgba(255,255,255,.34) 1px, transparent 1px) 0 0/84px 84px,
+      linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px) 0 0/14px 14px,
+      linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px) 0 0/14px 14px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 90%); mask-image:linear-gradient(180deg,#000 0%,transparent 90%);
+  }
+  header img{background:#fff; padding:6px 10px; border-radius:10px; height:42px;}
+  header span{color:var(--ink); font-weight:700;}
+  .hero .sub, .hero .when span{color:var(--ink);}
+  .hero{padding-top:36px;}
 </style>
 </head>
 <body>
