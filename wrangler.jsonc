@@ -1,0 +1,13 @@
+{
+  "name": "pcos-conference",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pmos-registrations",
+      "database_id": "94a29928-0287-44eb-90ba-96c7e929987e"
+    }
+  ]
+}

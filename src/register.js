@@ -1,12 +1,4 @@
-// Cloudflare Pages Function: POST /api/register
-// Accepts a registration from either the conference form (form_type: "conference")
-// or the public webinar form (form_type: "webinar") and writes it to D1.
-//
-// Requires a D1 binding named DB on this Pages project, pointing at the
-// "pmos-registrations" database. Set this once in:
-//   Cloudflare dashboard → Workers & Pages → pcos-conference → Settings → Functions
-//   → D1 database bindings → Add binding → Variable name: DB → Database: pmos-registrations
-
+// POST /api/register -> writes conference/webinar registrations to D1 (binding: DB)
 const REQUIRED_BASE = ["form_type", "full_name", "email", "mobile"];
 
 function cors(resp) {
