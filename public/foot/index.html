@@ -436,6 +436,24 @@
     .chain button, .seg button{ color:#D9D6E6; }
     .chain button[aria-selected="true"], .seg button[aria-selected="true"]{ background:#F3F0EA; color:#1A1A2E; }
   }
+
+  /* ---------- Minimal pass ---------- */
+  .hero{background:#1A1A2E;}
+  .hero::after{display:none;}
+  .hero .sub{font-style:normal; font-size:1.02rem;}
+  .hero-tagline{color:#FFB486; margin-top:12px;}
+  .hero-line{margin-top:18px; font-size:.86rem; color:#fff; opacity:.92; line-height:1.6;}
+  .hero .btn-ghost{background:transparent; border-color:rgba(255,255,255,.55);}
+  .path-card, .care-card, .qlist li, ol.numbered li, .learn-list li, .chain-panel{box-shadow:none;}
+  .path-card{padding:18px;}
+  section{padding-block:34px;}
+  .rows{margin:0; padding:0; list-style:none; border-top:1px solid var(--border);}
+  .rows li{padding:12px 0; border-bottom:1px solid var(--border); font-size:.9rem;}
+  .rows li b{font-family:'Roboto',sans-serif; display:block; font-size:.9rem;}
+  .rows li span{color:var(--ink-muted); font-size:.82rem;}
+  .plain-list{margin:0; padding-left:1.1em; font-size:.88rem; color:var(--ink-muted); display:flex; flex-direction:column; gap:5px;}
+  .final{background:#1A1A2E; padding:30px 20px;}
+  .final h2{font-size:1.25rem; margin:0;}
 </style>
 </head>
 <body>
@@ -447,126 +465,90 @@
         <div class="hero-logo"><img src="/idea-logo.png" alt="IDEA Clinics"></div>
         <span class="live-badge"><span class="live-dot"></span>World Diabetes Day 2026</span>
       </div>
-      <p class="eyebrow">Doctor Workshop · Live Public Webcast</p>
       <h1>Diabetic Foot 2026</h1>
       <p class="sub">From Neuropathy to Wound Healing: Protecting the Diabetic Foot</p>
       <p class="hero-tagline">Recognise early. Treat early. Save the foot. Save the limb.</p>
-      <div class="hero-meta">
-        <span>📅 Sun, 15 Nov 2026</span>
-        <span>🕘 9:00 AM–5:00 PM</span>
-        <span>📍 Lemon Tree Premier, HITEC City, Hyderabad</span>
-        <span class="free">🌐 Live online for the public</span>
-      </div>
-
-      <div class="countdown" id="countdown" aria-label="Time until the event">
-        <div><b id="cd-days">00</b><span>Days</span></div>
-        <div><b id="cd-hours">00</b><span>Hrs</span></div>
-        <div><b id="cd-mins">00</b><span>Min</span></div>
-        <div><b id="cd-secs">00</b><span>Sec</span></div>
-      </div>
-
+      <p class="hero-line">Sunday, 15 November 2026 · 9:00 AM–5:00 PM<br>Lemon Tree Premier, HITEC City, Hyderabad</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#register" data-pick="doctor">I'm a doctor: register for the workshop</a>
-        <a class="btn btn-ghost" href="#register" data-pick="public">Patient or family: join the live webcast</a>
+        <a class="btn btn-primary" href="#register" data-pick="doctor">Doctors: register for the workshop</a>
+        <a class="btn btn-ghost" href="#register" data-pick="public">Patients &amp; public: join the webcast</a>
       </div>
     </div>
   </div>
 
   <section id="paths">
-    <div class="section-head">
-      <p class="eyebrow">Two ways to join</p>
-      <h2>One day. Doctors in the room, everyone else online.</h2>
-    </div>
     <div class="split">
       <div class="path-card doc">
         <span class="tag">In person · Doctors</span>
-        <h3>Hands-on diabetic foot workshop</h3>
+        <h3>Diabetic foot workshop</h3>
         <ul>
-          <li>Wound assessment, infection and off-loading</li>
-          <li>Live ZioHeal® wound-care demonstration</li>
-          <li>Expert panel and case discussion</li>
+          <li>Wound, infection and off-loading practice</li>
+          <li>Live ZioHeal® demonstration</li>
+          <li>Expert panel</li>
         </ul>
         <a class="btn btn-orange" href="#register" data-pick="doctor">Register as a doctor</a>
       </div>
       <div class="path-card pub">
         <span class="tag">Online · Patients &amp; public</span>
-        <h3>What every person with diabetes should know about their feet</h3>
+        <h3>Know your feet</h3>
         <ul>
           <li>Plain-language live webcast</li>
-          <li>Spot early warning signs</li>
-          <li>Know when to seek care, and when it's urgent</li>
+          <li>Early warning signs</li>
+          <li>When to seek urgent care</li>
         </ul>
-        <a class="btn btn-green" href="#register" data-pick="public">Join the live webcast</a>
+        <a class="btn btn-green" href="#register" data-pick="public">Join the webcast</a>
       </div>
     </div>
   </section>
 
   <section id="why">
     <div class="section-head">
-      <p class="eyebrow">Why this matters</p>
+      <p class="eyebrow">Why it matters</p>
       <h2>Diabetic foot problems often begin silently</h2>
-      <p class="lede">Tap each step to see how a small, unnoticed problem can become an emergency.</p>
     </div>
     <div class="chain" role="tablist" aria-label="How a diabetic foot problem progresses" id="chain">
-      <button role="tab" aria-selected="true" data-i="0"><span>🦶</span>Numbness</button>
-      <button role="tab" aria-selected="false" data-i="1"><span>🩹</span>Unnoticed injury</button>
-      <button role="tab" aria-selected="false" data-i="2"><span>⭕</span>Ulcer</button>
-      <button role="tab" aria-selected="false" data-i="3"><span>🦠</span>Infection</button>
-      <button role="tab" aria-selected="false" data-i="4"><span>⚠️</span>Limb at risk</button>
+      <button role="tab" aria-selected="true" data-i="0">Numbness</button>
+      <button role="tab" aria-selected="false" data-i="1">Unnoticed injury</button>
+      <button role="tab" aria-selected="false" data-i="2">Ulcer</button>
+      <button role="tab" aria-selected="false" data-i="3">Infection</button>
+      <button role="tab" aria-selected="false" data-i="4">Limb at risk</button>
     </div>
     <div class="chain-panel" id="chain-panel" role="tabpanel" aria-live="polite">
       <h3 id="chain-title"></h3>
       <p id="chain-text"></p>
     </div>
-    <div class="chain-break"><b>Don't wait for a diabetic foot wound to become an emergency.</b> Diabetes-related nerve damage and poor circulation make injuries hard to notice and slow to heal. Early detection breaks the chain.</div>
   </section>
 
   <section id="zioheal">
     <div class="section-head">
       <p class="eyebrow">For doctors · Live demonstration</p>
-      <h2>The first time: ZioHeal® in diabetic foot care at home</h2>
-      <p class="lede">Advanced wound-care technology, brought into Diabetes Care at Home.</p>
+      <h2>ZioHeal® in diabetic foot care at home</h2>
     </div>
-    <p class="prose">ZioHeal® is a bioceramic wound patch based on a zeolite–iodine complex. Its manufacturer describes it as a sterile medical device in which the zeolite is intended to adsorb wound exudate while slow iodine release provides an aseptic environment, for acute and chronic surface wounds, including diabetic foot ulcers.</p>
-    <p class="prose">The emphasis is on integrating wound care with diabetes management, not treating the wound in isolation.</p>
-    <ol class="flow" style="margin-top:16px;">
-      <li>Wound assessment</li>
-      <li>Wound preparation</li>
-      <li>ZioHeal® application</li>
-      <li>Appropriate secondary dressing</li>
-      <li>Monitoring and follow-up</li>
-    </ol>
-    <div class="callout"><b>Important:</b> ZioHeal® is demonstrated as an advanced wound-care option under appropriate medical supervision. It is not a substitute for vascular assessment, infection management, debridement, off-loading, glycaemic control or surgical care when these are clinically required.</div>
+    <p class="prose">ZioHeal® is a bioceramic wound patch based on a zeolite–iodine complex. Its manufacturer describes it as a sterile medical device intended to adsorb wound exudate while slow iodine release provides an aseptic environment, for acute and chronic surface wounds including diabetic foot ulcers.</p>
+    <p class="prose"><b>Assess → Prepare → Apply ZioHeal® → Secondary dressing → Monitor and follow up.</b></p>
+    <div class="callout"><b>Important:</b> demonstrated under appropriate medical supervision. It does not replace vascular assessment, infection management, debridement, off-loading, glycaemic control or surgery when required.</div>
   </section>
 
   <section id="panel">
     <div class="section-head">
-      <p class="eyebrow">Live panel discussion</p>
+      <p class="eyebrow">Live panel</p>
       <h2>"Can we prevent diabetic foot amputations?"</h2>
-      <p class="lede">An interdisciplinary conversation across six specialties.</p>
-    </div>
-    <div class="chips">
-      <span class="chip">🩺 Diabetologist / Endocrinologist</span>
-      <span class="chip">🦶 Foot surgeon</span>
-      <span class="chip">🩹 Wound-care specialist</span>
-      <span class="chip">🩸 Vascular specialist</span>
-      <span class="chip">🏠 Diabetes-at-home care expert</span>
-      <span class="chip">👩‍⚕️ Diabetes nurse / educator</span>
+      <p class="lede">Diabetology · foot surgery · wound care · vascular · care at home · diabetes nursing</p>
     </div>
     <details class="more">
       <summary>Questions the panel will answer</summary>
       <ul class="qlist">
         <li>When should neuropathy screening begin?</li>
-        <li>Which diabetic foot wounds can be managed at home?</li>
-        <li>When does a wound require hospitalisation?</li>
+        <li>Which wounds can be managed at home?</li>
+        <li>When does a wound need hospitalisation?</li>
         <li>When are antibiotics actually required?</li>
         <li>When should debridement be performed?</li>
-        <li>How important is blood-sugar control for wound healing?</li>
+        <li>How much does blood-sugar control matter for healing?</li>
         <li>When should vascular disease be suspected?</li>
         <li>How can off-loading prevent recurrent ulcers?</li>
         <li>Can advanced dressings reduce complications?</li>
-        <li>How can technology enable continuous wound monitoring at home?</li>
-        <li>When should a patient immediately seek emergency care?</li>
+        <li>How can technology enable monitoring at home?</li>
+        <li>When should a patient seek emergency care?</li>
       </ul>
     </details>
   </section>
@@ -574,131 +556,66 @@
   <section id="home">
     <div class="section-head">
       <p class="eyebrow">Diabetes care at home</p>
-      <h2>Foot care doesn't have to stop when the patient leaves the clinic</h2>
-      <p class="lede">For appropriate patients, IDEA Clinics' Diabetes Foot Care at Home model brings specialist care to the home.</p>
+      <h2>Foot care doesn't stop when the patient leaves the clinic</h2>
     </div>
-    <div class="care-grid">
-      <div class="care-card"><span class="ic">👨‍⚕️</span><h4>Expert consultations</h4><p>Foot surgeon and endocrinology support</p></div>
-      <div class="care-card"><span class="ic">🔬</span><h4>Home assessment</h4><p>Diabetes, metabolic, neuropathy, vascular and microbiology checks where clinically indicated</p></div>
-      <div class="care-card"><span class="ic">🩹</span><h4>Advanced wound care</h4><p>Professional dressing and wound management at home</p></div>
-      <div class="care-card"><span class="ic">✂️</span><h4>Debridement</h4><p>When clinically indicated, by appropriately trained professionals</p></div>
-      <div class="care-card"><span class="ic">🩸</span><h4>Glucose management</h4><p>Uncontrolled glucose can impair healing and raise infection risk</p></div>
-      <div class="care-card"><span class="ic">📈</span><h4>Continuous monitoring</h4><p>Regular review to catch improvement or deterioration early</p></div>
-    </div>
-    <h3 style="font-size:1.05rem; margin:26px 0 12px;">Who may benefit</h3>
-    <div class="chips">
-      <span class="chip">🦶 Numb or reduced sensation</span>
-      <span class="chip">🔥 Burning or tingling feet</span>
-      <span class="chip">🩹 Recurrent foot wounds</span>
-      <span class="chip">🩸 Non-healing ulcer</span>
-      <span class="chip">🦠 Suspected or past infection</span>
-      <span class="chip">👣 Previous foot ulcer</span>
-      <span class="chip">⚠️ High-risk feet</span>
-      <span class="chip">🏠 Hard to travel to a clinic</span>
-    </div>
-    <div class="journey">
-      <div><b>From the clinic</b>Assessment · specialist consultation · investigations</div>
-      <div><b>To the home</b>Dressings · monitoring · diabetes management · follow-up</div>
-      <div><b>Back to the specialist</b>Escalation · referral · surgical or vascular intervention when required</div>
-    </div>
+    <ul class="rows">
+      <li><b>Expert consultations</b><span>Foot surgeon and endocrinology support</span></li>
+      <li><b>Home assessment</b><span>Neuropathy, vascular and other checks where clinically indicated</span></li>
+      <li><b>Wound care and debridement</b><span>By trained professionals, when clinically indicated</span></li>
+      <li><b>Glucose management and monitoring</b><span>Uncontrolled glucose can impair healing</span></li>
+    </ul>
+    <details class="more">
+      <summary>Who may benefit</summary>
+      <ul class="plain-list">
+        <li>Numbness, burning or tingling in the feet</li>
+        <li>Recurrent foot wounds or a non-healing ulcer</li>
+        <li>Suspected or previous foot infection or ulcer</li>
+        <li>High-risk feet</li>
+        <li>Difficulty travelling repeatedly to a clinic</li>
+      </ul>
+    </details>
     <div style="margin-top:18px; max-width:360px;">
-      <a class="btn btn-green" href="https://feet.ideaclinics.com/" target="_blank" rel="noopener">Explore Diabetes Foot Care at Home</a>
+      <a class="btn btn-outline" href="https://feet.ideaclinics.com/" target="_blank" rel="noopener">About Diabetes Foot Care at Home</a>
     </div>
   </section>
 
   <section id="webcast">
     <div class="section-head">
-      <p class="eyebrow">Public awareness webcast</p>
-      <h2>10 questions everyone with diabetes should be able to answer</h2>
-      <p class="lede">The live webcast turns the medical workshop into simple, practical messages.</p>
+      <p class="eyebrow">Public webcast</p>
+      <h2>What every person with diabetes should know about their feet</h2>
     </div>
-    <ol class="numbered">
-      <li>Why can diabetes damage the feet?</li>
-      <li>What is diabetic neuropathy?</li>
-      <li>How do I know if I have lost sensation?</li>
-      <li>What does a dangerous foot ulcer look like?</li>
-      <li>Can a tiny wound become serious?</li>
-      <li>Should I walk barefoot if my feet feel normal?</li>
-      <li>How often should I examine my feet?</li>
-      <li>When can diabetic-foot care be provided at home?</li>
-      <li>When should I go immediately to hospital?</li>
-      <li>How can I prevent an amputation?</li>
-    </ol>
-  </section>
-
-  <section id="outcomes">
-    <div class="section-head">
-      <p class="eyebrow">What you take away</p>
-      <h2>Outcomes</h2>
-    </div>
-    <div class="seg" role="tablist" id="out-seg">
-      <button role="tab" aria-selected="true" data-o="doctor">For doctors</button>
-      <button role="tab" aria-selected="false" data-o="public">Patients &amp; public</button>
-    </div>
-    <ul class="learn-list" id="out-doctor">
-      <li>Recognise high-risk diabetic feet earlier</li>
-      <li>Screen for neuropathy and vascular risk</li>
-      <li>Assess diabetic foot wounds systematically</li>
-      <li>Tell apart wounds suited to home management from those needing hospital or surgical care</li>
-      <li>Understand contemporary wound-care and infection-management principles</li>
-      <li>Observe the practical application of ZioHeal® in appropriate wound-care settings</li>
-      <li>Integrate wound management with diabetes and metabolic control</li>
-      <li>Build a multidisciplinary referral pathway</li>
-      <li>Explore Diabetes Care at Home as a continuum of specialist care</li>
-    </ul>
-    <ul class="learn-list" id="out-public" hidden>
-      <li>Recognise neuropathy</li>
-      <li>Examine your feet regularly</li>
-      <li>Identify early ulcers</li>
-      <li>Avoid barefoot walking</li>
-      <li>Seek professional care early</li>
-      <li>Understand why glucose control matters</li>
-      <li>Know when home care may be appropriate</li>
-      <li>Know when urgent hospital care is necessary</li>
-    </ul>
+    <details class="more" style="margin-top:0;">
+      <summary>The 10 questions we'll answer</summary>
+      <ol class="numbered" style="margin-top:8px;">
+        <li>Why can diabetes damage the feet?</li>
+        <li>What is diabetic neuropathy?</li>
+        <li>How do I know if I have lost sensation?</li>
+        <li>What does a dangerous foot ulcer look like?</li>
+        <li>Can a tiny wound become serious?</li>
+        <li>Should I walk barefoot if my feet feel normal?</li>
+        <li>How often should I examine my feet?</li>
+        <li>When can care be provided at home?</li>
+        <li>When should I go immediately to hospital?</li>
+        <li>How can I prevent an amputation?</li>
+      </ol>
+    </details>
   </section>
 
   <section id="who">
-    <div class="section-head">
-      <p class="eyebrow">Who should attend</p>
-      <h2>Built for the whole care team, and the people they care for</h2>
-    </div>
-    <h3 style="font-size:.95rem; margin-bottom:10px;">Doctors &amp; healthcare professionals · in person</h3>
-    <div class="chips">
-      <span class="chip">Diabetologists &amp; endocrinologists</span>
-      <span class="chip">General physicians</span>
-      <span class="chip">Family physicians</span>
-      <span class="chip">Foot surgeons</span>
-      <span class="chip">General &amp; vascular surgeons</span>
-      <span class="chip">Orthopaedic surgeons</span>
-      <span class="chip">Wound-care specialists</span>
-      <span class="chip">Podiatry / foot-care professionals</span>
-      <span class="chip">Nurses &amp; wound-care teams</span>
-      <span class="chip">Residents &amp; fellows</span>
-      <span class="chip">Diabetes educators</span>
-    </div>
-    <h3 style="font-size:.95rem; margin:22px 0 10px;">Patients, caregivers &amp; public · online</h3>
-    <div class="chips">
-      <span class="chip">People living with diabetes</span>
-      <span class="chip">People with neuropathy</span>
-      <span class="chip">Patients with foot wounds or ulcers</span>
-      <span class="chip">Family &amp; caregivers</span>
-      <span class="chip">People at high risk</span>
-      <span class="chip">Anyone wanting to prevent limb complications</span>
-    </div>
+    <div class="section-head"><p class="eyebrow">Who should attend</p></div>
+    <p class="prose"><b>In person:</b> diabetologists and endocrinologists, general and family physicians, foot, general, vascular and orthopaedic surgeons, wound-care specialists, podiatry professionals, nurses, residents and fellows, diabetes educators.</p>
+    <p class="prose"><b>Online:</b> people living with diabetes or neuropathy, patients with foot wounds, family members and caregivers, and anyone wanting to prevent limb complications.</p>
   </section>
 
   <section id="register">
     <div class="section-head">
       <p class="eyebrow">Register</p>
       <h2>Reserve your place</h2>
-      <p class="lede">Choose how you'll join. Your confirmation and joining details will be sent to the contact you give.</p>
     </div>
     <div class="seg" role="tablist" id="reg-seg">
       <button role="tab" aria-selected="true" data-r="doctor">I'm a doctor</button>
       <button role="tab" aria-selected="false" data-r="public">Patient / public</button>
     </div>
-
     <form class="reg-form" id="form-doctor" data-type="foot_doctor">
       <div class="field"><label for="d-name">Full name <span class="req">*</span></label><input id="d-name" name="full_name" required></div>
       <div class="field"><label for="d-mobile">Mobile number <span class="req">*</span></label><input id="d-mobile" name="mobile" type="tel" required></div>
@@ -752,26 +669,15 @@
   </section>
 
   <section id="faq">
-    <div class="section-head"><p class="eyebrow">FAQ</p><h2>Good to know</h2></div>
+    <div class="section-head"><p class="eyebrow">FAQ</p></div>
     <details class="faq-item"><summary class="faq-q">Who can attend in person?<span class="plus">+</span></summary><p class="faq-a">The workshop at Lemon Tree Premier, HITEC City is for doctors and healthcare professionals. Patients, caregivers and the public join through the live webcast.</p></details>
-    <details class="faq-item"><summary class="faq-q">How do I get the webcast link?<span class="plus">+</span></summary><p class="faq-a">After you register, the joining link is sent to the mobile number or email you provided, before 15 November.</p></details>
-    <details class="faq-item"><summary class="faq-q">Does the webcast replace a doctor's visit?<span class="plus">+</span></summary><p class="faq-a">No. It is health education and is not an individual medical consultation. If you have a foot wound, numbness or any foot concern, get your feet examined by a doctor.</p></details>
-    <details class="faq-item"><summary class="faq-q">When should I go to hospital immediately?<span class="plus">+</span></summary><p class="faq-a">Seek urgent care without waiting for the event if a foot wound shows spreading redness, swelling, pus, a foul smell, black or discoloured skin or severe pain, or if you have a wound and feel unwell or have a fever. This list is not complete: when in doubt, get it checked.</p></details>
-    <details class="faq-item"><summary class="faq-q">Is ZioHeal® a replacement for other wound care?<span class="plus">+</span></summary><p class="faq-a">No. It is demonstrated as one advanced wound-care option under medical supervision. It does not replace vascular assessment, infection management, debridement, off-loading, glycaemic control or surgery when needed.</p></details>
-    <details class="faq-item"><summary class="faq-q">What is Diabetes Foot Care at Home?<span class="plus">+</span></summary><p class="faq-a">An IDEA Clinics service combining specialist consultations, testing, home dressings and debridement, infection management, glucose monitoring and ongoing diabetes care for appropriate patients. See feet.ideaclinics.com for details.</p></details>
+    <details class="faq-item"><summary class="faq-q">How do I get the webcast link?<span class="plus">+</span></summary><p class="faq-a">It is sent to the mobile number or email you register with, before 15 November.</p></details>
+    <details class="faq-item"><summary class="faq-q">Does the webcast replace a doctor's visit?<span class="plus">+</span></summary><p class="faq-a">No. It is health education, not an individual medical consultation. If you have a foot wound, numbness or any foot concern, get your feet examined by a doctor.</p></details>
+    <details class="faq-item"><summary class="faq-q">When should I go to hospital immediately?<span class="plus">+</span></summary><p class="faq-a">Don't wait for the event if a foot wound shows spreading redness, swelling, pus, a foul smell, black or discoloured skin or severe pain, or if you have a wound and feel unwell or have a fever. This list is not complete: when in doubt, get it checked.</p></details>
   </section>
 
   <section style="border-top:none; padding-top:0;">
-    <div class="final">
-      <h2>A small wound should never become a big problem.</h2>
-      <p>Protect the foot. Prevent the ulcer. Prevent the amputation.</p>
-      <ul class="shift">
-        <li><span>Late detection</span> → Early detection</li>
-        <li><span>Hospital-dependent care</span> → Care that extends to home</li>
-        <li><span>Episodic wound treatment</span> → Continuous foot care</li>
-        <li><span>Treating the ulcer</span> → Protecting the person</li>
-      </ul>
-    </div>
+    <div class="final"><h2>A small wound should never become a big problem.</h2></div>
   </section>
 
 </main>
@@ -793,21 +699,8 @@
     <p class="foot-copy">Educational event. Not a substitute for individual medical advice.</p>
   </div>
 </footer>
-
 <script>
 (function(){
-  // Countdown to 15 Nov 2026, 9:00 AM IST
-  var target = new Date('2026-11-15T09:00:00+05:30').getTime();
-  function tick(){
-    var diff = Math.max(0, target - Date.now());
-    var v = {
-      'cd-days': Math.floor(diff/86400000), 'cd-hours': Math.floor(diff%86400000/3600000),
-      'cd-mins': Math.floor(diff%3600000/60000), 'cd-secs': Math.floor(diff%60000/1000)
-    };
-    for (var id in v){ var el=document.getElementById(id); if (el) el.textContent=String(v[id]).padStart(2,'0'); }
-  }
-  tick(); setInterval(tick, 1000);
-
   // Sticky bar: hidden over hero and register section
   var bar=document.getElementById('sticky-cta'), hero=document.getElementById('hero'), reg=document.getElementById('register');
   if (bar && window.IntersectionObserver){
@@ -833,16 +726,6 @@
   }
   tabs.forEach(function(b){ b.addEventListener('click', function(){ showStep(+b.dataset.i); }); });
   showStep(0);
-
-  // Outcomes toggle
-  var oseg=document.querySelectorAll('#out-seg button');
-  oseg.forEach(function(b){
-    b.addEventListener('click', function(){
-      oseg.forEach(function(x){ x.setAttribute('aria-selected', x===b ? 'true':'false'); });
-      document.getElementById('out-doctor').hidden = b.dataset.o!=='doctor';
-      document.getElementById('out-public').hidden = b.dataset.o!=='public';
-    });
-  });
 
   // Registration toggle
   var rseg=document.querySelectorAll('#reg-seg button');
