@@ -6,15 +6,45 @@ const EMAIL_OPTIONAL = ["foot_public"];
 
 // Sends the WhatsApp template named in INTERAKT_TEMPLATE via Interakt. Runs only if the
 // INTERAKT_API_KEY secret and INTERAKT_TEMPLATE variable are set and the person opted in. Never blocks signup.
+// ---------------------------------------------------------------------------
+// WhatsApp confirmation (Interakt) and its audit log
+//
+// After a webinar signup is saved, sendWhatsApp() sends the approved Interakt
+// template (name in env.INTERAKT_TEMPLATE, e.g. "pmos_webinar") to the person.
+// Every attempt, including skipped ones, is recorded in D1 table `message_log`
+// so a missing message can be diagnosed with:
+//   SELECT * FROM message_log ORDER BY id DESC LIMIT 10;
+//
+// Required Worker settings (Cloudflare > pcos-conference > Settings):
+//   INTERAKT_API_KEY   (Secret)    base64 API key from Interakt Developer Settings
+//   INTERAKT_TEMPLATE  (Variable)  approved template name
+// Table: message_log(id, mobile, outcome, http_status, response, created_at)
+// WhatsApp failures never block or fail the signup itself.
+// ---------------------------------------------------------------------------
+
+// Writes one row to message_log. Errors are swallowed on purpose.
+async function logMessage(env, mobile, outcome, status, response) {
+  try {
+    await env.DB.prepare(
+      "INSERT INTO message_log (mobile, outcome, http_status, response) VALUES (?, ?, ?, ?)"
+    ).bind(mobile, outcome, status || null, String(response || "").slice(0, 500)).run();
+  } catch (e) {}
+}
+
+// Sends the WhatsApp template for a webinar signup, or logs why it was skipped.
 async function sendWhatsApp(env, data) {
-  if (!env.INTERAKT_API_KEY || !env.INTERAKT_TEMPLATE || data.form_type !== "webinar" || !data.wants_updates) return;
-  let digits = String(data.mobile).replace(/\D/g, "");
+  if (data.form_type !== "webinar") return;
+  const mobile = String(data.mobile);
+  if (!data.wants_updates) return logMessage(env, mobile, "skipped: WhatsApp box not ticked");
+  if (!env.INTERAKT_API_KEY) return logMessage(env, mobile, "skipped: INTERAKT_API_KEY secret missing");
+  if (!env.INTERAKT_TEMPLATE) return logMessage(env, mobile, "skipped: INTERAKT_TEMPLATE variable missing");
+  let digits = mobile.replace(/\D/g, "");
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
   if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
-  if (digits.length !== 10) return;
+  if (digits.length !== 10) return logMessage(env, mobile, "skipped: not a 10-digit Indian number");
   const firstName = String(data.full_name).trim().split(/\s+/)[0] || "there";
   try {
-    await fetch("https://api.interakt.ai/v1/public/message/", {
+    const res = await fetch("https://api.interakt.ai/v1/public/message/", {
       method: "POST",
       headers: {
         Authorization: "Basic " + env.INTERAKT_API_KEY,
@@ -32,7 +62,10 @@ async function sendWhatsApp(env, data) {
         },
       }),
     });
-  } catch (e) {}
+    await logMessage(env, mobile, res.ok ? "sent to Interakt" : "Interakt rejected", res.status, await res.text());
+  } catch (e) {
+    await logMessage(env, mobile, "network error", null, e && e.message);
+  }
 }
 
 function cors(resp) {
