@@ -4,10 +4,10 @@ const FORM_TYPES = ["conference", "webinar", "foot_doctor", "foot_public"];
 // Email is mandatory for every form except the public foot webcast.
 const EMAIL_OPTIONAL = ["foot_public"];
 
-// Sends the "pmos_webinar" WhatsApp template via Interakt. Runs only if the
-// INTERAKT_API_KEY secret is set and the person opted in. Never blocks signup.
+// Sends the WhatsApp template named in INTERAKT_TEMPLATE via Interakt. Runs only if the
+// INTERAKT_API_KEY secret and INTERAKT_TEMPLATE variable are set and the person opted in. Never blocks signup.
 async function sendWhatsApp(env, data) {
-  if (!env.INTERAKT_API_KEY || data.form_type !== "webinar" || !data.wants_updates) return;
+  if (!env.INTERAKT_API_KEY || !env.INTERAKT_TEMPLATE || data.form_type !== "webinar" || !data.wants_updates) return;
   let digits = String(data.mobile).replace(/\D/g, "");
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
   if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
@@ -26,7 +26,7 @@ async function sendWhatsApp(env, data) {
         callbackData: "pmos_webinar_signup",
         type: "Template",
         template: {
-          name: "pmos_webinar",
+          name: env.INTERAKT_TEMPLATE,
           languageCode: "en",
           bodyValues: [firstName],
         },
