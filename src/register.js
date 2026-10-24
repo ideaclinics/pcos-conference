@@ -36,8 +36,10 @@ async function sendWhatsApp(env, data) {
   if (data.form_type !== "webinar") return;
   const mobile = String(data.mobile);
   if (!data.wants_updates) return logMessage(env, mobile, "skipped: WhatsApp box not ticked");
-  if (!env.INTERAKT_API_KEY) return logMessage(env, mobile, "skipped: INTERAKT_API_KEY secret missing");
-  if (!env.INTERAKT_TEMPLATE) return logMessage(env, mobile, "skipped: INTERAKT_TEMPLATE variable missing");
+  // Diagnostic: list setting NAMES (never values) so a missing one is easy to spot.
+  const seen = Object.keys(env).sort().join(", ");
+  if (!env.INTERAKT_API_KEY) return logMessage(env, mobile, "skipped: INTERAKT_API_KEY secret missing", null, "Worker sees: " + seen);
+  if (!env.INTERAKT_TEMPLATE) return logMessage(env, mobile, "skipped: INTERAKT_TEMPLATE variable missing", null, "Worker sees: " + seen);
   let digits = mobile.replace(/\D/g, "");
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
   if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
