@@ -1,4 +1,5 @@
 import { onRequestPost, onRequestOptions } from "./register.js";
+import { onExport } from "./export.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -9,6 +10,8 @@ export default {
       if (request.method === "OPTIONS") return onRequestOptions();
       return new Response("Method not allowed", { status: 405 });
     }
+
+    if (url.pathname === "/api/export" && request.method === "GET") return onExport({ request, env });
 
     // foot.ideaclinics.com serves the page in /foot/ at its root.
     if (url.hostname.startsWith("foot.") && (url.pathname === "/" || url.pathname === "/index.html")) {
