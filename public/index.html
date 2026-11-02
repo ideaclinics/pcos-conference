@@ -3,431 +3,526 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PMOS CME 2026</title>
-<meta name="description" content="PMOS CME 2026, a multidisciplinary CME with 2 CPD credits on PMOS, 15 November 2026, Lemon Tree Premier, Hitech City, Hyderabad. In association with Nirmaya and Roopa.">
+<meta name="theme-color" content="#FFFBF7">
+<title>PMOS &amp; Diabetes Complications CME 2026</title>
+<meta name="description" content="PMOS & Diabetes Complications CME 2026. Two halls, one day: PMOS (Hall 1) and Diabetes complications (Hall 2). 15 November 2026, Lemon Tree Premier, Hitech City, Hyderabad. 2 CPD credits.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     color-scheme: light;
-    --bg:#FBF7F2;
-    --surface:#FFFFFF;
-    --surface-2:#F4EEE5;
-    --border:#E7DFD2;
-    --ink:#1A1A2E;
-    --ink-muted:#58595B;
-    --ink-soft:#8A857C;
-    --orange:#F26522;
-    --orange-deep:#C94E14;
-    --orange-tint:#FDE9DB;
-    --green:#00A651;
-    --green-deep:#067A3D;
-    --green-tint:#DCF3E7;
-    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 10px 26px -14px rgba(26,26,46,.22);
-    --focus:#1A1A2E;
+    --bg:#FFFBF7;
+    --card:#FFFFFF;
+    --ink:#1B1B2F;
+    --muted:#55556A;
+    --soft:#8A8798;
+    --line:#EADFD0;
+    --accent:#F15738;          /* brand orange, the only colour besides ink */
+    --accent-deep:#C23A1B;     /* darker shade for small text on light backgrounds */
+    --accent-tint:#FFEDE6;
+    --wash:#FFFAF5;
+    --accent-ink:#FFFFFF;
+    --radius:22px;
+    --shadow:0 1px 2px rgba(27,27,47,.05), 0 14px 30px -18px rgba(27,27,47,.28);
+    --focus:#1B1B2F;
   }
-  :root:not([data-theme="light"]){
-    @media (prefers-color-scheme: dark){
-      color-scheme: dark;
-      --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
-      --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
-      --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
-      --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
-      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
-      --focus:#F3F0EA;
-    }
-  }
-  :root[data-theme="dark"]{
-    color-scheme: dark;
-    --bg:#141320; --surface:#1F1E30; --surface-2:#242238; --border:#332F49;
-    --ink:#F3F0EA; --ink-muted:#BAB6C8; --ink-soft:#8B87A0;
-    --orange:#FF8447; --orange-deep:#FFA268; --orange-tint:#3A2417;
-    --green:#2ED18B; --green-deep:#6FE3AE; --green-tint:#123625;
-    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 28px -14px rgba(0,0,0,.6);
-    --focus:#F3F0EA;
-  }
-
   *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth;} }
   body{
-    background:var(--bg); color:var(--ink);
-    font-family:'Lato', Arial, sans-serif;
-    padding-inline:18px; line-height:1.5; -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    transition:background-color .2s ease;
   }
-  .wrap{max-width:760px; margin-inline:auto;}
-  h1,h2,h3,h4{
-    font-family:'Roboto', Arial, sans-serif; font-weight:900;
-    line-height:1.12; text-wrap:balance; margin:0; color:var(--ink); letter-spacing:-.01em;
-  }
-  p{margin:0;}
-  a{color:inherit;}
-  .eyebrow{
-    font-family:'Roboto',sans-serif; font-size:.68rem; font-weight:700;
-    letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft);
-  }
-  section{padding-block:36px; border-top:1px solid var(--border);}
-  section:first-of-type{border-top:none;}
-  .section-head{margin-bottom:20px; display:flex; flex-direction:column; gap:6px;}
-  .section-head h2{font-size:1.5rem;}
-  .lede{color:var(--ink-muted); font-size:.94rem; max-width:56ch;}
+  p{margin:0;} a{color:inherit;}
+  h1,h2,h3,h4{margin:0; font-weight:700; line-height:1.08; letter-spacing:-.02em; text-wrap:balance; }
+  .wrap{max-width:880px; margin-inline:auto; padding-inline:18px;}
+  .skip{position:absolute; left:-9999px; top:8px; background:var(--ink); color:#fff; padding:10px 14px; border-radius:10px; z-index:100;}
+  .skip:focus{left:12px;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:6px;}
 
-  .btn{
-    appearance:none; border:1.5px solid transparent; cursor:pointer;
-    font-family:'Roboto',sans-serif; font-weight:700; font-size:.9rem;
-    padding:.85em 1.3em; border-radius:10px; text-decoration:none;
-    display:inline-flex; align-items:center; gap:.5em; justify-content:center; width:100%;
-    transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
-  }
-  .btn:active{transform:translateY(1px);}
-  .btn:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
-  .btn-primary{background:var(--ink); color:var(--bg);}
-  .btn-primary:hover{filter:brightness(1.15);}
-  .btn-ghost{background:var(--surface); border-color:var(--border); color:var(--ink);}
+  .eyebrow{font-size:.72rem; font-weight:700; letter-spacing:.02em; color:var(--accent-deep);}
 
-  /* ---------- Hero ---------- */
+  /* ---------- Top bar ---------- */
+  .top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:14px;}
+  .top img{height:30px; display:block;}
+  .pill{
+    display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+    min-height:46px; padding:.55em 1.25em; border-radius:999px; border:2px solid transparent;
+    font:inherit; font-weight:700; font-size:1.17rem; text-decoration:none; cursor:pointer;
+    background:var(--accent); color:#fff; transition:transform .12s ease, background-color .2s ease;
+  }
+  .pill:active{transform:translateY(1px);}
+  .pill.dark{background:var(--ink); color:#fff;}
+  .pill.line{background:transparent; color:var(--ink); border-color:var(--ink);}
+  .pill.block{width:100%;}
+
+  /* ---------- Event intro ---------- */
+  .intro{padding-block:10px 18px;}
+  .intro h1{font-size:clamp(1.7rem,7vw,2.6rem);}
+  .intro h1 span{color:var(--accent-deep);}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .chip{
+    font-size:.82rem; font-weight:700; background:var(--card); border:1.5px solid var(--line);
+    border-radius:999px; padding:.4em .9em;
+  }
+  .chip.cpd{background:var(--accent-tint); border-color:transparent; color:var(--accent-deep);}
+
+  /* ---------- Big tabs ---------- */
+  .tabbar{position:sticky; top:0; z-index:20; background:var(--bg); padding-block:10px; border-bottom:1.5px solid var(--line);}
+  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .tab{
+    appearance:none; font:inherit; text-align:left; cursor:pointer;
+    background:var(--card); color:var(--ink); border:2px solid var(--line); border-radius:var(--radius);
+    padding:14px 14px 13px; min-height:84px; display:flex; flex-direction:column; gap:3px;
+    transition:background-color .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .tab .hall{font-size:.68rem; font-weight:700; letter-spacing:.02em; color:var(--soft);}
+  .tab .name{font-size:1.25rem; font-weight:700; line-height:1.1; }
+  .tab .tag{font-size:.74rem; font-weight:500; color:var(--muted); line-height:1.3;}
+  .tab[aria-selected="true"]{background:var(--accent-tint); border-color:var(--accent); color:var(--ink);}
+  .tab[aria-selected="true"] .hall{color:var(--accent-deep);}
+  .tab[aria-selected="true"] .tag{color:var(--ink);}
+  .tab:not([aria-selected="true"]):hover{border-color:var(--ink);}
+  .tabhint{font-size:.76rem; color:var(--muted); text-align:center; margin-top:8px;}
+
+  /* ---------- Panel hero ---------- */
+  .panel[hidden]{display:none;}
   .hero{
-    position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; width:100vw;
-    padding:34px 18px 44px;
-    background:
-      radial-gradient(120% 90% at 8% -10%, rgba(255,255,255,.18), transparent 55%),
-      linear-gradient(155deg, #F26522 0%, #C94E14 32%, #1A1A2E 68%, #06381F 100%);
-    color:#FBF7F2;
-    overflow:hidden;
+    background:linear-gradient(160deg, #FFEDE6 0%, #FFF8F3 70%); color:var(--ink); border:1.5px solid #F8D8CC;
+    border-radius:28px; padding:28px 22px 26px; margin-top:18px; position:relative; overflow:hidden;
   }
-  .hero .btn-primary{ background:#FFFFFF; color:#1A1A2E; }
-  .hero .btn-primary:hover{ filter:brightness(.96); }
   .hero::after{
-    content:""; position:absolute; inset:0; opacity:.14; pointer-events:none;
-    background-image: radial-gradient(circle, #fff 1.5px, transparent 1.5px);
-    background-size:22px 22px;
+    content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%;
+    background:rgba(241,87,56,.10); pointer-events:none;
   }
-  .hero-inner{position:relative; max-width:760px; margin-inline:auto;}
-  .hero-logo{
-    background:#fff; border-radius:10px; padding:6px 10px; display:inline-flex;
-    align-items:center; box-shadow:var(--shadow); margin-bottom:20px;
-  }
-  .hero-logo img{height:26px; display:block;}
-  .hero .eyebrow{color:rgba(255,255,255,.78);}
-  .hero h1{font-size:clamp(1.9rem,7.5vw,2.5rem); color:#fff; margin-top:8px;}
-  .hero h1 em{font-style:normal; color:#FFD8A8;}
-  .hero .sub{
-    font-family:'Lato',sans-serif; font-style:italic; font-weight:400;
-    font-size:1.02rem; color:rgba(255,255,255,.86); margin-top:8px; max-width:44ch;
-  }
-  .hero-meta{
-    display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;
-  }
-  .hero-meta span{
-    font-size:.8rem; font-weight:700; color:#fff; background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:.4em .85em;
-    display:flex; align-items:center; gap:.4em;
-  }
-  .hero-meta .cpd{background:var(--orange-tint); color:var(--orange-deep); border-color:transparent;}
-  .hero-tagline{
-    margin-top:22px; font-weight:700; font-size:1rem; color:#fff;
-    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.24);
-    border-radius:12px; padding:12px 16px; backdrop-filter:blur(6px);
-    max-width:46ch;
-  }
-  .hero-cta{margin-top:26px; max-width:320px;}
+  .hero .eyebrow{color:var(--accent-deep);}
+  .hero h2{font-size:clamp(1.9rem,8vw,3rem); margin-top:8px; position:relative;}
+  .hero .sub{font-size:1.02rem; font-weight:500; margin-top:12px; max-width:44ch; color:var(--muted); position:relative;}
+  .hero .ctas{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; position:relative;}
+  .hero .pill.line{background:transparent; color:var(--ink); border-color:var(--ink);}
 
-  /* ---------- Who should attend ---------- */
-  .attend-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0 14px;}
-  .attend-list li{
-    display:flex; align-items:center; gap:9px; padding-block:11px;
-    border-top:1px solid var(--border); font-weight:700; font-size:.88rem;
-  }
-  .attend-list li:nth-child(-n+2){border-top:none;}
-  .attend-list li::before{
-    content:""; width:9px; height:9px; border-radius:50%; background:var(--green); flex:none;
-  }
+  /* keyword strip */
+  .strip{overflow:hidden; margin-block:18px 4px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .strip-track{display:flex; gap:22px; width:max-content; padding-block:6px; font-weight:700; font-size:1rem; color:var(--ink);}
+  .strip-track span::before{content:"•"; margin-right:22px; color:var(--accent);}
+  @media (prefers-reduced-motion:no-preference){ .strip-track{animation:slide 34s linear infinite;} }
+  @keyframes slide{ to{transform:translateX(-50%);} }
 
-  /* ---------- Programme ---------- */
-  .sched{border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface);}
-  .sched-row{ padding:13px 15px; border-top:1px solid var(--border); }
-  .sched-row:first-child{border-top:none;}
-  .sched-row.break{background:var(--surface-2);}
-  .sched-time{
-    font-family:'Roboto',sans-serif; font-size:.72rem; font-weight:700; color:var(--ink-soft);
-    display:block; margin-bottom:3px;
-  }
-  .sched-title{font-weight:700; font-size:.92rem;}
-  .sched-title small{display:block; font-weight:400; color:var(--ink-muted); font-size:.8rem; margin-top:2px;}
-  .sched-faculty{font-size:.8rem; color:var(--ink-muted); margin-top:4px; font-weight:700;}
-  .tag-row{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
-  .tag{
-    font-size:.66rem; font-weight:700; border-radius:999px; padding:.2em .65em; letter-spacing:.02em;
-  }
-  .tag-panel{background:var(--green-tint); color:var(--green-deep);}
-  .tag-public{background:var(--orange-tint); color:var(--orange-deep);}
+  section{padding-block:34px 6px; scroll-margin-top:150px;}
+  .sec-head{display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
+  .sec-head h3{font-size:clamp(1.5rem,5.5vw,2rem);}
+  .lead{color:var(--muted); font-size:.98rem; max-width:58ch;}
 
+  /* who */
+  .who{display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none;}
+  .who li{background:var(--card); border:1.5px solid var(--line); border-radius:999px; padding:.55em 1em; font-weight:700; font-size:.88rem;}
 
+  /* steps / why cards */
+  .cards{display:grid; gap:12px;}
+  .card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
+  .card .n{font-size:.7rem; font-weight:700; letter-spacing:.02em; color:var(--accent-deep);}
+  .card h4{font-size:1.15rem; margin-top:6px;}
+  .card p{color:var(--muted); font-size:.9rem; margin-top:6px;}
 
-  /* ---------- Venue ---------- */
-  .venue-card{
-    background:var(--ink); color:#fff; border-radius:16px; padding:22px;
-    background-image:radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--orange) 55%, transparent), transparent 55%);
+  /* programme */
+  .sched{display:flex; flex-direction:column; gap:10px;}
+  .slot{
+    background:var(--card); border-radius:18px; padding:14px 16px; box-shadow:var(--shadow);
+    display:grid; grid-template-columns:96px 1fr; gap:4px 14px;
   }
-  .venue-card .eyebrow{color:rgba(255,255,255,.65);}
-  .venue-card h3{color:#fff; font-size:1.2rem; margin-top:6px;}
-  .venue-card p{color:rgba(255,255,255,.78); margin-top:8px; font-size:.88rem;}
+  .slot .t{font-weight:700; font-size:.8rem; color:var(--accent-deep); line-height:1.35; padding-top:2px;}
+  .slot .what{font-weight:700; font-size:.95rem; line-height:1.35;}
+  .slot .what small{display:block; font-weight:500; color:var(--muted); font-size:.8rem; margin-top:3px;}
+  .slot .who-by{grid-column:2; font-size:.82rem; color:var(--muted); font-weight:500;}
+  .slot .who-by b{color:var(--ink);}
+  .slot .tags{grid-column:2; display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+  .slot.rest{background:transparent; box-shadow:none; border:1.5px dashed var(--line);}
+  .slot.rest .what{color:var(--muted);}
+  .slot.feature{background:var(--accent-tint); border:1.5px solid var(--accent); box-shadow:none;}
+  .slot.group{background:var(--wash); border:1.5px solid var(--line); box-shadow:none;}
+  .badge{font-size:.68rem; font-weight:700; border-radius:999px; padding:.25em .75em; letter-spacing:.02em; text-decoration:none; background:var(--accent-tint); color:var(--accent-deep);}
+  .slot.feature .badge,.slot.group .badge{background:#fff; color:var(--accent-deep);}
+  a.badge:hover{text-decoration:underline;}
+  .grp-title{font-size:.72rem; font-weight:700; letter-spacing:.02em; color:var(--accent-deep); margin:8px 2px -2px;}
 
-  /* ---------- Registration ---------- */
-  .price-grid{display:flex; flex-direction:column; gap:10px;}
-  .price-card{
-    background:var(--surface); border:1px solid var(--border); border-radius:14px;
-    padding:16px; display:flex; justify-content:space-between; align-items:center; gap:12px;
-  }
-  .price-card.featured{border-color:var(--orange); background:var(--orange-tint);}
-  .price-card h4{font-size:.94rem;}
-  .price-card p{font-size:.78rem; color:var(--ink-muted); margin-top:2px;}
-  .price-amt{font-family:'Roboto',sans-serif; font-weight:900; font-size:1.3rem; white-space:nowrap;}
-  .incl-row{
-    display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;
-  }
-  .incl{
-    font-size:.78rem; font-weight:700; color:var(--green-deep); background:var(--green-tint);
-    border-radius:999px; padding:.4em .8em; display:flex; align-items:center; gap:.4em;
-  }
-  .sponsor-note{
-    margin-top:16px; font-size:.82rem; color:var(--ink-muted); background:var(--surface-2);
-    border-radius:10px; padding:12px 14px;
-  }
-  .sponsor-note b{color:var(--ink);}
-  .reg-cta{margin-top:20px;}
-  .reg-note{font-size:.74rem; color:var(--ink-soft); margin-top:10px; text-align:center;}
+  /* public stream */
+  .stream{background:var(--card); border:2px solid var(--accent); border-radius:28px; padding:24px 22px; margin-top:8px;}
+  .stream h3{font-size:1.6rem; margin-top:8px;}
+  .stream p{color:var(--muted); margin-top:10px; font-size:.94rem; max-width:52ch;}
+  .stream .pill{margin-top:18px;}
 
-  /* ---------- FAQ ---------- */
-  .faq-item{border-bottom:1px solid var(--border); padding-block:14px;}
-  .faq-item:first-child{padding-top:0;}
-  .faq-q{
-    display:flex; justify-content:space-between; align-items:center; gap:14px;
-    cursor:pointer; font-weight:700; font-size:.9rem; list-style:none; font-family:'Roboto',sans-serif;
-  }
-  .faq-q::-webkit-details-marker{display:none;}
-  .faq-q .plus{color:var(--orange); font-size:1.1rem; flex:none; transition:transform .15s ease;}
-  details[open] .plus{transform:rotate(45deg);}
-  .faq-a{color:var(--ink-muted); font-size:.86rem; margin-top:8px; max-width:60ch;}
+  /* register (shared) */
+  .reg{background:var(--card); border-radius:28px; padding:24px 20px; box-shadow:var(--shadow); margin-top:40px;}
+  .price{display:grid; gap:10px; margin-top:16px;}
+  .price div{display:flex; justify-content:space-between; align-items:center; gap:12px; border:1.5px solid var(--line); border-radius:16px; padding:14px 16px;}
+  .price b{font-size:.96rem;} .price small{display:block; color:var(--muted); font-weight:500; font-size:.78rem; margin-top:2px;}
+  .price .amt{font-size:1.5rem; font-weight:700; white-space:nowrap;}
+  .price div.main{border-color:var(--accent); background:var(--accent-tint);}
+  .incl{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .incl span{font-size:.8rem; font-weight:700; background:var(--bg); border-radius:999px; padding:.4em .85em;}
+  .note{font-size:.8rem; color:var(--muted); margin-top:12px;}
+  .reg .pill{margin-top:16px;}
+  .venue{margin-top:14px; font-size:.9rem; color:var(--muted);}
+  .venue b{color:var(--ink);}
 
-  /* ---------- Footer ---------- */
-  footer{padding-block:30px 40px; border-top:1px solid var(--border); font-size:.8rem; color:var(--ink-muted);}
-  .foot-logo img{height:22px; display:block; margin-bottom:10px;}
-  .contact-line{display:flex; gap:8px; align-items:center; margin-top:5px; flex-wrap:wrap;}
-  .copy-btn{
-    border:1px solid var(--border); background:var(--surface); border-radius:6px; padding:.15em .5em;
-    font-size:.68rem; cursor:pointer; color:var(--ink-muted);
+  /* FAQ */
+  .faq details{border-bottom:1.5px solid var(--line); padding-block:14px;}
+  .faq summary{
+    display:flex; justify-content:space-between; align-items:center; gap:14px; cursor:pointer; list-style:none;
+    font-weight:700; font-size:.98rem; min-height:44px; 
   }
-  .cpd-note{font-size:.78rem; color:var(--ink-muted); margin-top:12px;}
-  .partners{padding:26px 0 8px; text-align:center;}
-  .partners p{font-size:.72rem; color:var(--ink-soft); margin-bottom:8px; letter-spacing:.04em;}
-  .partners img{height:40px; max-width:100%; display:inline-block; background:#fff; border-radius:10px; padding:6px 10px;}
-  .foot-copy{color:var(--ink-soft); font-size:.68rem; margin-top:14px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq .plus{color:var(--accent-deep); font-size:1.5rem; line-height:1; flex:none; transition:transform .15s ease;}
+  .faq details[open] .plus{transform:rotate(45deg);}
+  .faq details p{color:var(--muted); font-size:.92rem; margin-top:6px; max-width:60ch;}
+
+  .partners{text-align:center; padding-block:34px 8px;}
+  .partners p{font-size:.72rem; font-weight:700; letter-spacing:.02em; color:var(--soft); margin-bottom:10px;}
+  .partners img{height:44px; max-width:100%; background:#fff; border-radius:12px; padding:6px 12px; display:inline-block;}
+  .partners .ima{margin-top:12px; font-weight:700; font-size:.9rem;}
+
+  footer{padding-block:26px 110px; font-size:.82rem; color:var(--muted); border-top:1.5px solid var(--line); margin-top:30px;}
+  footer img{height:26px; display:block; margin-bottom:10px;}
+  footer a{font-weight:700;}
+
+  /* sticky register */
+  .sticky{
+    position:fixed; left:0; right:0; bottom:0; z-index:30; padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top, var(--bg) 70%, transparent);
+  }
+  .sticky .pill{width:100%; max-width:420px; margin-inline:auto; display:flex;}
+
+  @media (min-width:700px){
+    .tabs{gap:16px;} .tab{padding:18px 20px;} .tab .name{font-size:1.6rem;} .tab .tag{font-size:.85rem;}
+    .hero{padding:44px 40px 40px;}
+    .cards{grid-template-columns:repeat(3,1fr);}
+    .slot{grid-template-columns:130px 1fr;}
+    .price{grid-template-columns:1fr 1fr;}
+    .sticky{display:none;}
+    footer{padding-bottom:40px;}
+  }
 </style>
 </head>
-<body>
-<main class="wrap">
+<body data-tab="pmos">
+<a class="skip" href="#main">Skip to content</a>
 
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
-      <p class="eyebrow">Multidisciplinary CME · For Doctors</p>
-      <h1>PMOS CME 2026: <em>From Hormones to Whole Health</em></h1>
-      <p class="sub">An integrated approach to PMOS — formerly known as PCOS</p>
-      <div class="hero-meta">
-        <span>📅 15 Nov 2026</span>
-        <span>🕘 9:00 AM–5:00 PM</span>
-        <span>📍 Hyderabad</span>
-        <span class="cpd">🎓 2 CPD Credits by TSMC</span>
-      </div>
-      <p class="hero-tagline">One condition. Multiple systems. One integrated care pathway.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#register">Register now</a>
-      </div>
-    </div>
+<div class="wrap">
+  <div class="top">
+    <img src="idea-logo.png" alt="IDEA Clinics">
+    <a class="pill" href="#register">Register</a>
   </div>
 
-  <section id="who">
-    <div class="section-head">
-      <p class="eyebrow">Who should attend</p>
-      <h2>Built for the full care team</h2>
+  <div class="intro">
+    <p class="eyebrow">CME 2026 · For doctors</p>
+    <h1>PMOS &amp; diabetes complications. <span>Two halls, one day.</span></h1>
+    <div class="chips">
+      <span class="chip">📅 15 Nov 2026</span>
+      <span class="chip">🕘 9:00 AM – 5:00 PM</span>
+      <span class="chip">📍 Lemon Tree Premier, Hitech City</span>
+      <span class="chip cpd">🎓 2 CPD credits</span>
     </div>
-    <ul class="attend-list">
-      <li>Gynaecologists</li>
-      <li>Endocrinologists</li>
-      <li>Reproductive medicine / IVF specialists</li>
-      <li>Dermatologists</li>
-      <li>Dietitians &amp; nutritionists</li>
-      <li>Psychiatrists</li>
-      <li>General &amp; family physicians</li>
-      <li>Residents &amp; fellows</li>
-    </ul>
-  </section>
+  </div>
+</div>
 
-  <section id="programme">
-    <div class="section-head">
-      <p class="eyebrow">Scientific Programme</p>
-      <h2>Scientific Programme Schedule</h2>
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="Choose a hall">
+      <button class="tab" role="tab" id="tab-pmos" aria-controls="panel-pmos" aria-selected="true" data-tab="pmos">
+        <span class="hall">Hall 1</span>
+        <span class="name">PMOS</span>
+        <span class="tag">Hormones to whole health</span>
+      </button>
+      <button class="tab" role="tab" id="tab-diabetes" aria-controls="panel-diabetes" aria-selected="false" tabindex="-1" data-tab="diabetes">
+        <span class="hall">Hall 2</span>
+        <span class="name">Diabetes</span>
+        <span class="tag">Foot care &amp; sexual health</span>
+      </button>
     </div>
-    <div class="sched">
-      <div class="sched-row">
-        <span class="sched-time">9:00–9:10</span>
-        <div class="sched-title">Welcome note &amp; introduction</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">9:10–9:30</span>
-        <div class="sched-title">PMOS beyond the ovary: why multidisciplinary care matters</div>
-        <div class="sched-faculty">Dr. Rakesh Sahay</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">9:30–9:50</span>
-        <div class="sched-title">PMOS in 2026: diagnosis to lifelong metabolic &amp; reproductive health</div>
-        <div class="sched-faculty">Dr. Kavitha Reddy</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">10:00–11:00</span>
-        <div class="sched-title">PMOS across a woman's life</div>
-        <div class="sched-faculty">Moderator: Dr. Nandini Muppidi<br>Panelists: Dr. Avani, Dr. Uma, Dr. Padmaja, Dr. Sindhu, Dr. Goutham, Dr. Divya Meghana, Dr. Arun Guddeti</div>
-        <div class="tag-row"><span class="tag tag-panel">Panel</span><a class="tag tag-public" href="/webinar.html" style="text-decoration:none;">Public live stream session</a></div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">11:00–11:20</span>
-        <div class="sched-title">PMOS and genetics</div>
-        <div class="sched-faculty">Dr. Anuradha / Dr. Manjari</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">11:20–12:00</span>
-        <div class="sched-title">Metabolism in PMOS</div>
-        <div class="sched-faculty">Moderator: Dr. Sindhuja<br>Panelists: Dr. Shyam, Dr. Vidya T, Dr. Vrinda A, Dr. Deepika</div>
-        <div class="tag-row"><span class="tag tag-panel">Panel</span></div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">12:00–12:20</span>
-        <div class="sched-title">Hyperandrogenism in PMOS</div>
-        <div class="sched-faculty">Dr. Vijayalakshmi</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">12:20–12:40</span>
-        <div class="sched-title">Ultrasound in PMOS</div>
-        <div class="sched-faculty">Dr. Harshini</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">12:40–1:00</span>
-        <div class="sched-title">PMOS and gut microbiome</div>
-        <div class="sched-faculty">Dr. Naveen Polavarapu</div>
-      </div>
-      <div class="sched-row break">
-        <span class="sched-time">1:00–2:00</span>
-        <div class="sched-title">Lunch</div>
-      </div>
-      <div class="sched-row">
-        <span class="sched-time">2:00–5:00</span>
-        <div class="sched-title">Workshops &amp; interactive case discussions<small>Complex cases across PMOS, multidisciplinary approach</small></div>
-        <div class="sched-faculty">All delegates</div>
-      </div>
-    </div>
-  </section>
+    <p class="tabhint">Tap a hall to switch. One registration covers the day.</p>
+  </div>
+</div>
 
-  <section id="venue">
-    <div class="venue-card">
-      <p class="eyebrow">Venue</p>
-      <h3>Lemon Tree Premier, HITEC City, Hyderabad</h3>
-      <p>Sunday, 15 November 2026 · 9:00 AM – 5:00 PM. Detailed directions shared on registration confirmation.</p>
-    </div>
-  </section>
+<main id="main" class="wrap">
 
-  <section id="register">
-    <div class="section-head">
-      <p class="eyebrow">Registration</p>
-      <h2>Reserve your seat</h2>
-      <p class="lede">Limited in-person seats. Pass includes lunch and refreshments.</p>
+  <!-- ================= PMOS ================= -->
+  <div class="panel" id="panel-pmos" role="tabpanel" aria-labelledby="tab-pmos">
+    <div class="hero">
+      <p class="eyebrow">Hall 1 · PMOS</p>
+      <h2>From hormones to whole health</h2>
+      <p class="sub">PMOS is not just an ovary problem. A full day on diagnosis, metabolism, hormones and imaging, with the whole care team in one room.</p>
+      <div class="ctas">
+        <a class="pill" href="#register">Register now</a>
+        <a class="pill line" href="#pmos-programme">See programme</a>
+      </div>
     </div>
 
-    <div class="price-grid">
-      <div class="price-card featured">
-        <div>
-          <h4>Delegate pass</h4>
-          <p>Full-day programme + case discussions</p>
+    <div class="strip" aria-hidden="true"><div class="strip-track">
+      <span>Master class</span><span>Diagnosis in 2026</span><span>Metabolism</span><span>Hyperandrogenism</span><span>Gut microbiome</span><span>Ultrasound</span><span>Case discussions</span>
+      <span>Master class</span><span>Diagnosis in 2026</span><span>Metabolism</span><span>Hyperandrogenism</span><span>Gut microbiome</span><span>Ultrasound</span><span>Case discussions</span>
+    </div></div>
+
+    <section>
+      <div class="sec-head"><p class="eyebrow">Who should attend</p><h3>Built for the full care team</h3></div>
+      <ul class="who">
+        <li>Gynaecologists</li><li>Endocrinologists</li><li>Reproductive medicine / IVF</li><li>Dermatologists</li>
+        <li>Dietitians &amp; nutritionists</li><li>Psychiatrists</li><li>General &amp; family physicians</li><li>Residents &amp; fellows</li>
+      </ul>
+    </section>
+
+    <section id="pmos-programme">
+      <div class="sec-head"><p class="eyebrow">Hall 1 programme</p><h3>The day, hour by hour</h3></div>
+      <div class="sched">
+        <div class="slot">
+          <span class="t">9:00–10:40 AM</span>
+          <div class="what">Registration, welcome note, networking &amp; PMOS Master Class</div>
+          <div class="who-by"><b>Dr. Nandini Muppidi</b></div>
         </div>
-        <div class="price-amt">₹1000</div>
-      </div>
-      <div class="price-card">
-        <div>
-          <h4>Student pass</h4>
-          <p>Valid student ID required at check-in</p>
+        <div class="slot">
+          <span class="t">10:40–11:00 AM</span>
+          <div class="what">PMOS beyond the ovary: why multidisciplinary care matters</div>
+          <div class="who-by"><b>Dr. Rakesh Sahay</b></div>
         </div>
-        <div class="price-amt">₹500</div>
+        <div class="slot feature">
+          <span class="t">11:00 AM–12:00 PM</span>
+          <div class="what">PMOS across a woman's life<small>Panel discussion</small></div>
+          <div class="who-by">Moderator: <b>Dr. Nandini Muppidi</b><br>Panelists: Dr. Avani, Dr. Mythri, Dr. Sindhu Kambapati, Dr. Goutham, Dr. Divya Meghana &amp; Dr. Samantha</div>
+          <div class="tags"><span class="badge">Panel</span><a class="badge" href="/webinar.html">Public live stream</a></div>
+        </div>
+        <div class="slot">
+          <span class="t">12:00–12:20 PM</span>
+          <div class="what">PMOS in 2026: from diagnosis to lifelong metabolic and reproductive health</div>
+          <div class="who-by"><b>Dr. Anuradha Panda</b></div>
+        </div>
+        <div class="slot">
+          <span class="t">12:20–1:10 PM</span>
+          <div class="what">Metabolism in PMOS<small>Panel discussion</small></div>
+          <div class="who-by">Moderator: <b>Dr. Mahitha Reddy</b><br>Panelists: Dr. Mythri, Dr. Vrinda, Dr. Neelaveni, Dr. Ramakrishna, Dr. Raja Manohar &amp; Dr. Harshini</div>
+          <div class="tags"><span class="badge">Panel</span></div>
+        </div>
+        <div class="slot">
+          <span class="t">1:10–1:30 PM</span>
+          <div class="what">PMOS and gut microbiome</div>
+          <div class="who-by"><b>Dr. Naveen Polavarapu</b></div>
+        </div>
+        <div class="slot">
+          <span class="t">1:30–1:50 PM</span>
+          <div class="what">Hyperandrogenism in PMOS</div>
+          <div class="who-by"><b>Dr. Vijayalakshmi</b></div>
+        </div>
+        <div class="slot">
+          <span class="t">1:50–2:10 PM</span>
+          <div class="what">Ultrasound in PMOS</div>
+          <div class="who-by"><b>Dr. Harshini</b></div>
+        </div>
+        <div class="slot rest">
+          <span class="t">2:10–3:00 PM</span>
+          <div class="what">Lunch</div>
+        </div>
+        <div class="slot group">
+          <span class="t">3:00–5:00 PM</span>
+          <div class="what">Workshops &amp; interactive case discussions<small>Complex cases across PMOS, with a multidisciplinary approach</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="stream">
+        <p class="eyebrow">Open to everyone</p>
+        <h3>Public live stream</h3>
+        <p>The panel "PMOS across a woman's life" (11 AM–12 PM) is streamed online for women and families. Free, with registration.</p>
+        <a class="pill" href="/webinar.html">Register for the live stream</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="sec-head"><p class="eyebrow">FAQ</p><h3>Good to know</h3></div>
+      <details open><summary>Is the public live stream part of my pass?<span class="plus">+</span></summary>
+        <p>Yes. The 11 AM–12 PM panel on PMOS across a woman's life is streamed publicly. Delegates attend it live, in the room.</p></details>
+      <details><summary>Is PMOS the same as PCOS?<span class="plus">+</span></summary>
+        <p>Yes. PMOS is the term used throughout this programme, formerly and commonly known as PCOS.</p></details>
+      <details><summary>Who is Hall 1 for?<span class="plus">+</span></summary>
+        <p>Gynaecologists, endocrinologists, reproductive medicine specialists, dermatologists, dietitians, psychiatrists, physicians and residents.</p></details>
+    </section>
+  </div>
+
+  <!-- ================= DIABETES ================= -->
+  <div class="panel" id="panel-diabetes" role="tabpanel" aria-labelledby="tab-diabetes" hidden>
+    <div class="hero">
+      <p class="eyebrow">Hall 2 · Diabetes complications</p>
+      <h2>Save the foot. Understand the whole person.</h2>
+      <p class="sub">A diabetic foot symposium with a live wound workshop, and a frank session on sexual health, from hormones to mind.</p>
+      <div class="ctas">
+        <a class="pill" href="#register">Register now</a>
+        <a class="pill line" href="#diabetes-programme">See programme</a>
       </div>
     </div>
 
-    <div class="incl-row">
-      <span class="incl">✓ Lunch included</span>
-      <span class="incl">✓ Refreshments included</span>
-      <span class="incl">✓ 2 CPD credits</span>
+    <div class="strip" aria-hidden="true"><div class="strip-track">
+      <span>Diabetic foot</span><span>Wound care</span><span>Master class</span><span>ED &amp; FSD</span><span>Hormones &amp; mind</span><span>Case studies</span><span>Live stream</span>
+      <span>Diabetic foot</span><span>Wound care</span><span>Master class</span><span>ED &amp; FSD</span><span>Hormones &amp; mind</span><span>Case studies</span><span>Live stream</span>
+    </div></div>
+
+    <section>
+      <div class="sec-head"><p class="eyebrow">Why this hall</p><h3>Two problems doctors see every week</h3></div>
+      <div class="cards">
+        <div class="card"><span class="n">01</span><h4>A wound that starts painless</h4><p>Neuropathy hides small injuries. Early recognition decides whether the foot is saved.</p></div>
+        <div class="card"><span class="n">02</span><h4>Sexual health, rarely asked</h4><p>Erectile dysfunction and female sexual dysfunction are common in diabetes, and often missed.</p></div>
+        <div class="card"><span class="n">03</span><h4>Learn it, then practise it</h4><p>A hands-on workshop and case discussions, not only lectures.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><p class="eyebrow">Who should attend</p><h3>For everyone who treats diabetes</h3></div>
+      <ul class="who">
+        <li>Endocrinologists</li><li>Diabetologists</li><li>General &amp; family physicians</li><li>Surgeons &amp; wound-care teams</li>
+        <li>Psychiatrists</li><li>Dietitians &amp; nutritionists</li><li>Residents &amp; fellows</li>
+      </ul>
+    </section>
+
+    <section id="diabetes-programme">
+      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3></div>
+      <div class="sched">
+        <div class="slot">
+          <span class="t">9:00–10:30 AM</span>
+          <div class="what">Registration, welcome note, networking &amp; Diabetes Master Class</div>
+          <div class="who-by">By endocrinologists</div>
+        </div>
+
+        <p class="grp-title">Diabetic foot symposium · Live streaming</p>
+        <div class="slot feature">
+          <span class="t">10:30–11:30 AM</span>
+          <div class="what">How to manage a diabetic foot ulcer</div>
+          <div class="who-by"><b>Dr. Rama Rao</b></div>
+          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+        </div>
+        <div class="slot feature">
+          <span class="t">11:30 AM–12:30 PM</span>
+          <div class="what">Diabetic foot workshop</div>
+          <div class="who-by">Faculty to be confirmed</div>
+          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+        </div>
+
+        <p class="grp-title">Sexual health: the role of mind &amp; body · ED and FSD</p>
+        <div class="slot">
+          <span class="t">12:30–1:30 PM</span>
+          <div class="what">Sexual health: role of hormones</div>
+          <div class="who-by"><b>Dr. Shyam Kalavalapalli</b></div>
+        </div>
+        <div class="slot">
+          <span class="t">1:30–2:15 PM</span>
+          <div class="what">Sexual health: role of mind</div>
+          <div class="who-by"><b>Dr. Sunil Reddy</b></div>
+        </div>
+        <div class="slot rest">
+          <span class="t">2:15–3:00 PM</span>
+          <div class="what">Lunch</div>
+        </div>
+        <div class="slot group">
+          <span class="t">3:00–5:00 PM</span>
+          <div class="what">Workshops &amp; case study discussions</div>
+          <div class="who-by">Panel of doctors</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="stream">
+        <p class="eyebrow">Open to patients &amp; families</p>
+        <h3>Diabetic foot live stream</h3>
+        <p>The foot symposium is streamed online, in plain language, for patients and families. Free, with registration.</p>
+        <a class="pill" href="https://foot.ideaclinics.com">Join the foot webcast</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="sec-head"><p class="eyebrow">FAQ</p><h3>Good to know</h3></div>
+      <details open><summary>Can patients come to the venue?<span class="plus">+</span></summary>
+        <p>The in-person programme is for doctors and healthcare professionals. Patients and families join the foot webcast online.</p></details>
+      <details><summary>Can I attend both halls?<span class="plus">+</span></summary>
+        <p>One registration covers the day. Choose the sessions that fit you from either hall.</p></details>
+      <details><summary>Does the webcast replace a doctor's visit?<span class="plus">+</span></summary>
+        <p>No. Anyone with a foot wound, numbness or worry about their feet should be examined by a doctor.</p></details>
+    </section>
+  </div>
+
+  <!-- ================= SHARED REGISTRATION ================= -->
+  <section id="register" class="reg" tabindex="-1" style="padding-top:24px;">
+    <p class="eyebrow">Registration · Both halls</p>
+    <h3 style="font-size:1.8rem; margin-top:8px;">Reserve your seat</h3>
+    <div class="price">
+      <div class="main"><span><b>Delegate</b><small>Full-day programme + case discussions</small></span><span class="amt">₹1000</span></div>
+      <div><span><b>Student</b><small>Valid student ID at check-in</small></span><span class="amt">₹500</span></div>
     </div>
-
-    <p class="cpd-note">*CPD credit hours require registration on or before 9:15 AM.</p>
-
-    <div class="sponsor-note">For sponsored registrations, if eligible, email <b>raghav.m@ideaclinics.com</b></div>
-
-    <div class="reg-cta">
-      <a class="btn btn-primary" href="https://pages.razorpay.com/pl_Trjx32GL2qnYJD/view" target="_blank" rel="noopener" id="razorpay-btn">Register &amp; pay via Razorpay</a>
-    </div>
+    <div class="incl"><span>✓ Lunch</span><span>✓ Refreshments</span><span>✓ 2 CPD credits</span></div>
+    <p class="note">*CPD credit hours require registration on or before 9:00 AM on 15 November.</p>
+    <a class="pill block" id="razorpay-btn" href="https://pages.razorpay.com/pl_Trjx32GL2qnYJD/view" target="_blank" rel="noopener">Register &amp; pay<span class="sr" style="position:absolute;left:-9999px;"> (opens in a new tab)</span></a>
+    <p class="venue"><b>Lemon Tree Premier</b>, Hitech City, Hyderabad · Sunday, 15 November 2026 · 9 AM–5 PM<br>Questions? Call <a href="tel:+918008650332"><b>+91 8008650332</b></a> · Sponsored seats: raghav.m@ideaclinics.com</p>
   </section>
 
-  <section id="faq">
-    <div class="section-head">
-      <p class="eyebrow">FAQ</p>
-      <h2>Good to know</h2>
-    </div>
-    <details class="faq-item" open>
-      <summary class="faq-q">Is the public live stream part of my pass?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes. The 10:00–11:00 AM panel, PMOS across a woman's life, is streamed publicly as well. Delegates attend it live, in the room.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">What's included in the pass?<span class="plus">+</span></summary>
-      <p class="faq-a">Full access to the scientific programme, the afternoon case discussions, lunch, refreshments, and 2 CPD credits accredited by TSMC.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">Is there a student rate?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes. Student registration is ₹500. A valid student ID may be requested at check-in.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">How do I get my CPD credits?<span class="plus">+</span></summary>
-      <p class="faq-a">The programme carries 2 CPD credits by TSMC. CPD credit hours require registration on or before 9:15 AM on 15 November.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">Can I get a sponsored registration?<span class="plus">+</span></summary>
-      <p class="faq-a">If eligible, email raghav.m@ideaclinics.com before registering.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">Is PMOS the same as PCOS?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes — PMOS is the terminology used throughout this programme, formerly and commonly known as PCOS.</p>
-    </details>
-  </section>
-
-  <div class="partners"><p>IN ASSOCIATION WITH</p><img src="partners.png" alt="Nirmaya and Roopa"></div>
-
+  <div class="partners">
+    <p>In association with</p>
+    <img src="partners.png" alt="Nirmaya and Roopa">
+    <div class="ima">IMA Hyderabad North</div>
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
-    <div class="contact-line">Email: <span id="email-addr">raghav.m@ideaclinics.com</span> <button class="copy-btn" data-copy="email-addr">Copy</button></div>
-    <p class="foot-copy">Organised by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
+    <img src="idea-logo.png" alt="IDEA Clinics">
+    <p>Organised by IDEA Clinics, Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
+    <p style="margin-top:6px;">Public webcasts: <a href="/webinar.html">PMOS</a> · <a href="https://foot.ideaclinics.com">Diabetic foot</a></p>
   </div>
 </footer>
 
+<div class="sticky" id="sticky"><a class="pill" href="#register">Register</a></div>
+
 <script>
 (function(){
-  document.querySelectorAll('.copy-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var text = document.getElementById(btn.dataset.copy).textContent;
-      var done = function(){ var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = old; }, 1200); };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(done);
-      } else { done(); }
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = { pmos: document.getElementById('panel-pmos'), diabetes: document.getElementById('panel-diabetes') };
+  var titles = { pmos: 'PMOS | CME 2026', diabetes: 'Diabetes complications | CME 2026' };
+
+  function show(which, opts){
+    opts = opts || {};
+    if (!panels[which]) which = 'pmos';
+    document.body.setAttribute('data-tab', which);
+    tabs.forEach(function(t){
+      var on = t.dataset.tab === which;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
     });
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== which); });
+    if (!opts.init) { try { history.replaceState(null, '', '#' + which); } catch(e){} }
+    if (opts.scroll) {
+      var bar = document.querySelector('.tabbar');
+      var top = bar.getBoundingClientRect().top + window.pageYOffset - 0;
+      if (window.pageYOffset > top) window.scrollTo(0, top);
+    }
+    if (opts.focus) { document.getElementById('tab-' + which).focus(); }
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ show(t.dataset.tab, {scroll:true}); });
+    t.addEventListener('keydown', function(e){
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i + tabs.length - 1) % tabs.length];
+      if (e.key === 'Home') next = tabs[0];
+      if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); show(next.dataset.tab, {focus:true}); }
+    });
+  });
+
+  var h = (location.hash || '').replace('#','');
+  show(h === 'diabetes' ? 'diabetes' : 'pmos', {init:true});
+
+  // Hash links from elsewhere (e.g. /#diabetes) switch the tab.
+  window.addEventListener('hashchange', function(){
+    var x = (location.hash || '').replace('#','');
+    if (x === 'pmos' || x === 'diabetes') show(x);
   });
 })();
 </script>
