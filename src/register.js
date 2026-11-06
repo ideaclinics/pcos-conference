@@ -74,7 +74,7 @@ async function sendWhatsApp(env, data) {
         },
       }),
     });
-    await logMessage(env, mobile, res.ok ? "sent to Interakt" : "Interakt rejected", res.status, await res.text());
+    await logMessage(env, mobile, res.ok ? "sent to Interakt" : "Interakt rejected", res.status, "template=" + target.name + " | " + (await res.text()));
   } catch (e) {
     await logMessage(env, mobile, "network error", null, e && e.message);
   }
