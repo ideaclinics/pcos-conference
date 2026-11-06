@@ -47,7 +47,9 @@
 
   /* ---------- Top bar ---------- */
   .top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:14px;}
-  .top img{height:30px; display:block;}
+  .brands{display:flex; align-items:center; gap:10px; min-width:0;}
+  .brands img{height:34px; width:auto; display:block;}
+  .brands .x{font-weight:600; color:var(--soft); font-size:.9rem;}
   .pill{
     display:inline-flex; align-items:center; justify-content:center; gap:.5em;
     min-height:46px; padding:.55em 1.25em; border-radius:999px; border:2px solid transparent;
@@ -181,11 +183,13 @@
 
   .partners{text-align:center; padding-block:34px 8px;}
   .partners p{font-size:.72rem; font-weight:700; letter-spacing:.02em; color:var(--soft); margin-bottom:10px;}
-  .partners img{height:44px; max-width:100%; background:#fff; border-radius:12px; padding:6px 12px; display:inline-block;}
+  .partner-logos{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .partner-logos img{height:46px; width:auto; max-width:100%; background:#fff; border-radius:12px; padding:6px 12px; display:block;}
+  .partner-logos img.roopa{padding:0; background:none; height:46px; border-radius:12px;}
   .partners .ima{margin-top:12px; font-weight:700; font-size:.9rem;}
 
   footer{padding-block:26px 110px; font-size:.82rem; color:var(--muted); border-top:1.5px solid var(--line); margin-top:30px;}
-  footer img{height:26px; display:block; margin-bottom:10px;}
+  footer img{height:26px; display:block;}
   footer a{font-weight:700;}
 
   /* sticky register */
@@ -211,7 +215,11 @@
 
 <div class="wrap">
   <div class="top">
-    <img src="idea-logo.png" alt="IDEA Clinics">
+    <div class="brands">
+      <img src="idea-logo.png" alt="IDEA Clinics">
+      <span class="x" aria-hidden="true">×</span>
+      <img src="roopa-badge-navy.svg" alt="Roopa Health">
+    </div>
     <a class="pill" href="#register">Register</a>
   </div>
 
@@ -353,7 +361,7 @@
     <div class="hero">
       <p class="eyebrow">Hall 2 · Diabetes complications</p>
       <h2>Save the foot. Understand the whole person.</h2>
-      <p class="sub">A diabetic foot symposium with a live wound workshop, and a frank session on sexual health, from hormones to mind.</p>
+      <p class="sub">A diabetic foot symposium with an expert panel and a hands-on workshop, and a frank session on sexual health, from hormones to mind.</p>
       <div class="ctas">
         <a class="pill" href="#register">Register now</a>
         <a class="pill line" href="#diabetes-programme">See programme</a>
@@ -383,7 +391,7 @@
     </section>
 
     <section id="diabetes-programme">
-      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3></div>
+      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3><p class="lede">The 10:30 AM–12:00 PM sessions are streamed live online.</p></div>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–10:30 AM</span>
@@ -391,38 +399,53 @@
           <div class="who-by">By endocrinologists</div>
         </div>
 
-        <p class="grp-title">Diabetic foot symposium · Live streaming</p>
+        <p class="grp-title">Heart &amp; kidney · Diabetes forum</p>
+        <div class="slot">
+          <span class="t">10:30–11:00 AM</span>
+          <div class="what">Diabetes silently affects your heart: know your symptoms</div>
+          <div class="who-by"><b>Dr. Ramakrishna Janapati</b></div>
+          <div class="what" style="margin-top:10px; grid-column:2;">Beyond blood sugar: saving kidneys, protecting lives</div>
+          <div class="who-by"><b>Dr. Santosh Hedau</b></div>
+          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+        </div>
+
+        <p class="grp-title">Diabetic foot symposium</p>
         <div class="slot feature">
-          <span class="t">10:30–11:30 AM</span>
-          <div class="what">How to manage a diabetic foot ulcer</div>
-          <div class="who-by"><b>Dr. Rama Rao</b></div>
+          <span class="t">11:00–11:15 AM</span>
+          <div class="what">ZioHeal talk: wound dressing, what's new</div>
+          <div class="who-by"><b>Dr. Ranjith Reddy Gurrala</b>, plastic surgeon</div>
           <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
         </div>
         <div class="slot feature">
-          <span class="t">11:30 AM–12:30 PM</span>
-          <div class="what">Diabetic foot workshop</div>
-          <div class="who-by">Faculty to be confirmed</div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <span class="t">11:15 AM–12:00 PM</span>
+          <div class="what">Expert panel discussion<small>Diabetic foot care</small></div>
+          <div class="who-by">Moderator: <b>Anant Ramachandran</b><br>Panelists: Dr. Ranjith, Dr. Srinivas Seshabhattaru, Dr. Rama Rao, Dr. Shyam Kalavalapalli &amp; Dr. Rakesh Sahay</div>
+          <div class="tags"><span class="badge">Panel</span><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+        </div>
+        <div class="slot feature">
+          <span class="t">12:00–1:30 PM</span>
+          <div class="what">Diabetes workshops</div>
+          <div class="who-by"><b>Dr. Srinivas Seshabhattaru</b>, podiatrist<br><b>Dr. Rama Rao</b>, laparoscopic surgeon</div>
         </div>
 
         <p class="grp-title">Sexual health: the role of mind &amp; body · ED and FSD</p>
         <div class="slot">
-          <span class="t">12:30–1:30 PM</span>
+          <span class="t">1:30–1:45 PM</span>
           <div class="what">Sexual health: role of hormones</div>
           <div class="who-by"><b>Dr. Shyam Kalavalapalli</b></div>
         </div>
         <div class="slot">
-          <span class="t">1:30–2:15 PM</span>
+          <span class="t">1:45–2:00 PM</span>
           <div class="what">Sexual health: role of mind</div>
-          <div class="who-by"><b>Dr. Sunil Reddy</b></div>
+          <div class="who-by"><b>Dr. Sunil Reddy A</b></div>
         </div>
         <div class="slot rest">
-          <span class="t">2:15–3:00 PM</span>
+          <span class="t">2:00–3:00 PM</span>
           <div class="what">Lunch</div>
         </div>
         <div class="slot group">
           <span class="t">3:00–5:00 PM</span>
-          <div class="what">Workshops &amp; case study discussions</div>
+          <div class="what">Workshops &amp; case discussions</div>
           <div class="who-by">Panel of doctors</div>
         </div>
       </div>
@@ -431,9 +454,9 @@
     <section>
       <div class="stream">
         <p class="eyebrow">Open to patients &amp; families</p>
-        <h3>Diabetic foot live stream</h3>
-        <p>The foot symposium is streamed online, in plain language, for patients and families. Free, with registration.</p>
-        <a class="pill" href="https://foot.ideaclinics.com">Join the foot webcast</a>
+        <h3>Hall 2 live stream</h3>
+        <p>The Hall 2 sessions from 10:30 AM to 12 PM are streamed online, in plain language, for patients and families. Free, with registration.</p>
+        <a class="pill" href="https://foot.ideaclinics.com">Join the live stream</a>
       </div>
     </section>
 
@@ -464,14 +487,14 @@
 
   <div class="partners">
     <p>In association with</p>
-    <img src="partners.png" alt="Nirmaya and Roopa">
+    <div class="partner-logos"><img src="nirmaya.png" alt="Nirmaya"><img class="roopa" src="roopa-badge-navy.svg" alt="Roopa Health"></div>
     <div class="ima">IMA Hyderabad North</div>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <img src="idea-logo.png" alt="IDEA Clinics">
+    <div class="brands" style="margin-bottom:10px;"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"></div>
     <p>Organised by IDEA Clinics, Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
     <p style="margin-top:6px;">Public webcasts: <a href="/webinar.html">PMOS</a> · <a href="https://foot.ideaclinics.com">Diabetic foot</a></p>
   </div>

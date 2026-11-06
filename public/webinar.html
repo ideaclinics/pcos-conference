@@ -42,8 +42,10 @@
   .btn.line{background:transparent; color:var(--ink); border-color:var(--ink);}
 
   .top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:14px;}
-  .top img{height:30px; display:block;}
-  .top .btn{width:auto;}
+  .brands{display:flex; align-items:center; gap:10px; min-width:0;}
+  .brands img{height:34px; width:auto; display:block; margin:0;}
+  .brands .x{font-weight:600; color:var(--soft); font-size:.9rem;}
+  .top .btn{width:auto; white-space:nowrap; flex:none; font-size:1.05rem; padding:.5em 1.1em;}
   .back{display:inline-block; font-size:.84rem; font-weight:600; color:var(--muted); text-decoration:underline; margin-bottom:6px;}
 
   /* ---------- Hero ---------- */
@@ -116,7 +118,7 @@
   .faq-a{color:var(--muted); font-size:.92rem; margin-top:6px; max-width:60ch;}
 
   footer{padding-block:26px 120px; font-size:.82rem; color:var(--muted); border-top:1.5px solid var(--line); margin-top:34px;}
-  .foot-logo img{height:26px; display:block; margin-bottom:10px;}
+  .foot-logo{margin-bottom:10px;}
   .foot-copy{color:var(--soft); font-size:.72rem; margin-top:12px;}
   footer a{font-weight:600;}
 
@@ -191,8 +193,12 @@
 <main class="wrap">
 
   <div class="top">
-    <img src="idea-logo.png" alt="IDEA Clinics">
-    <a class="btn" href="#signup">Save my seat</a>
+    <div class="brands">
+      <img src="idea-logo.png" alt="IDEA Clinics">
+      <span class="x" aria-hidden="true">×</span>
+      <img src="roopa-badge-navy.svg" alt="Roopa Health">
+    </div>
+    <a class="btn" href="#signup">Register</a>
   </div>
 
   <div class="hero" id="hero">
@@ -367,7 +373,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo"><img src="idea-logo.png" alt="IDEA Clinics"></div>
+    <div class="foot-logo brands"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"></div>
     <p>A free public session by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
   </div>
 </footer>

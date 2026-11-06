@@ -4,20 +4,22 @@ const FORM_TYPES = ["conference", "webinar", "foot_doctor", "foot_public"];
 // Email is mandatory for every form except the public foot webcast.
 const EMAIL_OPTIONAL = ["foot_public"];
 
-// Sends the WhatsApp template named in INTERAKT_TEMPLATE via Interakt. Runs only if the
-// INTERAKT_API_KEY secret and INTERAKT_TEMPLATE variable are set and the person opted in. Never blocks signup.
 // ---------------------------------------------------------------------------
 // WhatsApp confirmation (Interakt) and its audit log
 //
-// After a webinar signup is saved, sendWhatsApp() sends the approved Interakt
-// template (name in env.INTERAKT_TEMPLATE, e.g. "pmos_webinar") to the person.
+// After a public signup is saved, sendWhatsApp() sends the approved Interakt
+// template to the person who ticked the WhatsApp box:
+//   form_type "webinar"     -> template named in env.INTERAKT_TEMPLATE      (e.g. "pmos_webinar")
+//   form_type "foot_public" -> template named in env.INTERAKT_FOOT_TEMPLATE (e.g. "foot_webcast")
+// Both templates take one body variable: the first name.
 // Every attempt, including skipped ones, is recorded in D1 table `message_log`
 // so a missing message can be diagnosed with:
 //   SELECT * FROM message_log ORDER BY id DESC LIMIT 10;
 //
 // Required Worker settings (Cloudflare > pcos-conference > Settings):
 //   INTERAKT_API_KEY   (Secret)    base64 API key from Interakt Developer Settings
-//   INTERAKT_TEMPLATE  (Variable)  approved template name
+//   INTERAKT_TEMPLATE  (Variable)  approved PMOS webinar template name
+//   INTERAKT_FOOT_TEMPLATE (Variable)  approved diabetic foot webcast template name
 // Table: message_log(id, mobile, outcome, http_status, response, created_at)
 // WhatsApp failures never block or fail the signup itself.
 // ---------------------------------------------------------------------------
@@ -31,15 +33,23 @@ async function logMessage(env, mobile, outcome, status, response) {
   } catch (e) {}
 }
 
-// Sends the WhatsApp template for a webinar signup, or logs why it was skipped.
+// Which template and callback tag to use for each public form.
+function whatsAppTarget(env, formType) {
+  if (formType === "webinar") return { name: env.INTERAKT_TEMPLATE, var: "INTERAKT_TEMPLATE", tag: "pmos_webinar_signup" };
+  if (formType === "foot_public") return { name: env.INTERAKT_FOOT_TEMPLATE, var: "INTERAKT_FOOT_TEMPLATE", tag: "foot_webcast_signup" };
+  return null;
+}
+
+// Sends the WhatsApp template for a public signup, or logs why it was skipped.
 async function sendWhatsApp(env, data) {
-  if (data.form_type !== "webinar") return;
+  const target = whatsAppTarget(env, data.form_type);
+  if (!target) return;
   const mobile = String(data.mobile);
   if (!data.wants_updates) return logMessage(env, mobile, "skipped: WhatsApp box not ticked");
   // Diagnostic: list setting NAMES (never values) so a missing one is easy to spot.
   const seen = Object.keys(env).sort().join(", ");
   if (!env.INTERAKT_API_KEY) return logMessage(env, mobile, "skipped: INTERAKT_API_KEY secret missing", null, "Worker sees: " + seen);
-  if (!env.INTERAKT_TEMPLATE) return logMessage(env, mobile, "skipped: INTERAKT_TEMPLATE variable missing", null, "Worker sees: " + seen);
+  if (!target.name) return logMessage(env, mobile, "skipped: " + target.var + " variable missing", null, "Worker sees: " + seen);
   let digits = mobile.replace(/\D/g, "");
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
   if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
@@ -55,10 +65,10 @@ async function sendWhatsApp(env, data) {
       body: JSON.stringify({
         countryCode: "+91",
         phoneNumber: digits,
-        callbackData: "pmos_webinar_signup",
+        callbackData: target.tag,
         type: "Template",
         template: {
-          name: env.INTERAKT_TEMPLATE,
+          name: target.name,
           languageCode: "en",
           bodyValues: [firstName],
         },

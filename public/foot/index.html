@@ -4,144 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#F15738">
+<meta name="theme-color" content="#FFFBF7">
 <title>Diabetic Foot 2026 | IDEA Clinics</title>
-<meta name="description" content="Diabetic Foot 2026. A doctors' workshop in Hyderabad and a live public webcast on protecting the diabetic foot. 15 November 2026, World Diabetes Day.">
+<meta name="description" content="Diabetic Foot 2026. A free live webcast for patients and families on protecting the diabetic foot. Sunday 15 November 2026, World Diabetes Day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     color-scheme:light;
-    --brand:#F15738; --ink:#1A1A2E; --muted:#51515C; --line:#E4E4E8; --wash:#F6F6F7;
+    --bg:#FFFBF7; --card:#fff; --ink:#1B1B2F; --muted:#55556A; --soft:#8A8798; --line:#EADFD0;
+    --brand:#F15738; --brand-deep:#C23A1B; --tint:#FFEDE6; --wash:#FFFAF5;
+    --radius:22px; --shadow:0 1px 2px rgba(27,27,47,.05), 0 14px 30px -18px rgba(27,27,47,.28);
   }
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth;} }
-  body{
-    margin:0; background:#fff; color:var(--ink); font-family:'Lato',Arial,sans-serif;
-    font-size:1.0625rem; line-height:1.6; padding:0 20px 84px; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:600px; margin-inline:auto;}
-  h1,h2,h3{font-family:'Roboto',Arial,sans-serif; font-weight:900; line-height:1.15; margin:0; letter-spacing:-.01em; text-wrap:balance;}
-  h1{font-size:clamp(2.1rem,9vw,2.8rem);}
-  h2{font-size:1.5rem;}
-  p{margin:0;}
-  a{color:inherit;}
-  .skip{position:absolute; left:12px; top:8px; background:var(--ink); color:#fff; padding:10px 14px; border-radius:8px; z-index:100; transform:translateY(-200%);}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Arial,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; padding-bottom:90px;}
+  .wrap{max-width:880px; margin-inline:auto; padding-inline:18px;}
+  h1,h2,h3,h4{margin:0; font-weight:700; line-height:1.1; letter-spacing:-.02em; text-wrap:balance;}
+  p{margin:0;} a{color:inherit;}
+  .skip{position:absolute; left:12px; top:8px; background:var(--ink); color:#fff; padding:10px 14px; border-radius:10px; z-index:100; transform:translateY(-200%);}
   .skip:focus{transform:none;}
   .sr{position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
-  :focus-visible{outline:3px solid var(--ink); outline-offset:3px; border-radius:4px;}
+  :focus-visible{outline:3px solid var(--ink); outline-offset:3px; border-radius:6px;}
+  .eyebrow{font-size:.74rem; font-weight:700; letter-spacing:.02em; color:var(--brand-deep);}
 
   .btn{
-    display:flex; align-items:center; justify-content:center; width:100%; min-height:56px;
-    font-family:'Roboto',Arial,sans-serif; font-weight:700; font-size:1.17rem; /* 18.7px bold = large text */
-    padding:.6em 1em; border-radius:10px; border:2px solid var(--brand); -webkit-appearance:none; appearance:none; font-family:'Roboto',Arial,sans-serif;
-    background:var(--brand); color:#fff; text-decoration:none; cursor:pointer;
+    appearance:none; -webkit-appearance:none; display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+    width:100%; min-height:50px; padding:.55em 1.25em; border-radius:999px; border:2px solid var(--brand);
+    font:inherit; font-weight:700; font-size:1.17rem; text-decoration:none; cursor:pointer; background:var(--brand); color:#fff;
+    transition:transform .12s ease;
   }
-  .btn:hover{filter:brightness(.94);}
   .btn:active{transform:translateY(1px);}
-  .btn.plain{background:#fff; color:var(--ink); border-color:var(--line);}
   .btn[disabled]{opacity:.6; cursor:not-allowed;}
+  .btn.plain{background:transparent; color:var(--ink); border-color:var(--ink);}
 
-  header{padding-top:22px; display:flex; justify-content:space-between; align-items:center; gap:12px;}
-  header img{height:30px; display:block;}
-  header span{font-size:.9rem; color:var(--muted);}
+  header{padding-block:14px; display:flex; justify-content:space-between; align-items:center; gap:10px 12px; flex-wrap:wrap;}
+  .brands{display:flex; align-items:center; gap:10px; min-width:0;}
+  .brands img{display:block; width:auto; height:34px; margin:0;}
+  .brands img.zio{height:26px;}
+  .brands .x{color:var(--soft); font-weight:600; font-size:.9rem;}
+  header .tagline{font-size:.84rem; font-weight:600; color:var(--muted);}
 
-  .hero{padding:44px 0 40px;}
-  .hero .sub{margin-top:12px; font-size:1.15rem; color:var(--muted); max-width:30ch;}
-  .hero .when{margin-top:22px; font-weight:700;}
-  .hero .when span{display:block; font-weight:400; color:var(--muted);}
-  .cta{margin-top:28px; display:grid; gap:18px;}
-  .cta small{display:block; margin-top:8px; color:var(--muted); font-size:.9rem; text-align:center;}
+  /* Hero */
+  .hero{background:linear-gradient(160deg,#FFEDE6 0%,#FFF8F3 70%); border:1.5px solid #F8D8CC; border-radius:28px; padding:28px 22px 26px; margin-top:6px; position:relative; overflow:hidden;}
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:rgba(241,87,56,.10); pointer-events:none;}
+  .hero-inner{position:relative; z-index:1;}
+  .hero h1{font-size:clamp(2.1rem,9vw,3.2rem); margin-top:8px;}
+  .hero .sub{margin-top:12px; font-size:1rem; font-weight:500; color:var(--muted); max-width:44ch;}
+  .when{display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; margin-top:20px; background:var(--card); border:2px solid var(--brand); border-radius:20px; padding:12px 18px;}
+  .when b{font-size:1.5rem; font-weight:700; line-height:1.1;}
+  .when b:first-child{color:var(--brand-deep);}
+  .when span{flex-basis:100%; font-size:.88rem; font-weight:600; color:var(--muted);}
+  .cta{margin-top:22px; display:grid; gap:16px; max-width:360px;}
+  .cta small{display:block; margin-top:6px; color:var(--muted); font-size:.82rem; text-align:center;}
 
-  section{padding:40px 0; border-top:1px solid var(--line);}
-  section > h2{margin-bottom:18px;}
-  .steps{list-style:none; margin:0; padding:0; counter-reset:s;}
-  .steps li{counter-increment:s; display:grid; grid-template-columns:34px 1fr; padding:11px 0; border-bottom:1px solid var(--line);}
-  .steps li::before{content:counter(s); font-family:'Roboto',Arial,sans-serif; font-weight:900; color:var(--brand);}
-  .steps b{font-family:'Roboto',Arial,sans-serif;}
-  .steps span{color:var(--muted);}
-  .steps + p{margin-top:18px; font-weight:700;}
-  .lead{max-width:44ch;}
+  .strip{overflow:hidden; margin-block:22px 0; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .strip-track{display:flex; gap:22px; width:max-content; padding-block:6px; font-weight:700; font-size:1rem;}
+  .strip-track span::before{content:"•"; margin-right:22px; color:var(--brand);}
+  @media (prefers-reduced-motion:no-preference){ .strip-track{animation:slide 34s linear infinite;} }
+  @keyframes slide{ to{transform:translateX(-50%);} }
+
+  section{padding-block:34px 6px; scroll-margin-top:16px;}
+  .sec-head{display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
+  .sec-head h2{font-size:clamp(1.5rem,5.5vw,2rem);}
+  .lede{color:var(--muted); font-size:.96rem; max-width:58ch;}
+  .lead{max-width:56ch; color:var(--muted);}
   .lead + .lead{margin-top:12px;}
-  .note{margin-top:16px; padding:12px 14px; background:var(--wash); border-left:3px solid var(--brand); font-size:.95rem; color:var(--muted);}
 
-  details{border-bottom:1px solid var(--line);}
-  details:first-of-type{border-top:1px solid var(--line);}
-  summary{
-    list-style:none; cursor:pointer; display:block; position:relative; min-height:52px;
-    font-weight:700; padding:14px 44px 14px 0;
-  }
+  /* wound journey */
+  .journey{list-style:none; margin:0; padding:0; display:grid; gap:10px; counter-reset:j;}
+  .journey li{counter-increment:j; background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:14px 16px 14px 62px; position:relative; transition:transform .2s ease;}
+  .journey li::before{content:counter(j); position:absolute; left:16px; top:14px; width:34px; height:34px; border-radius:50%; background:var(--tint); color:var(--brand-deep); font-weight:700; display:flex; align-items:center; justify-content:center;}
+  .journey li:last-child{border:2px solid var(--brand); background:var(--tint); box-shadow:none;}
+  .journey b{display:block; font-size:1rem;}
+  .journey span{color:var(--muted); font-size:.9rem;}
+  .motto{margin-top:18px; font-weight:700; font-size:1.05rem;}
+  @media (hover:hover){ .journey li:hover{transform:translateY(-2px);} }
+  @media (min-width:700px){ .journey{grid-template-columns:repeat(5,1fr);} .journey li{padding:60px 14px 16px;} .journey li::before{top:14px; left:14px;} }
+
+  /* audience tabs */
+  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .tab{appearance:none; -webkit-appearance:none; font:inherit; text-align:left; cursor:pointer; background:var(--card); color:var(--ink); border:2px solid var(--line); border-radius:var(--radius); padding:14px; min-height:84px; display:flex; flex-direction:column; gap:3px;}
+  .tab .k{font-size:.72rem; font-weight:700; color:var(--soft);}
+  .tab .n{font-size:1.15rem; font-weight:700; line-height:1.15;}
+  .tab .t{font-size:.76rem; color:var(--muted); line-height:1.3;}
+  .tab[aria-selected="true"]{background:var(--tint); border-color:var(--brand);}
+  .tab[aria-selected="true"] .k{color:var(--brand-deep);}
+  .tab[aria-selected="true"] .t{color:var(--ink);}
+  .panel[hidden]{display:none;}
+  .panel{margin-top:16px;}
+  .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;}
+  .card + .card{margin-top:12px;}
+  .card h3{font-size:1.3rem; margin-bottom:10px;}
+  .note{margin-top:14px; padding:12px 14px; background:var(--wash); border-left:3px solid var(--brand); border-radius:0 12px 12px 0; font-size:.88rem; color:var(--muted);}
+
+  .sched{display:grid; gap:10px; margin-top:4px;}
+  .slot{display:grid; grid-template-columns:104px 1fr; gap:2px 14px; background:var(--wash); border:1.5px solid var(--line); border-radius:16px; padding:12px 14px;}
+  .slot .t{font-weight:700; font-size:.8rem; color:var(--brand-deep); line-height:1.35;}
+  .slot .w{font-weight:600; font-size:.94rem; line-height:1.35;}
+  .slot .w small{display:block; font-weight:400; color:var(--muted); font-size:.8rem; margin-top:2px;}
+  .badge{display:inline-block; margin-top:6px; font-size:.68rem; font-weight:700; background:var(--tint); color:var(--brand-deep); border-radius:999px; padding:.25em .75em;}
+  .slot.live{background:var(--tint); border-color:var(--brand);}
+
+  details{border-bottom:1.5px solid var(--line);}
+  details:first-of-type{border-top:1.5px solid var(--line);}
+  summary{list-style:none; cursor:pointer; display:block; position:relative; min-height:52px; font-weight:600; padding:14px 44px 14px 0;}
   summary::-webkit-details-marker{display:none;}
-  summary::after{content:"+"; position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:1.6rem; line-height:1; color:var(--brand); font-weight:900;}
-  details[open] > summary::after{content:"\2212";}
-  details > :not(summary){margin-bottom:16px;}
-  details ol, details ul{margin:0 0 16px; padding-left:1.8em; color:var(--muted);}
-  section details:last-of-type{border-bottom:0;}
+  summary::after{content:"+"; position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:1.6rem; line-height:1; color:var(--brand-deep); font-weight:700; transition:transform .15s ease;}
+  details[open] > summary::after{transform:translateY(-50%) rotate(45deg);}
+  details > :not(summary){margin-bottom:16px; color:var(--muted); font-size:.94rem;}
+  details ol, details ul{margin:0 0 16px; padding-left:1.6em;}
   details li{margin-bottom:6px;}
-  .spaced{margin-top:18px;}
+  .spaced{margin-top:16px;}
 
-  /* Registration */
-  .toggle{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px;}
-  .toggle button{
-    min-height:52px; border:2px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
-    -webkit-appearance:none; appearance:none; padding:0 8px;
-    font-family:'Roboto',Arial,sans-serif; font-weight:700; font-size:1rem; cursor:pointer;
-  }
-  .toggle button[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:#fff;}
+  /* register */
+  .reg{background:var(--card); border:2px solid var(--brand); border-radius:28px; padding:22px 20px;}
+  .toggle{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:16px 0 18px;}
+  .toggle button{appearance:none; -webkit-appearance:none; min-height:50px; border:2px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:0 8px; font:inherit; font-weight:700; font-size:.95rem; cursor:pointer;}
+  .toggle button[aria-pressed="true"]{border-color:var(--brand); background:var(--tint);}
   form[hidden]{display:none;}
-  .field{margin-bottom:16px;}
-  label{display:block; font-weight:700; font-size:.95rem; margin-bottom:6px;}
+  .field{margin-bottom:14px;}
+  label{display:block; font-weight:600; font-size:.88rem; margin-bottom:6px;}
   .opt{font-weight:400; color:var(--muted);}
-  input,select{
-    width:100%; min-height:50px; font:inherit; font-size:1rem; padding:.55em .8em; color:var(--ink);
-    background:#fff; border:1.5px solid #8E8E98; border-radius:8px;
-    -webkit-appearance:none; appearance:none;
-  }
-  select{
-    padding-right:42px;
-    background-image:linear-gradient(45deg,transparent 50%,#51515C 50%),linear-gradient(135deg,#51515C 50%,transparent 50%);
-    background-position:calc(100% - 22px) 55%, calc(100% - 16px) 55%;
-    background-size:6px 6px; background-repeat:no-repeat;
-  }
+  input,select{width:100%; min-height:48px; font:inherit; font-size:1rem; padding:.55em .9em; color:var(--ink); background:var(--bg); border:1.5px solid #B9AFA0; border-radius:14px; -webkit-appearance:none; appearance:none;}
+  select{padding-right:42px; background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%); background-position:calc(100% - 22px) 55%,calc(100% - 16px) 55%; background-size:6px 6px; background-repeat:no-repeat;}
   .check input{-webkit-appearance:auto; appearance:auto;}
-  .check{display:flex; gap:12px; align-items:flex-start; margin:0 0 16px; font-weight:400; font-size:.95rem; color:var(--muted);}
-  .check input{width:24px; min-height:24px; height:24px; flex:none; margin:1px 0 0; accent-color:var(--brand);}
-  .msg{display:none; margin-top:16px; padding:14px 16px; border-radius:10px; font-size:.98rem;}
+  .check{display:flex; gap:12px; align-items:flex-start; margin:0 0 14px; font-weight:400; font-size:.9rem; color:var(--muted);}
+  .check input{width:22px; min-height:22px; height:22px; flex:none; margin:2px 0 0; accent-color:var(--brand);}
+  .msg{display:none; margin-top:16px; padding:14px 16px; border-radius:16px; font-size:.94rem;}
   .msg.show{display:block;}
-  .msg.ok{background:#EAF6EF; color:#0B3D22;}
-  .msg.bad{background:#FDECE8; color:#6B1D0C;}
-  .msg b{display:block; font-family:'Roboto',Arial,sans-serif;}
+  .msg.ok{background:var(--tint); border:1.5px solid var(--brand);}
+  .msg.bad{background:#fff; border:2px solid var(--ink);}
+  .msg b{display:block;}
 
-  footer{border-top:1px solid var(--line); padding:28px 0; color:var(--muted); font-size:.9rem;}
-  footer img{height:24px; display:block; margin-bottom:10px;}
+  .care{background:var(--tint); border-radius:var(--radius); padding:20px; margin-top:12px;}
+  .care h3{font-size:1.2rem; margin-bottom:8px;}
+  .care p{color:var(--ink); font-size:.94rem;}
+  .care .btn{margin-top:14px; width:auto;}
 
-  .sticky{
-    position:fixed; left:0; right:0; bottom:0; z-index:50; background:#fff; border-top:1px solid var(--line);
-    padding:10px 20px calc(10px + env(safe-area-inset-bottom,0px));
-    visibility:hidden; transform:translateY(100%); transition:transform .2s ease, visibility 0s .2s;
-  }
+  footer{border-top:1.5px solid var(--line); padding:26px 0 30px; color:var(--muted); font-size:.84rem; margin-top:34px;}
+  footer .brands{margin-bottom:10px;}
+
+  .docnote{margin-top:16px; font-size:.9rem; color:var(--muted); position:relative;}
+  .docnote a{font-weight:700; color:var(--ink);}
+  .sticky{position:fixed; left:0; right:0; bottom:0; z-index:50; background:var(--card); border-top:1.5px solid var(--line); padding:10px 18px calc(10px + env(safe-area-inset-bottom,0px)); visibility:hidden; transform:translateY(100%); transition:transform .2s ease, visibility 0s .2s;}
   .sticky.show{visibility:visible; transform:none; transition:transform .2s ease;}
-  .sticky .btn{max-width:600px; margin-inline:auto; min-height:52px;}
+  .sticky .btn{max-width:420px; margin-inline:auto; min-height:48px; display:flex;}
   @media (prefers-reduced-motion:reduce){ .sticky{transition:none;} }
 
-  /* Top gradient: orange fading to white, with a faint ECG-paper grid. CSS only. */
-  body{position:relative;}
-  body::before, body::after{content:""; position:absolute; left:0; right:0; top:0; height:360px; z-index:-1; pointer-events:none;}
-  body::before{background:linear-gradient(180deg,#F15738 0%,#F4745A 30%,#F9B3A3 62%,#FDE6E0 85%,#fff 100%);}
-  body::after{
-    background:
-      linear-gradient(rgba(255,255,255,.34) 1px, transparent 1px) 0 0/84px 84px,
-      linear-gradient(90deg, rgba(255,255,255,.34) 1px, transparent 1px) 0 0/84px 84px,
-      linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px) 0 0/14px 14px,
-      linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px) 0 0/14px 14px;
-    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 90%); mask-image:linear-gradient(180deg,#000 0%,transparent 90%);
+  @media (prefers-reduced-motion:no-preference){
+    .js .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease;}
+    .js .reveal.in{opacity:1; transform:none;}
   }
-  header img{background:#fff; padding:6px 10px; border-radius:10px; height:42px;}
-  header span{color:var(--ink); font-weight:700;}
-  .hero .sub, .hero .when span{color:var(--ink);}
-  .hero{padding-top:36px;}
+  @media (min-width:700px){
+    .hero{padding:44px 40px 40px;}
+    .cta{grid-template-columns:1fr 1fr; max-width:none;}
+    .sticky{display:none;} body{padding-bottom:0;}
+    .slot{grid-template-columns:130px 1fr;}
+  }
 </style>
 </head>
 <body>
@@ -149,125 +171,80 @@
 <div class="wrap">
 
   <header>
-    <img src="/idea-logo.png" alt="IDEA Clinics">
-    <span>World Diabetes Day 2026</span>
+    <div class="brands"><img src="/idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img class="zio" src="/zioheal.png" alt="Zio-heal"></div>
+    <span class="tagline">World Diabetes Day 2026</span>
   </header>
 
   <main id="main">
     <div class="hero" id="hero">
-      <h1>Diabetic Foot 2026</h1>
-      <p class="sub">Protecting the diabetic foot, from neuropathy to wound healing.</p>
-      <p class="when">Sunday, 15 November 2026<span>9 AM to 5 PM · Lemon Tree Premier, HITEC City, Hyderabad</span></p>
-      <div class="cta">
-        <div>
-          <a class="btn" href="#register" data-pick="doctor">Register as a doctor</a>
-          <small>Workshop, in person</small>
+      <div class="hero-inner">
+        <p class="eyebrow">Free live webcast · For patients and families</p>
+        <h1>Diabetic foot 2026</h1>
+        <p class="sub">Look after your feet. Know the early signs. Know when to get help.</p>
+        <div class="when"><b>Sunday</b><b>15 November</b><span>Live online · 10:30 AM to 12 PM</span></div>
+        <div class="cta">
+          <div>
+            <a class="btn" href="#register">Register for the webcast</a>
+            <small>Free. We'll send your link on WhatsApp.</small>
+          </div>
         </div>
-        <div>
-          <a class="btn plain" href="#register" data-pick="public">Join the webcast</a>
-          <small>Live online, for patients and families</small>
-        </div>
+        <p class="docnote">Are you a doctor? <a href="https://pmos.ideaclinics.com/#diabetes">Register for the in-person CME</a></p>
       </div>
     </div>
 
+    <div class="strip" aria-hidden="true"><div class="strip-track">
+      <span>Neuropathy</span><span>Wound care</span><span>Heart &amp; kidney</span><span>Infection</span><span>Circulation</span><span>Prevention</span><span>Care at home</span>
+      <span>Neuropathy</span><span>Wound care</span><span>Heart &amp; kidney</span><span>Infection</span><span>Circulation</span><span>Prevention</span><span>Care at home</span>
+    </div></div>
+
     <section aria-labelledby="h-start">
-      <h2 id="h-start">A foot wound can start without any pain</h2>
-      <ol class="steps">
-        <li><div><b>Numbness.</b> <span>Nerve damage dulls feeling.</span></div></li>
-        <li><div><b>A cut nobody notices.</b> <span>Small injuries go unseen.</span></div></li>
-        <li><div><b>An ulcer.</b> <span>Poor circulation slows healing.</span></div></li>
-        <li><div><b>Infection.</b> <span>Late treatment makes it worse.</span></div></li>
-        <li><div><b>A limb at risk.</b></div></li>
+      <div class="sec-head"><p class="eyebrow">Why it matters</p><h2 id="h-start">A foot wound can start without any pain</h2></div>
+      <ol class="journey">
+        <li><b>Numbness.</b> <span>Nerve damage dulls feeling.</span></li>
+        <li><b>A cut nobody notices.</b> <span>Small injuries go unseen.</span></li>
+        <li><b>An ulcer.</b> <span>Poor circulation slows healing.</span></li>
+        <li><b>Infection.</b> <span>Late treatment makes it worse.</span></li>
+        <li><b>A limb at risk.</b></li>
       </ol>
-      <p>Recognise early. Treat early. Save the foot. Save the limb.</p>
+      <p class="motto">Recognise early. Treat early. Save the foot. Save the limb.</p>
     </section>
 
-    <section aria-labelledby="h-doc">
-      <h2 id="h-doc">For doctors</h2>
-      <p class="lead">A practical workshop on neuropathy screening, wound and infection care, off-loading and when to refer. It includes a live wound-care demonstration with ZioHeal®, and a panel on one question: can we prevent diabetic foot amputations?</p>
-      <p class="note">ZioHeal® is a zeolite–iodine wound patch. It is shown as one option under medical supervision. It does not replace vascular assessment, infection control, debridement, off-loading, glucose control or surgery.</p>
-      <details class="spaced">
-        <summary>Questions for the panel</summary>
-        <ul>
-          <li>When should neuropathy screening begin?</li>
-          <li>Which wounds can be managed at home?</li>
-          <li>When does a wound need hospitalisation?</li>
-          <li>When are antibiotics really needed?</li>
-          <li>When should debridement be done?</li>
-          <li>How much does blood sugar control matter for healing?</li>
-          <li>When should we suspect vascular disease?</li>
-          <li>How does off-loading prevent repeat ulcers?</li>
-          <li>Can advanced dressings reduce complications?</li>
-          <li>How can wounds be monitored at home?</li>
-          <li>When is it an emergency?</li>
-        </ul>
-      </details>
-    </section>
-
-    <section aria-labelledby="h-pub">
-      <h2 id="h-pub">For patients and families</h2>
-      <p class="lead">A live webcast in plain language, on looking after your feet and knowing when to get help.</p>
-      <details class="spaced">
-        <summary>What we will answer</summary>
-        <ol>
-          <li>Why can diabetes damage the feet?</li>
-          <li>What is diabetic neuropathy?</li>
-          <li>How do I know if I have lost sensation?</li>
-          <li>What does a dangerous foot ulcer look like?</li>
-          <li>Can a tiny wound become serious?</li>
-          <li>Should I walk barefoot if my feet feel normal?</li>
-          <li>How often should I check my feet?</li>
-          <li>When can care be given at home?</li>
-          <li>When should I go to hospital straight away?</li>
-          <li>How can I prevent an amputation?</li>
-        </ol>
-      </details>
-    </section>
-
-    <section aria-labelledby="h-home">
-      <h2 id="h-home">Care at home</h2>
-      <p class="lead">For some patients, foot care can continue at home: specialist visits, dressings, debridement when needed, and glucose monitoring. It suits people with numb feet, a wound that is not healing, or difficulty travelling to a clinic.</p>
-      <div class="spaced"><a class="btn plain" href="https://feet.ideaclinics.com/" target="_blank" rel="noopener">About foot care at home<span class="sr"> (opens in a new tab)</span></a></div>
+    <section aria-labelledby="h-prog">
+      <div class="sec-head"><p class="eyebrow">Live programme</p><h2 id="h-prog">Join live from your phone</h2><p class="lede">Streamed live, in plain language, from 10:30 AM to 12 PM.</p></div>
+      <div class="card">
+          <div class="sched">
+            <div class="slot live"><span class="t">10:30–11:00 AM</span><div class="w">Heart and kidney: how diabetes affects them<small>Dr. Ramakrishna Janapati and Dr. Santosh Hedau</small><span class="badge">Live stream</span></div></div>
+            <div class="slot live"><span class="t">11:00–11:15 AM</span><div class="w">New wound dressings, explained<small>Dr. Ranjith Reddy Gurrala, plastic surgeon</small><span class="badge">Live stream</span></div></div>
+            <div class="slot live"><span class="t">11:15 AM–12:00 PM</span><div class="w">Expert panel on diabetic foot care<small>Moderator: Anant Ramachandran</small><span class="badge">Live stream</span></div></div>
+          </div>
+          <details class="spaced">
+            <summary>What we will answer</summary>
+            <ol>
+              <li>Why can diabetes damage the feet?</li>
+              <li>What is diabetic neuropathy?</li>
+              <li>How do I know if I have lost sensation?</li>
+              <li>What does a dangerous foot ulcer look like?</li>
+              <li>Can a tiny wound become serious?</li>
+              <li>Should I walk barefoot if my feet feel normal?</li>
+              <li>How often should I check my feet?</li>
+              <li>When can care be given at home?</li>
+              <li>When should I go to hospital straight away?</li>
+              <li>How can I prevent an amputation?</li>
+            </ol>
+          </details>
+      </div>
+      <div class="care">
+        <h3>Care at home</h3>
+        <p>For some patients, foot care can continue at home: specialist visits, dressings, debridement when needed, and glucose monitoring. It suits people with numb feet, a wound that is not healing, or difficulty travelling to a clinic.</p>
+        <a class="btn plain" href="https://feet.ideaclinics.com/" target="_blank" rel="noopener">About foot care at home<span class="sr"> (opens in a new tab)</span></a>
+      </div>
     </section>
 
     <section id="register" aria-labelledby="h-reg" tabindex="-1">
-      <h2 id="h-reg">Register</h2>
-      <div class="toggle" role="group" aria-label="Who is registering">
-        <button type="button" data-r="doctor" aria-pressed="true">Doctor</button>
-        <button type="button" data-r="public" aria-pressed="false">Patient or family</button>
-      </div>
-
-      <form id="form-doctor" data-type="foot_doctor" aria-label="Doctor registration">
-        <div class="field"><label for="d-name">Full name</label><input id="d-name" name="full_name" autocomplete="name" required></div>
-        <div class="field"><label for="d-mobile">Mobile number</label><input id="d-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="d-email">Email</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="d-city">City</label><input id="d-city" name="city" autocomplete="address-level2" required></div>
-        <div class="field"><label for="d-inst">Hospital or institution</label><input id="d-inst" name="institution" autocomplete="organization" required></div>
-        <div class="field">
-          <label for="d-cat">Speciality</label>
-          <select id="d-cat" name="professional_category" required>
-            <option value="">Choose one</option>
-            <option>Diabetologist / Endocrinologist</option>
-            <option>General / Family Physician</option>
-            <option>Foot Surgeon</option>
-            <option>General / Vascular Surgeon</option>
-            <option>Orthopaedic Surgeon</option>
-            <option>Wound-care Specialist</option>
-            <option>Podiatry / Foot-care Professional</option>
-            <option>Nurse / Wound-care Team</option>
-            <option>Diabetes Educator</option>
-            <option>Resident / Fellow</option>
-            <option>Other healthcare professional</option>
-          </select>
-        </div>
-        <div class="field"><label for="d-reg">Medical registration number <span class="opt">(optional)</span></label><input id="d-reg" name="medical_reg_number"></div>
-        <label class="check"><input type="checkbox" name="wants_updates" checked>Send me updates about this event</label>
-        <button type="submit" class="btn">Register</button>
-        <div class="msg ok" role="status" tabindex="-1"><b>You are registered.</b>We will send your confirmation and workshop details to your mobile and email.</div>
-        <div class="msg bad" role="alert"><b>That did not go through.</b>Please try again in a moment.</div>
-      </form>
-
-      <form id="form-public" data-type="foot_public" aria-label="Webcast registration" hidden>
+      <div class="reg">
+      <p class="eyebrow">Free · Takes 30 seconds</p>
+      <h2 id="h-reg" style="font-size:1.8rem; margin-top:6px; margin-bottom:16px;">Register for the webcast</h2>
+      <form id="form-public" data-type="foot_public" aria-label="Webcast registration">
         <div class="field"><label for="p-name">Full name</label><input id="p-name" name="full_name" autocomplete="name" required></div>
         <div class="field"><label for="p-mobile">Mobile or WhatsApp number</label><input id="p-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required></div>
         <div class="field"><label for="p-email">Email <span class="opt">(optional)</span></label><input id="p-email" name="email" type="email" autocomplete="email"></div>
@@ -287,18 +264,20 @@
         <div class="msg ok" role="status" tabindex="-1"><b>You are registered.</b>We will send your joining link before 15 November.</div>
         <div class="msg bad" role="alert"><b>That did not go through.</b>Please try again in a moment.</div>
       </form>
+      </div>
     </section>
 
     <section aria-labelledby="h-faq">
-      <h2 id="h-faq">Questions</h2>
-      <details><summary>Can the public come to the venue?</summary><p>The workshop is for doctors and healthcare professionals. Patients and families join online.</p></details>
+      <div class="sec-head"><p class="eyebrow">FAQ</p><h2 id="h-faq">Questions</h2></div>
+      <details><summary>Is it free?</summary><p>Yes. Register so we can send your joining link and reminders on WhatsApp.</p></details>
+      <details><summary>Can the public come to the venue?</summary><p>The in-person programme is for doctors and healthcare professionals. Patients and families join online. Doctors can register at <a href="https://pmos.ideaclinics.com/#diabetes">pmos.ideaclinics.com</a>.</p></details>
       <details><summary>Does the webcast replace a doctor's visit?</summary><p>No. If you have a foot wound, numbness or any worry about your feet, have them examined by a doctor.</p></details>
       <details><summary>When is it an emergency?</summary><p>Do not wait for the event. Go to a hospital if a foot wound has spreading redness, swelling, pus, a foul smell, black skin or severe pain, or if you have a wound and a fever or feel unwell. When in doubt, get it checked.</p></details>
     </section>
   </main>
 
   <footer>
-    <img src="/idea-logo.png" alt="IDEA Clinics">
+    <div class="brands"><img src="/idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img class="zio" src="/zioheal.png" alt="Zio-heal"></div>
     <p>Institute of Diabetes, Endocrinology &amp; Adiposity</p>
   </footer>
 </div>
@@ -307,17 +286,7 @@
 
 <script>
 (function(){
-  var forms={doctor:document.getElementById('form-doctor'), public:document.getElementById('form-public')};
-  var btns=document.querySelectorAll('.toggle button');
-  function pick(which){
-    btns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.r===which ? 'true':'false'); });
-    forms.doctor.hidden = which!=='doctor';
-    forms.public.hidden = which!=='public';
-  }
-  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.r); }); });
-  document.querySelectorAll('[data-pick]').forEach(function(a){
-    a.addEventListener('click', function(){ pick(a.dataset.pick); });
-  });
+  var form=document.getElementById('form-public');
 
   // Sticky button: only while the hero and the form are off screen
   var bar=document.getElementById('sticky'), hv=true, rv=false;
@@ -327,34 +296,41 @@
     new IntersectionObserver(function(e){ rv=e[0].isIntersecting; sync(); },{threshold:.05}).observe(document.getElementById('register'));
   }
 
-  Object.keys(forms).forEach(function(k){
-    var form=forms[k], ok=form.querySelector('.ok'), bad=form.querySelector('.bad'), btn=form.querySelector('button[type=submit]'), label=btn.textContent;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      ok.classList.remove('show'); bad.classList.remove('show');
-      btn.disabled=true; btn.textContent='Sending…';
-      var f=form.elements;
-      var payload={
-        form_type: form.dataset.type,
-        full_name: f.full_name.value.trim(),
-        mobile: f.mobile.value.trim(),
-        email: f.email.value.trim(),
-        city: f.city.value.trim(),
-        institution: f.institution ? f.institution.value.trim() : '',
-        professional_category: f.professional_category.value,
-        medical_reg_number: f.medical_reg_number ? f.medical_reg_number.value.trim() : '',
-        acknowledged: f.acknowledged ? f.acknowledged.checked : false,
-        wants_updates: f.wants_updates.checked
-      };
-      fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-        .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,d:d}; }); })
-        .then(function(res){
-          btn.disabled=false; btn.textContent=label;
-          if (res.ok && res.d.ok){ form.reset(); ok.classList.add('show'); ok.focus(); }
-          else { bad.classList.add('show'); }
-        })
-        .catch(function(){ btn.disabled=false; btn.textContent=label; bad.classList.add('show'); });
-    });
+  // Scroll reveal
+  document.documentElement.classList.add('js');
+  var rv2=document.querySelectorAll('.sec-head, .journey li, .card, .care, .reg');
+  rv2.forEach(function(el){ el.classList.add('reveal'); });
+  if (window.IntersectionObserver){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.12});
+    rv2.forEach(function(el){ io.observe(el); });
+  } else { rv2.forEach(function(el){ el.classList.add('in'); }); }
+
+  var ok=form.querySelector('.ok'), bad=form.querySelector('.bad'), btn=form.querySelector('button[type=submit]'), label=btn.textContent;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    ok.classList.remove('show'); bad.classList.remove('show');
+    btn.disabled=true; btn.textContent='Sending…';
+    var f=form.elements;
+    var payload={
+      form_type: form.dataset.type,
+      full_name: f.full_name.value.trim(),
+      mobile: f.mobile.value.trim(),
+      email: f.email.value.trim(),
+      city: f.city.value.trim(),
+      institution: '',
+      professional_category: f.professional_category.value,
+      medical_reg_number: '',
+      acknowledged: f.acknowledged ? f.acknowledged.checked : false,
+      wants_updates: f.wants_updates.checked
+    };
+    fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,d:d}; }); })
+      .then(function(res){
+        btn.disabled=false; btn.textContent=label;
+        if (res.ok && res.d.ok){ form.reset(); ok.classList.add('show'); ok.focus(); }
+        else { bad.classList.add('show'); }
+      })
+      .catch(function(){ btn.disabled=false; btn.textContent=label; bad.classList.add('show'); });
   });
 })();
 </script>
