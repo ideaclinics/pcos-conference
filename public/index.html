@@ -73,12 +73,12 @@
   .chip.cpd{background:var(--accent-tint); border-color:transparent; color:var(--accent-deep);}
 
   /* ---------- Big tabs ---------- */
-  .tabbar{position:sticky; top:0; z-index:20; background:var(--bg); padding-block:10px; border-bottom:1.5px solid var(--line);}
+  .tabbar{position:sticky; top:0; z-index:20; background:var(--bg); padding-block:6px; border-bottom:1.5px solid var(--line);}
   .tabs{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   .tab{
     appearance:none; font:inherit; text-align:left; cursor:pointer;
     background:var(--card); color:var(--ink); border:2px solid var(--line); border-radius:var(--radius);
-    padding:14px 14px 13px; min-height:84px; display:flex; flex-direction:column; gap:3px;
+    padding:7px 12px 8px; min-height:0; display:flex; flex-direction:column; gap:3px;
     transition:background-color .15s ease, border-color .15s ease, color .15s ease;
   }
   .tab .hall{font-size:.68rem; font-weight:700; letter-spacing:.02em; color:var(--soft);}
@@ -88,7 +88,8 @@
   .tab[aria-selected="true"] .hall{color:var(--accent-deep);}
   .tab[aria-selected="true"] .tag{color:var(--ink);}
   .tab:not([aria-selected="true"]):hover{border-color:var(--ink);}
-  .tabhint{font-size:.76rem; color:var(--muted); text-align:center; margin-top:8px;}
+  .tab .tag{display:none;}
+  .tabhint{display:none; font-size:.76rem; color:var(--muted); text-align:center; margin-top:8px;}
 
   /* ---------- Panel hero ---------- */
   .panel[hidden]{display:none;}
@@ -200,6 +201,7 @@
   .sticky .pill{width:100%; max-width:420px; margin-inline:auto; display:flex;}
 
   @media (min-width:700px){
+    .tabbar{padding-block:10px;} .tab .tag{display:block;} .tabhint{display:block;}
     .tabs{gap:16px;} .tab{padding:18px 20px;} .tab .name{font-size:1.6rem;} .tab .tag{font-size:.85rem;}
     .hero{padding:44px 40px 40px;}
     .cards{grid-template-columns:repeat(3,1fr);}
