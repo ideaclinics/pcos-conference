@@ -259,6 +259,21 @@
     .price{grid-template-columns:1fr 1fr;}
     footer{padding-bottom:40px;}
   }
+
+  /* spot registration */
+  .spot{background:var(--card); border-radius:22px; padding:20px 18px; box-shadow:var(--shadow); margin:28px 0 24px; border:1.5px solid var(--accent);}
+  .spot h3{font-size:1.5rem; margin-top:6px;}
+  .spot-line{margin-top:8px; font-size:1.02rem; line-height:1.45;}
+  .spot .venue{margin-top:10px; color:var(--muted); font-size:.88rem;}
+  main#main{padding-top:14px;}
+  @media (max-width:699px){
+    main#main{padding-bottom:84px;}
+    #askBtn{position:fixed; left:16px; right:16px; bottom:calc(12px + env(safe-area-inset-bottom)); width:auto; z-index:40; box-shadow:0 6px 20px rgba(0,0,0,.25);}
+    #askForm:not([hidden]){position:fixed; left:12px; right:12px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:39; background:#fff; border:1px solid var(--line); border-radius:18px; padding:12px; box-shadow:0 10px 34px rgba(0,0,0,.3); margin:0;}
+    #lmsg:not(:empty){position:fixed; left:16px; right:16px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:39; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,.22); margin:0;}
+    .live-sec{padding-bottom:0;}
+  }
+  @media (min-width:700px){ .lbox{position:sticky; top:12px;} }
 </style>
 </head>
 <body data-tab="pmos">
@@ -313,66 +328,12 @@
   </div>
 </section>
 
-<div class="wrap">
-  <div class="intro">
-    <p class="eyebrow">CME 2026 · For doctors</p>
-    <h1>PMOS &amp; diabetes complications. <span>Two halls, one day.</span></h1>
-    <div class="chips">
-      <span class="chip">📅 15 Nov 2026</span>
-      <span class="chip">🕘 9:00 AM – 5:00 PM</span>
-      <span class="chip">📍 Lemon Tree Premier, Hitech City</span>
-      <span class="chip cpd">🎓 2 CPD credits</span>
-    </div>
-  </div>
-</div>
-
-<div class="tabbar">
-  <div class="wrap">
-    <div class="tabs" role="tablist" aria-label="Choose a hall">
-      <button class="tab" role="tab" id="tab-pmos" aria-controls="panel-pmos" aria-selected="true" data-tab="pmos">
-        <span class="hall">Hall 1</span>
-        <span class="name">PMOS</span>
-        <span class="tag">Hormones to whole health</span>
-      </button>
-      <button class="tab" role="tab" id="tab-diabetes" aria-controls="panel-diabetes" aria-selected="false" tabindex="-1" data-tab="diabetes">
-        <span class="hall">Hall 2</span>
-        <span class="name">Diabetes</span>
-        <span class="tag">Complications: heart, kidney, foot, eye &amp; sexual health</span>
-      </button>
-    </div>
-    <p class="tabhint">Tap a hall to switch. One registration covers the day.</p>
-  </div>
-</div>
-
 <main id="main" class="wrap">
 
   <!-- ================= PMOS ================= -->
   <div class="panel" id="panel-pmos" role="tabpanel" aria-labelledby="tab-pmos">
-    <div class="hero">
-      <p class="eyebrow">Hall 1 · PMOS</p>
-      <h2>From hormones to whole health</h2>
-      <p class="sub">PMOS is not just an ovary problem. A full day on diagnosis, metabolism, hormones and imaging, with the whole care team in one room.</p>
-      <div class="ctas">
-        <a class="pill" href="#register">Register now</a>
-        <a class="pill line" href="#pmos-programme">See programme</a>
-      </div>
-    </div>
-
-    <div class="strip" aria-hidden="true"><div class="strip-track">
-      <span>Master class</span><span>Diagnosis in 2026</span><span>Metabolism</span><span>Hyperandrogenism</span><span>Gut microbiome</span><span>Ultrasound</span><span>Case discussions</span>
-      <span>Master class</span><span>Diagnosis in 2026</span><span>Metabolism</span><span>Hyperandrogenism</span><span>Gut microbiome</span><span>Ultrasound</span><span>Case discussions</span>
-    </div></div>
-
-    <section>
-      <div class="sec-head"><p class="eyebrow">Who should attend</p><h3>Built for the full care team</h3></div>
-      <ul class="who">
-        <li>Gynaecologists</li><li>Endocrinologists</li><li>Reproductive medicine / IVF</li><li>Dermatologists</li>
-        <li>Dietitians &amp; nutritionists</li><li>Psychiatrists</li><li>General &amp; family physicians</li><li>Residents &amp; fellows</li>
-      </ul>
-    </section>
-
     <section id="pmos-programme">
-      <div class="sec-head"><p class="eyebrow">Hall 1 programme</p><h3>The day, hour by hour</h3></div>
+      <div class="sec-head"><p class="eyebrow">Schedule</p><h3>PMOS webinar: the day, hour by hour</h3></div>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–10:40 AM</span>
@@ -433,63 +394,11 @@
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="stream">
-        <p class="eyebrow">Open to everyone</p>
-        <h3>Hall 1 live stream</h3>
-        <p>Hall 1 is streamed live online from 10:30 AM to 2 PM, in plain language, for women and families. Free, no sign-up. Ask your questions during the session.</p>
-        <a class="pill" href="#live">Watch live</a>
-      </div>
-    </section>
-
-    <section class="faq">
-      <div class="sec-head"><p class="eyebrow">FAQ</p><h3>Good to know</h3></div>
-      <details open><summary>Is the public live stream part of my pass?<span class="plus">+</span></summary>
-        <p>The public stream is free for everyone and needs no pass. Delegates attend in the room.</p></details>
-      <details><summary>Is PMOS the same as PCOS?<span class="plus">+</span></summary>
-        <p>Yes. PMOS is the term used throughout this programme, formerly and commonly known as PCOS.</p></details>
-      <details><summary>Who is Hall 1 for?<span class="plus">+</span></summary>
-        <p>Gynaecologists, endocrinologists, reproductive medicine specialists, dermatologists, dietitians, psychiatrists, physicians and residents.</p></details>
-    </section>
   </div>
 
-  <!-- ================= DIABETES ================= -->
   <div class="panel" id="panel-diabetes" role="tabpanel" aria-labelledby="tab-diabetes" hidden>
-    <div class="hero">
-      <p class="eyebrow">Hall 2 · Diabetes complications</p>
-      <h2>Prevent complications. Treat the whole person.</h2>
-      <p class="sub">Diabetes complications from head to toe: a heart and kidney forum, a diabetic foot symposium with a hands-on workshop, retinopathy, and a frank session on sexual health.</p>
-      <div class="ctas">
-        <a class="pill" href="#register">Register now</a>
-        <a class="pill line" href="#diabetes-programme">See programme</a>
-      </div>
-    </div>
-
-    <div class="strip" aria-hidden="true"><div class="strip-track">
-      <span>Diabetes complications</span><span>Heart &amp; kidney</span><span>Diabetic foot</span><span>Retinopathy</span><span>Master class</span><span>ED &amp; FSD</span><span>Hormones &amp; mind</span><span>Case studies</span><span>Live stream</span>
-      <span>Diabetes complications</span><span>Heart &amp; kidney</span><span>Diabetic foot</span><span>Retinopathy</span><span>Master class</span><span>ED &amp; FSD</span><span>Hormones &amp; mind</span><span>Case studies</span><span>Live stream</span>
-    </div></div>
-
-    <section>
-      <div class="sec-head"><p class="eyebrow">Why this hall</p><h3>Complications doctors see every week</h3></div>
-      <div class="cards">
-        <div class="card"><span class="n">01</span><h4>Complications that start silently</h4><p>Heart, kidney, eye and foot damage often begin without symptoms. Early recognition changes outcomes.</p></div>
-        <div class="card"><span class="n">02</span><h4>Sexual health, rarely asked</h4><p>Erectile dysfunction and female sexual dysfunction are common in diabetes, and often missed.</p></div>
-        <div class="card"><span class="n">03</span><h4>Learn it, then practise it</h4><p>A hands-on workshop and case discussions, not only lectures.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><p class="eyebrow">Who should attend</p><h3>For everyone who treats diabetes</h3></div>
-      <ul class="who">
-        <li>Endocrinologists</li><li>Diabetologists</li><li>General &amp; family physicians</li><li>Surgeons &amp; wound-care teams</li>
-        <li>Psychiatrists</li><li>Dietitians &amp; nutritionists</li><li>Residents &amp; fellows</li>
-      </ul>
-    </section>
-
     <section id="diabetes-programme">
-      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3><p class="lede">Hall 2 is streamed live online from 10 AM to 2 PM.</p></div>
+      <div class="sec-head"><p class="eyebrow">Schedule</p><h3>Diabetes complications webinar: the day, hour by hour</h3><p class="lede">Streamed live online from 10 AM to 2 PM.</p></div>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–9:30 AM</span>
@@ -567,104 +476,17 @@
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="stream">
-        <p class="eyebrow">Open to patients &amp; families</p>
-        <h3>Hall 2 live stream</h3>
-        <p>Hall 2 is streamed live online from 10 AM to 2 PM, in plain language, for patients and families. Free, no sign-up. Ask your questions during the session.</p>
-        <a class="pill" href="#live">Watch live</a>
-      </div>
-    </section>
-
-    <section class="faq">
-      <div class="sec-head"><p class="eyebrow">FAQ</p><h3>Good to know</h3></div>
-      <details open><summary>Can patients come to the venue?<span class="plus">+</span></summary>
-        <p>The in-person programme is for doctors and healthcare professionals. Patients and families join the diabetes complications webinar online.</p></details>
-      <details><summary>Can I attend both halls?<span class="plus">+</span></summary>
-        <p>One registration covers the day. Choose the sessions that fit you from either hall.</p></details>
-      <details><summary>Does the webinar replace a doctor's visit?<span class="plus">+</span></summary>
-        <p>No. Anyone with a foot wound, numbness, vision changes or any worry about their health should be examined by a doctor.</p></details>
-    </section>
   </div>
 
-  <!-- ================= SHARED REGISTRATION ================= -->
-  <section id="register" class="reg" tabindex="-1" style="padding-top:24px;">
-    <p class="eyebrow">Registration · Both halls</p>
-    <h3 style="font-size:1.8rem; margin-top:8px;">Reserve your seat</h3>
-    <div class="price">
-      <div class="main"><span><b>Delegate</b><small>Full-day programme + case discussions</small></span><span class="amt">₹1000</span></div>
-      <div><span><b>Student</b><small>Valid student ID at check-in</small></span><span class="amt">₹500</span></div>
-    </div>
-    <div class="incl"><span>✓ Lunch</span><span>✓ Refreshments</span><span>✓ 2 CPD credits</span></div>
-    <p class="note">*CPD credit hours require registration on or before 9:00 AM on 15 November.</p>
-    <a class="pill block" id="razorpay-btn" href="https://pages.razorpay.com/pl_Trjx32GL2qnYJD/view" target="_blank" rel="noopener">Register &amp; pay<span class="sr" style="position:absolute;left:-9999px;"> (opens in a new tab)</span></a>
-    <p class="venue"><b>Lemon Tree Premier</b>, Hitech City, Hyderabad · Sunday, 15 November 2026 · 9 AM–5 PM<br>Questions? Call <a href="tel:+918008650332"><b>+91 8008650332</b></a> · Sponsored seats: raghav.m@ideaclinics.com</p>
+  <section class="spot" aria-labelledby="spotT">
+    <p class="eyebrow">For doctors · In person</p>
+    <h3 id="spotT">Spot registrations</h3>
+    <p class="spot-line">Spot registrations are open for doctors. Please arrive at the venue directly before <b>9:30 AM</b>.</p>
+    <p class="venue"><b>Lemon Tree Premier</b>, Hitech City, Hyderabad · Sunday, 15 November 2026</p>
   </section>
-
-  <div class="partners">
-    <p>In association with</p>
-    <div class="partner-logos"><img src="nirmaya.png" alt="Nirmaya"><img class="roopa" src="roopa-badge-navy.svg" alt="Roopa Health"></div>
-    <div class="ima">IMA Hyderabad North</div>
-  </div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="brands" style="margin-bottom:10px;"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"></div>
-    <p>Organised by IDEA Clinics, Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
-    <p style="margin-top:6px;">Free live stream for everyone: <a href="#live">Watch Hall 1 and Hall 2</a></p>
-  </div>
-</footer>
 
-
-<script>
-(function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var panels = { pmos: document.getElementById('panel-pmos'), diabetes: document.getElementById('panel-diabetes') };
-  var titles = { pmos: 'PMOS | CME 2026', diabetes: 'Diabetes complications | CME 2026' };
-
-  function show(which, opts){
-    opts = opts || {};
-    if (!panels[which]) which = 'pmos';
-    document.body.setAttribute('data-tab', which);
-    tabs.forEach(function(t){
-      var on = t.dataset.tab === which;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-    });
-    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== which); });
-    if (!opts.init) { try { history.replaceState(null, '', '#' + which); } catch(e){} }
-    if (opts.scroll) {
-      var bar = document.querySelector('.tabbar');
-      var top = bar.getBoundingClientRect().top + window.pageYOffset - 0;
-      if (window.pageYOffset > top) window.scrollTo(0, top);
-    }
-    if (opts.focus) { document.getElementById('tab-' + which).focus(); }
-  }
-
-  tabs.forEach(function(t, i){
-    t.addEventListener('click', function(){ show(t.dataset.tab, {scroll:true}); });
-    t.addEventListener('keydown', function(e){
-      var next = null;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i + tabs.length - 1) % tabs.length];
-      if (e.key === 'Home') next = tabs[0];
-      if (e.key === 'End') next = tabs[tabs.length - 1];
-      if (next) { e.preventDefault(); show(next.dataset.tab, {focus:true}); }
-    });
-  });
-
-  var h = (location.hash || '').replace('#','');
-  show(h === 'diabetes' ? 'diabetes' : 'pmos', {init:true});
-
-  // Hash links from elsewhere (e.g. /#diabetes) switch the tab.
-  window.addEventListener('hashchange', function(){
-    var x = (location.hash || '').replace('#','');
-    if (x === 'pmos' || x === 'diabetes') show(x);
-  });
-})();
-</script>
 
 <script src="/live-data.js"></script>
 <script>
@@ -690,10 +512,15 @@
     return pick;
   }
   function two(x){ return (x < 10 ? '0' : '') + x; }
+  function showPanel(h){
+    document.body.setAttribute('data-tab', h);
+    var a = $('panel-pmos'), d = $('panel-diabetes'); if (a) a.hidden = h !== 'pmos'; if (d) d.hidden = h !== 'diabetes';
+  }
   function render(){
     var st = stateOf(hall), H = L.halls[hall], box = $('vbox');
     $('liveWrap').classList.toggle('live-on', st === 'live');
     if (built !== hall) {
+      showPanel(hall);
       box.textContent = '';
       var f = document.createElement('iframe');
       f.src = 'https://www.youtube-nocookie.com/embed/' + H.video + '?rel=0&modestbranding=1&playsinline=1';
@@ -730,7 +557,7 @@
     b.textContent = open ? 'Close' : 'Ask a question';
   }
   $('askBtn').onclick = function(){ openAsk($('askForm').hidden); if (!$('askForm').hidden) $('askQ').focus(); };
-  function msg(t, err){ var m = $('lmsg'); m.textContent = t; m.className = 'lmsg' + (err ? ' err' : ''); }
+  var msgT; function msg(t, err){ var m = $('lmsg'); m.textContent = t; m.className = 'lmsg' + (err ? ' err' : ''); clearTimeout(msgT); if (t) msgT = setTimeout(function(){ m.textContent = ''; }, 6000); }
   $('askForm').addEventListener('submit', function(e){
     e.preventDefault();
     var q = $('askQ').value.trim();
@@ -767,6 +594,7 @@
   }
   // The page opens on whichever hall is live. If both are, Hall 1.
   if (stateOf('pmos') !== 'live' && stateOf('diabetes') === 'live') { hall = 'diabetes'; Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === 'diabetes' ? 'true' : 'false'); }); }
+  if (location.hash === '#diabetes' || location.hash === '#pmos') { hall = location.hash.slice(1); Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === hall ? 'true' : 'false'); }); }
   render(); count(); pull();
   setInterval(render, 1000); setInterval(count, 30000); setInterval(pull, 20000);
   if (location.hash === '#live') { var el = $('live'); if (el) el.scrollIntoView(); }
