@@ -193,7 +193,7 @@
   .partner-logos img.roopa{padding:0; background:none; height:46px; border-radius:12px;}
   .partners .ima{margin-top:12px; font-weight:700; font-size:.9rem;}
 
-  footer{padding-block:26px 110px; font-size:.82rem; color:var(--muted); border-top:1.5px solid var(--line); margin-top:30px;}
+  footer{padding-block:26px 40px; font-size:.82rem; color:var(--muted); border-top:1.5px solid var(--line); margin-top:30px;}
   footer img{height:26px; display:block;}
   footer a{font-weight:700;}
 
@@ -225,11 +225,12 @@
   .vbox .sm{font-size:.85rem; color:#d8d6e2;}
   .vnow{font-size:.85rem; color:var(--muted); margin-top:8px; min-height:1.3em;}
   .lbox{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px 14px; box-shadow:var(--shadow);}
-  .lstats{display:flex; gap:8px; margin-bottom:10px;}
-  .lstat{flex:1; background:var(--accent-tint); border-radius:12px; padding:9px 10px; text-align:center; min-width:0;}
+  .lstats{display:grid; grid-template-columns:1fr; gap:8px; margin-bottom:12px;}
+  .lstat{display:flex; align-items:center; gap:12px; background:var(--accent-tint); border:1px solid #F7C9BC; border-radius:14px; padding:10px 14px; min-width:0;}
   .lstat[hidden],#suggWrap[hidden]{display:none;}
-  .lstat b{display:block; font-size:1.5rem; line-height:1.1; color:var(--accent-deep);}
-  .lstat span{display:block; font-size:.72rem; font-weight:600; color:var(--muted); margin-top:2px; line-height:1.25;}
+  .lstat b{font-size:2.1rem; line-height:1; font-weight:800; color:var(--accent-deep); flex:none; text-align:center;}
+  .lstat span{font-size:.95rem; font-weight:700; color:var(--ink); line-height:1.25;}
+  .lstat small{display:block; font-size:.74rem; font-weight:500; color:var(--muted); margin-top:2px;}
   .ask-open{width:100%; font:inherit; font-weight:600; font-size:.9rem; border:2px solid var(--accent); background:var(--accent); color:#fff; border-radius:999px; padding:11px 16px; cursor:pointer;}
   .ask-open[aria-expanded="true"]{background:#fff; color:var(--accent-deep);}
   #askForm{margin-top:10px;} #askForm[hidden]{display:none;}
@@ -244,15 +245,10 @@
   @media (min-width:700px){
     .live-grid{grid-template-columns:minmax(0,4fr) minmax(0,1fr); align-items:start;}
     .vbox .big{font-size:2.6rem;}
+    .lstat{flex-direction:column; gap:4px; text-align:center; padding:12px 10px;}
+    .lstat b{font-size:2.4rem;}
     .hall-sw button{font-size:1.25rem; padding:18px 14px;}
   }
-
-  /* sticky register */
-  .sticky{
-    position:fixed; left:0; right:0; bottom:0; z-index:30; padding:10px 18px calc(10px + env(safe-area-inset-bottom));
-    background:linear-gradient(to top, var(--bg) 70%, transparent);
-  }
-  .sticky .pill{width:100%; max-width:420px; margin-inline:auto; display:flex;}
 
   @media (min-width:700px){
     .tabbar{padding-block:10px;} .tab .tag{display:block;} .tabhint{display:block;}
@@ -261,7 +257,6 @@
     .cards{grid-template-columns:repeat(3,1fr);}
     .slot{grid-template-columns:130px 1fr;}
     .price{grid-template-columns:1fr 1fr;}
-    .sticky{display:none;}
     footer{padding-bottom:40px;}
   }
 </style>
@@ -300,8 +295,8 @@
         <div class="lbox">
           <div id="suggWrap" hidden><p class="sugg-lab">Question ideas for this session</p><div class="sugg" id="sugg"></div></div>
           <div class="lstats">
-            <div class="lstat" id="lcount" hidden><b id="lcountN">0</b><span>Audience watching now</span></div>
-            <div class="lstat"><b>28</b><span>Expert doctors on the panels</span></div>
+            <div class="lstat" id="lcount" hidden><b id="lcountN">0</b><span>Viewers watching live right now<small>Live count from YouTube</small></span></div>
+            <div class="lstat"><b>28</b><span>Expert doctors in the panels<small>Across both webinars</small></span></div>
           </div>
           <button type="button" class="ask-open" id="askBtn" aria-expanded="false" aria-controls="askForm">Ask a question</button>
           <form id="askForm" hidden novalidate>
@@ -622,7 +617,6 @@
   </div>
 </footer>
 
-<div class="sticky" id="sticky"><a class="pill" href="#register">Register</a></div>
 
 <script>
 (function(){
