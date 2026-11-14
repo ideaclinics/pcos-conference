@@ -274,6 +274,18 @@
     .live-sec{padding-bottom:0;}
   }
   @media (min-width:700px){ .lbox{position:sticky; top:12px;} }
+
+  /* collapsible schedule */
+  .sch > summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--card); border:1.5px solid var(--accent); border-radius:16px; padding:14px 16px; box-shadow:var(--shadow);}
+  .sch > summary::-webkit-details-marker{display:none;}
+  .sch > summary > span:first-child{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .sch > summary b{font-size:1.1rem; line-height:1.25;}
+  .sch-act{display:flex; align-items:center; gap:8px; font-weight:700; font-size:.85rem; color:var(--accent-deep); flex:none;}
+  .sch-act i{width:9px; height:9px; border-right:2.5px solid currentColor; border-bottom:2.5px solid currentColor; transform:rotate(45deg); margin-top:-3px; transition:transform .15s ease;}
+  .sch[open] .sch-act i{transform:rotate(-135deg); margin-top:3px;}
+  .sch .sch-hide,.sch[open] .sch-show{display:none;} .sch[open] .sch-hide{display:inline;}
+  .sch[open] > summary{margin-bottom:14px;}
+  .sch .lede{margin:0 0 12px;}
 </style>
 </head>
 <body data-tab="pmos">
@@ -333,14 +345,14 @@
   <!-- ================= PMOS ================= -->
   <div class="panel" id="panel-pmos" role="tabpanel" aria-labelledby="tab-pmos">
     <section id="pmos-programme">
-      <div class="sec-head"><p class="eyebrow">Schedule</p><h3>PMOS webinar: the day, hour by hour</h3></div>
+      <details class="sch">
+        <summary><span><span class="eyebrow">Schedule</span><b>PMOS webinar schedule</b></span><span class="sch-act"><span class="sch-show">Show</span><span class="sch-hide">Hide</span><i aria-hidden="true"></i></span></summary>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–10:40 AM</span>
           <div class="what">Registration, welcome note, networking &amp; PMOS Master Class</div>
           <div class="who-by"><b>Dr. Nandini Muppidi</b></div>
         </div>
-        <p class="grp-title">Diabetic foot symposium</p>
         <div class="slot">
           <span class="t">10:40–11:00 AM</span>
           <div class="what">PMOS beyond the ovary: why multidisciplinary care matters</div>
@@ -393,12 +405,15 @@
           <div class="what">Workshops &amp; interactive case discussions<small>Complex cases across PMOS, with a multidisciplinary approach</small></div>
         </div>
       </div>
+      </details>
     </section>
   </div>
 
   <div class="panel" id="panel-diabetes" role="tabpanel" aria-labelledby="tab-diabetes" hidden>
     <section id="diabetes-programme">
-      <div class="sec-head"><p class="eyebrow">Schedule</p><h3>Diabetes complications webinar: the day, hour by hour</h3><p class="lede">Streamed live online from 10 AM to 2 PM.</p></div>
+      <details class="sch">
+        <summary><span><span class="eyebrow">Schedule</span><b>Diabetes complications webinar schedule</b></span><span class="sch-act"><span class="sch-show">Show</span><span class="sch-hide">Hide</span><i aria-hidden="true"></i></span></summary>
+        <p class="lede">Streamed live online from 10 AM to 2 PM.</p>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–9:30 AM</span>
@@ -475,6 +490,7 @@
           <div class="who-by">Panel of doctors</div>
         </div>
       </div>
+      </details>
     </section>
   </div>
 
