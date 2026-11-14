@@ -48,7 +48,10 @@
   /* ---------- Top bar ---------- */
   .top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:14px;}
   .brands{display:flex; align-items:center; gap:10px; min-width:0;}
+  .brands{flex-wrap:wrap; gap:10px 14px;}
   .brands img{height:34px; width:auto; display:block;}
+  .top .brands img.b-idea{height:44px;} .top .brands img.b-zio{height:28px;} .top .brands img.b-roopa{height:30px;} .top .brands{gap:8px 8px; flex-wrap:nowrap;}
+  @media (min-width:700px){.top .brands{flex-wrap:wrap;} .top .brands img.b-idea{height:68px;} .top .brands img.b-zio{height:46px;} .top .brands img.b-roopa{height:52px;} .top .brands{gap:12px 24px;}}
   .brands .x{font-weight:600; color:var(--soft); font-size:.9rem;}
   .pill{
     display:inline-flex; align-items:center; justify-content:center; gap:.5em;
@@ -262,9 +265,11 @@
 <div class="wrap">
   <div class="top">
     <div class="brands">
-      <img src="idea-logo.png" alt="IDEA Clinics">
+      <img class="b-idea" src="idea-logo.png" alt="IDEA Clinics">
       <span class="x" aria-hidden="true">×</span>
-      <img src="roopa-badge-navy.svg" alt="Roopa Health">
+      <img class="b-zio" src="zioheal.png" alt="ZioHeal">
+      <span class="x" aria-hidden="true">×</span>
+      <img class="b-roopa" src="roopa-badge-navy.svg" alt="Roopa Health">
     </div>
   </div>
 
