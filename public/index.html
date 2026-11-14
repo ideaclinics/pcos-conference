@@ -582,10 +582,11 @@
     if (st !== 'live') $('lcount').hidden = true;
   }
   function shareText(){
-    var st = stateOf(hall), H = L.halls[hall];
-    var topic = hall === 'pmos' ? 'PMOS: hormones, insulin, weight, fertility and more' : 'diabetes complications: heart, kidney, foot, eyes and sexual health';
-    var head = st === 'live' ? '\ud83d\udd34 LIVE right now and free for everyone!' : (st === 'before' ? '\ud83d\udcfa Free live webinar this Sunday, 15 Nov!' : '\u2705 Free webinar by IDEA Clinics');
-    return head + '\n28 expert doctors on one screen, talking ' + topic + '.\nWatch it on your phone and send your own question to the panel \ud83d\udc47\n' + location.origin + '/#' + hall;
+    var st = stateOf(hall), pm = hall === 'pmos';
+    var topic = pm ? 'PMOS: hormones, insulin, weight, fertility and more' : 'diabetes complications: heart, kidney, foot, eyes and sexual health';
+    var head = st === 'live' ? '\ud83d\udd34 LIVE right now and free for everyone!' : (st === 'before' ? '\ud83d\udcfa Free live webinar this Sunday, 15 Nov, ' + (pm ? '10:30 AM' : '10 AM') + '!' : '\u2705 Free webinar by IDEA Clinics');
+    var tail = st === 'after' ? 'Watch the replay \ud83d\udc47' : 'Watch it on your phone and send your own question to the panel \ud83d\udc47';
+    return head + '\n28 expert doctors on one screen, talking ' + topic + '.\n' + tail + '\n' + location.origin + '/#' + hall;
   }
   function setShare(){ $('shareBtn').href = 'https://wa.me/?text=' + encodeURIComponent(shareText()); }
   function openAsk(open){
