@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Operator · PMOS live questions</title>
+<style>
+  :root{--ink:#1B1B2F;--muted:#55556A;--line:#EADFD0;--accent:#F15738;--tint:#FFEDE6;--bg:#FFFBF7}
+  *{box-sizing:border-box} body{margin:0;font-family:Poppins,system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:5}
+  h1{font-size:1rem;margin:0} h2{font-size:.95rem;margin:0 0 8px}
+  main{display:grid;gap:14px;padding:14px 16px;grid-template-columns:1fr 1fr;align-items:start}
+  @media(max-width:900px){main{grid-template-columns:1fr}}
+  .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+  .wide{grid-column:1/-1}
+  .q{border-top:1px solid var(--line);padding:10px 0}.q:first-of-type{border-top:0}
+  .q p{margin:0 0 6px;font-size:.95rem;line-height:1.4}.meta{font-size:.75rem;color:var(--muted);margin-bottom:6px}
+  .tag{display:inline-block;font-size:.7rem;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--tint);color:#C23A1B;margin-right:6px}
+  button,select,input,textarea{font:inherit;font-size:.85rem}
+  button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer}
+  button.go{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  textarea,input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.empty{color:var(--muted);font-size:.85rem;padding:8px 0}
+  #login{max-width:360px;margin:60px auto;padding:0 16px}
+</style>
+</head>
+<body>
+<div id="login" hidden>
+  <div class="box"><h2>Operator login</h2>
+    <input id="tok" type="password" placeholder="Operator password" autocomplete="current-password">
+    <p id="lerr" class="meta" style="color:#C23A1B"></p>
+    <button class="go" id="loginBtn">Open</button></div>
+</div>
+
+<div id="app" hidden>
+<header>
+  <h1>Operator · live questions</h1>
+  <div class="row">
+    <button data-f="all" class="on">All halls</button><button data-f="pmos">Hall 1</button><button data-f="diabetes">Hall 2</button>
+    <span class="meta" id="sync">Syncing…</span>
+  </div>
+</header>
+<main>
+  <section class="box"><h2>Incoming <span class="tag" id="nNew">0</span></h2><div id="listNew"></div></section>
+  <section class="box"><h2>Approved: on the stage screen <span class="tag" id="nApp">0</span></h2><div id="listApp"></div></section>
+  <section class="box"><h2>Add your own question for the stage</h2>
+    <div class="row" style="margin-bottom:8px"><select id="addHall" style="width:auto"><option value="pmos">Hall 1</option><option value="diabetes">Hall 2</option></select></div>
+    <textarea id="addQ" rows="2" maxlength="300" placeholder="Type a question to put on the stage screen"></textarea>
+    <p class="row" style="margin-top:8px"><button class="go" id="addBtn">Add to stage</button><span id="addMsg" class="meta"></span></p></section>
+  <section class="box"><h2>Suggested questions shown to viewers</h2>
+    <div id="sugg"></div>
+    <p class="meta">Viewers see 3 tappable question ideas for the chosen session. "Auto" follows the schedule.</p></section>
+</main>
+</div>
+<script src="/live-data.js"></script>
+<script>
+(function(){
+  var tok = sessionStorage.getItem('opk') || '';
+  var m = location.hash.match(/key=([^&]+)/); if (m) { tok = decodeURIComponent(m[1]); sessionStorage.setItem('opk', tok); history.replaceState(null,'',location.pathname); }
+  var filter = 'all', $ = function(i){return document.getElementById(i);};
+  function api(path, body){
+    return fetch(path, {method: body ? 'POST' : 'GET', headers: {'Authorization':'Bearer '+tok,'Content-Type':'application/json'}, body: body ? JSON.stringify(body) : undefined})
+      .then(function(r){ if (r.status===401) throw new Error('auth'); return r.json(); });
+  }
+  function hallName(h){ return h==='pmos' ? 'Hall 1' : 'Hall 2'; }
+  function card(r, actions){
+    var d = document.createElement('div'); d.className='q';
+    var meta = document.createElement('div'); meta.className='meta';
+    var t = document.createElement('span'); t.className='tag'; t.textContent=hallName(r.hall); meta.appendChild(t);
+    meta.appendChild(document.createTextNode((r.name ? r.name+' · ' : '') + (r.at_ist||'').slice(11,16) + (r.source==='operator' ? ' · added by operator' : '')));
+    var p = document.createElement('p'); p.textContent = r.question;
+    var a = document.createElement('div'); a.className='row';
+    actions.forEach(function(x){ var b=document.createElement('button'); b.textContent=x[0]; if(x[2]) b.className='go'; b.onclick=function(){ api('/api/op/set',{id:r.id,status:x[1]}).then(load); }; a.appendChild(b); });
+    d.appendChild(meta); d.appendChild(p); d.appendChild(a); return d;
+  }
+  function fill(el, rows, actions, emptyText){
+    el.textContent='';
+    rows = rows.filter(function(r){ return filter==='all' || r.hall===filter; });
+    if (!rows.length) { var e=document.createElement('div'); e.className='empty'; e.textContent=emptyText; el.appendChild(e); }
+    rows.forEach(function(r){ el.appendChild(card(r, actions)); });
+    return rows.length;
+  }
+  function load(){
+    Promise.all([api('/api/op/questions?status=new'), api('/api/op/questions?status=approved')]).then(function(x){
+      $('login').hidden=true; $('app').hidden=false;
+      $('nNew').textContent = fill($('listNew'), x[0].rows||[], [['Approve','approved',true],['Reject','rejected']], 'No new questions yet.');
+      $('nApp').textContent = fill($('listApp'), x[1].rows||[], [['Asked, remove','asked'],['Back to incoming','new']], 'Nothing approved yet.');
+      $('sync').textContent = 'Updated ' + new Date().toLocaleTimeString('en-IN');
+    }).catch(function(e){ if (e.message==='auth') { sessionStorage.removeItem('opk'); $('app').hidden=true; $('login').hidden=false; $('lerr').textContent = tok ? 'Wrong password.' : ''; } else { $('sync').textContent='Offline, retrying…'; } });
+  }
+  $('loginBtn').onclick = function(){ tok = $('tok').value.trim(); sessionStorage.setItem('opk', tok); load(); };
+  $('tok').addEventListener('keydown', function(e){ if (e.key==='Enter') $('loginBtn').click(); });
+  Array.prototype.forEach.call(document.querySelectorAll('header [data-f]'), function(b){
+    b.onclick=function(){ filter=b.dataset.f; Array.prototype.forEach.call(document.querySelectorAll('header [data-f]'), function(x){x.classList.toggle('on',x===b);}); load(); };
+  });
+  $('addBtn').onclick = function(){
+    var q = $('addQ').value.trim(); if (q.length<3) { $('addMsg').textContent='Type the question first.'; return; }
+    api('/api/op/add',{hall:$('addHall').value,question:q}).then(function(r){ if(r.ok){ $('addQ').value=''; $('addMsg').textContent='Added to stage.'; load(); } else $('addMsg').textContent='Could not add.'; });
+  };
+  // Suggested question control
+  var cur = {pmos:null, diabetes:null};
+  function renderSugg(){
+    var box = $('sugg'); box.textContent='';
+    ['pmos','diabetes'].forEach(function(h){
+      var hd = document.createElement('div'); hd.className='meta'; hd.style.marginTop='8px'; hd.textContent = hallName(h)+(cur[h] ? ' · showing: '+titleOf(h,cur[h]) : ' · automatic'); box.appendChild(hd);
+      var row = document.createElement('div'); row.className='row'; row.style.marginBottom='6px';
+      var auto = document.createElement('button'); auto.textContent='Auto'; if(!cur[h]) auto.className='on'; auto.onclick=function(){ push(h,null); }; row.appendChild(auto);
+      LIVE.halls[h].sessions.forEach(function(s){ var b=document.createElement('button'); b.textContent=s.start+' '+s.title; if(cur[h]===s.key) b.className='on'; b.onclick=function(){ push(h,s.key); }; row.appendChild(b); });
+      box.appendChild(row);
+    });
+  }
+  function titleOf(h,k){ var t=k; LIVE.halls[h].sessions.forEach(function(s){ if(s.key===k) t=s.title; }); return t; }
+  function push(h,k){ api('/api/op/state',{hall:h,session:k}).then(function(){ cur[h]=k; renderSugg(); }); }
+  ['pmos','diabetes'].forEach(function(h){ fetch('/api/live-state?hall='+h).then(function(r){return r.json();}).then(function(d){ cur[h]=d.session||null; renderSugg(); }); });
+  renderSugg();
+  if (tok) load(); else $('login').hidden=false;
+  setInterval(function(){ if (tok && !$('app').hidden) load(); }, 4000);
+})();
+</script>
+</body>
+</html>

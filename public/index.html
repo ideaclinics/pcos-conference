@@ -193,6 +193,45 @@
   footer img{height:26px; display:block;}
   footer a{font-weight:700;}
 
+
+  /* live section */
+  .live-sec{padding:6px 0 18px;}
+  .live-head{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .live-tag{display:inline-flex; align-items:center; gap:7px; font-size:.78rem; font-weight:700; color:var(--accent-deep);}
+  .live-tag .dot{width:9px; height:9px; border-radius:50%; background:var(--accent);}
+  .live-on .live-tag .dot{animation:lp 1.4s ease-in-out infinite;}
+  @keyframes lp{50%{opacity:.25}}
+  @media (prefers-reduced-motion:reduce){.live-on .live-tag .dot{animation:none}}
+  .hall-sw{display:flex; gap:6px;}
+  .hall-sw button{font:inherit; font-size:.8rem; font-weight:600; border:2px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:7px 14px; cursor:pointer;}
+  .hall-sw button[aria-pressed="true"]{background:var(--accent-tint); border-color:var(--accent);}
+  .live-grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  .vbox{position:relative; background:#1B1B2F; border-radius:16px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:16px;}
+  .vbox iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  .vbox .big{font-size:1.9rem; font-weight:700; letter-spacing:-.02em; margin:4px 0;}
+  .vbox .sm{font-size:.85rem; color:#d8d6e2;}
+  .vnow{font-size:.85rem; color:var(--muted); margin-top:8px; min-height:1.3em;}
+  .lbox{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px 14px; box-shadow:var(--shadow);}
+  .lcount{display:flex; align-items:baseline; gap:8px; margin-bottom:10px;}
+  .lcount[hidden],#suggWrap[hidden]{display:none;}
+  .lcount b{font-size:1.5rem; line-height:1;}
+  .lcount span{font-size:.85rem; color:var(--muted);}
+  .ask-open{width:100%; font:inherit; font-weight:600; font-size:.9rem; border:2px solid var(--accent); background:var(--accent); color:#fff; border-radius:999px; padding:11px 16px; cursor:pointer;}
+  .ask-open[aria-expanded="true"]{background:#fff; color:var(--accent-deep);}
+  #askForm{margin-top:10px;} #askForm[hidden]{display:none;}
+  #askForm input,#askForm textarea{width:100%; font:inherit; font-size:.9rem; border:1px solid var(--line); border-radius:12px; padding:9px 11px; margin-bottom:8px; background:#fff; color:var(--ink);}
+  #askForm textarea{resize:none;}
+  .sugg-lab{font-size:.75rem; font-weight:700; color:var(--accent-deep); margin:0 0 6px;}
+  .sugg{display:flex; flex-direction:column; gap:6px; margin-bottom:10px;}
+  .sugg button{font:inherit; font-size:.82rem; text-align:left; border:1px solid var(--line); background:var(--wash); color:var(--ink); border-radius:12px; padding:8px 11px; cursor:pointer; line-height:1.35;}
+  .lmsg{font-size:.8rem; color:var(--muted); margin-top:8px;}
+  .lmsg.err{color:#B3261E;}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  @media (min-width:700px){
+    .live-grid{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr); align-items:start;}
+    .vbox .big{font-size:2.6rem;}
+  }
+
   /* sticky register */
   .sticky{
     position:fixed; left:0; right:0; bottom:0; z-index:30; padding:10px 18px calc(10px + env(safe-area-inset-bottom));
@@ -236,6 +275,39 @@
     </div>
   </div>
 </div>
+
+<section id="live" class="live-sec" aria-labelledby="liveTitle">
+  <div class="wrap" id="liveWrap">
+    <div class="live-head">
+      <span class="live-tag"><span class="dot" aria-hidden="true"></span><span id="liveTitle">Live stream · Sunday 15 Nov</span></span>
+      <div class="hall-sw" role="group" aria-label="Choose a hall to watch">
+        <button type="button" data-h="pmos" aria-pressed="true">Hall 1 · PMOS</button>
+        <button type="button" data-h="diabetes" aria-pressed="false">Hall 2 · Diabetes</button>
+      </div>
+    </div>
+    <div class="live-grid">
+      <div>
+        <div class="vbox" id="vbox" aria-live="polite"></div>
+        <p class="vnow" id="vnow"></p>
+      </div>
+      <div>
+        <div class="lbox">
+          <div class="lcount" id="lcount" hidden><b id="lcountN">0</b><span>watching now</span></div>
+          <div id="suggWrap" hidden><p class="sugg-lab">Question ideas for this session</p><div class="sugg" id="sugg"></div></div>
+          <button type="button" class="ask-open" id="askBtn" aria-expanded="false" aria-controls="askForm">Ask a question</button>
+          <form id="askForm" hidden novalidate>
+            <input type="text" id="askName" maxlength="60" placeholder="Your name (optional)" autocomplete="name">
+            <textarea id="askQ" rows="3" maxlength="300" placeholder="Type your question" aria-label="Your question"></textarea>
+            <div class="hp" aria-hidden="true"><input type="text" id="askWeb" tabindex="-1" autocomplete="off"></div>
+            <button type="submit" class="ask-open" id="askSend">Send question</button>
+          </form>
+          <p class="lmsg" id="lmsg" role="status"></p>
+          <p class="lmsg">Educational session, not individual medical advice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="tabbar">
   <div class="wrap">
@@ -295,38 +367,44 @@
           <span class="t">10:40–11:00 AM</span>
           <div class="what">PMOS beyond the ovary: why multidisciplinary care matters</div>
           <div class="who-by"><b>Dr. Rakesh Sahay</b></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot feature">
           <span class="t">11:00 AM–12:00 PM</span>
           <div class="what">PMOS across a woman's life<small>Panel discussion</small></div>
           <div class="who-by">Moderator: <b>Dr. Nandini Muppidi</b><br>Panelists: Dr. Avani, Dr. Mythri, Dr. Sindhu Kambapati, Mr. Goutham, Dr. Divya Meghana &amp; Dr. Samantha Satya Kumar</div>
-          <div class="tags"><span class="badge">Panel</span><a class="badge" href="/webinar.html">Public live stream</a></div>
+          <div class="tags"><span class="badge">Panel</span><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">12:00–12:20 PM</span>
           <div class="what">PMOS: clinical features in reproductive life and beyond</div>
           <div class="who-by"><b>Dr. Anuradha Panda</b></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">12:20–1:10 PM</span>
           <div class="what">Metabolism in PMOS<small>Panel discussion</small></div>
           <div class="who-by">Moderator: <b>Dr. Mahitha Reddy</b><br>Panelists: Dr. Mythri, Dr. Ramakrishna Janapati, Dr. Kalyan Chakravarthy, Dr. Raja Manohar &amp; Dr. Dipti Reddy Nallu</div>
           <div class="tags"><span class="badge">Panel</span></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">1:10–1:30 PM</span>
           <div class="what">PMOS and gut microbiome</div>
           <div class="who-by"><b>Dr. Naveen Polavarapu</b></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">1:30–1:50 PM</span>
           <div class="what">Hyperandrogenism in PMOS</div>
           <div class="who-by"><b>Dr. Vijayalakshmi</b></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">1:50–2:10 PM</span>
           <div class="what">Ultrasound in PMOS</div>
           <div class="who-by"><b>Dr. Harshini</b></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot rest">
           <span class="t">2:10–3:00 PM</span>
@@ -342,16 +420,16 @@
     <section>
       <div class="stream">
         <p class="eyebrow">Open to everyone</p>
-        <h3>Public live stream</h3>
-        <p>The panel "PMOS across a woman's life" (11 AM–12 PM) is streamed online for women and families. Free, with registration.</p>
-        <a class="pill" href="/webinar.html">Register for the live stream</a>
+        <h3>Hall 1 live stream</h3>
+        <p>Hall 1 is streamed live online from 10:30 AM to 2 PM, in plain language, for women and families. Free, no sign-up. Ask your questions during the session.</p>
+        <a class="pill" href="#live">Watch live</a>
       </div>
     </section>
 
     <section class="faq">
       <div class="sec-head"><p class="eyebrow">FAQ</p><h3>Good to know</h3></div>
       <details open><summary>Is the public live stream part of my pass?<span class="plus">+</span></summary>
-        <p>Yes. The 11 AM–12 PM panel on PMOS across a woman's life is streamed publicly. Delegates attend it live, in the room.</p></details>
+        <p>The public stream is free for everyone and needs no pass. Delegates attend in the room.</p></details>
       <details><summary>Is PMOS the same as PCOS?<span class="plus">+</span></summary>
         <p>Yes. PMOS is the term used throughout this programme, formerly and commonly known as PCOS.</p></details>
       <details><summary>Who is Hall 1 for?<span class="plus">+</span></summary>
@@ -394,7 +472,7 @@
     </section>
 
     <section id="diabetes-programme">
-      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3><p class="lede">Every Hall 2 session from 10:10 AM is streamed live online, except the lunch break.</p></div>
+      <div class="sec-head"><p class="eyebrow">Hall 2 programme</p><h3>The day, hour by hour</h3><p class="lede">Hall 2 is streamed live online from 10 AM to 2 PM.</p></div>
       <div class="sched">
         <div class="slot">
           <span class="t">9:00–9:30 AM</span>
@@ -420,38 +498,38 @@
           <div class="what" style="margin-top:10px; grid-column:2;">Beyond blood sugar: saving kidneys, protecting lives</div>
           <div class="who-by"><b>Dr. Santosh Hedau</b></div>
           <div class="who-by">Moderator: <b>Dr. Y. Murali Bharadwaz</b></div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
 
         <div class="slot">
           <span class="t">10:40–11:00 AM</span>
           <div class="what">Factors affecting wound healing</div>
           <div class="who-by"><b>Dr. Mukkamala Hari Chandana Pragna Sri</b>, vascular surgeon</div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot feature">
           <span class="t">11:00–11:15 AM</span>
           <div class="what">ZioHeal talk: wound dressing, what's new</div>
           <div class="who-by"><b>Dr. Ranjith Reddy Gurrala</b>, plastic surgeon</div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot feature">
           <span class="t">11:15 AM–12:00 PM</span>
           <div class="what">Expert panel discussion<small>Diabetic foot care</small></div>
           <div class="who-by">Moderator: <b>Anant Ramachandran</b><br>Panelists: Dr. Ranjith, Dr. Srinivas Seshabhattaru, Dr. Rama Rao, Dr. Shyam Kalavalapalli, Dr. Mukkamala Hari Chandana Pragna Sri &amp; Dr. Rakesh Sahay</div>
-          <div class="tags"><span class="badge">Panel</span><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><span class="badge">Panel</span><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot">
           <span class="t">12:00–12:20 PM</span>
           <div class="what">Diabetic retinopathy</div>
           <div class="who-by"><b>Dr. Padmaja Kumari Rani</b></div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot feature">
           <span class="t">12:20–1:30 PM</span>
           <div class="what">Diabetes foot workshops</div>
           <div class="who-by"><b>Dr. Srinivas Seshabhattaru</b>, podiatrist<br><b>Dr. Rama Rao</b>, laparoscopic surgeon</div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
 
         <p class="grp-title">Sexual health · ED and FSD</p>
@@ -459,7 +537,7 @@
           <span class="t">1:30–2:00 PM</span>
           <div class="what">Sexual health: role of hormones</div>
           <div class="who-by"><b>Dr. Shyam Kalavalapalli</b> &amp; <b>Dr. Sunil Reddy Anubolu</b></div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
+          <div class="tags"><a class="badge" href="#live">Live stream</a></div>
         </div>
         <div class="slot rest">
           <span class="t">2:00–3:00 PM</span>
@@ -469,7 +547,6 @@
           <span class="t">3:00–5:00 PM</span>
           <div class="what">Workshops &amp; case discussions</div>
           <div class="who-by">Panel of doctors</div>
-          <div class="tags"><a class="badge" href="https://foot.ideaclinics.com">Live stream</a></div>
         </div>
       </div>
     </section>
@@ -478,8 +555,8 @@
       <div class="stream">
         <p class="eyebrow">Open to patients &amp; families</p>
         <h3>Hall 2 live stream</h3>
-        <p>All Hall 2 sessions from 10:10 AM to 2 PM and 3 to 5 PM, including heart and kidney, diabetic foot, retinopathy, sexual health and the afternoon workshops, are streamed online, in plain language, for patients and families. Free, with registration.</p>
-        <a class="pill" href="https://foot.ideaclinics.com">Join the live stream</a>
+        <p>Hall 2 is streamed live online from 10 AM to 2 PM, in plain language, for patients and families. Free, no sign-up. Ask your questions during the session.</p>
+        <a class="pill" href="#live">Watch live</a>
       </div>
     </section>
 
@@ -519,7 +596,7 @@
   <div class="wrap">
     <div class="brands" style="margin-bottom:10px;"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"></div>
     <p>Organised by IDEA Clinics, Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
-    <p style="margin-top:6px;">Public webinars: <a href="/webinar.html">PMOS</a> · <a href="https://foot.ideaclinics.com">Diabetes complications</a></p>
+    <p style="margin-top:6px;">Free live stream for everyone: <a href="#live">Watch Hall 1 and Hall 2</a></p>
   </div>
 </footer>
 
@@ -570,6 +647,130 @@
     var x = (location.hash || '').replace('#','');
     if (x === 'pmos' || x === 'diabetes') show(x);
   });
+})();
+</script>
+
+<script src="/live-data.js"></script>
+<script>
+(function(){
+  var L = window.LIVE, $ = function(i){return document.getElementById(i);};
+  var qs = new URLSearchParams(location.search);
+  // Testing only: ?now=2026-11-15T11:05 pretends it is 11:05 IST. ?live=1 forces the stream open.
+  var offset = 0;
+  if (qs.get('now')) { var t = Date.parse(qs.get('now') + (qs.get('now').length <= 16 ? ':00+05:30' : '')); if (!isNaN(t)) offset = t - Date.now(); }
+  function now(){ return new Date(Date.now() + offset); }
+  function at(hhmm){ return new Date(L.day + 'T' + hhmm + ':00+05:30'); }
+  var hall = 'pmos', override = {pmos:null, diabetes:null}, built = '';
+
+  function stateOf(h){
+    if (qs.get('live') === '1') return 'live';
+    var n = now(), H = L.halls[h];
+    return n < at(H.start) ? 'before' : (n >= at(H.end) ? 'after' : 'live');
+  }
+  function sessionOf(h){
+    var H = L.halls[h], key = override[h], n = now(), pick = null;
+    if (key) { H.sessions.forEach(function(s){ if (s.key === key) pick = s; }); if (pick) return pick; }
+    H.sessions.forEach(function(s){ if (n >= at(s.start)) pick = s; });
+    return pick;
+  }
+  function two(x){ return (x < 10 ? '0' : '') + x; }
+  function render(){
+    var st = stateOf(hall), H = L.halls[hall], box = $('vbox');
+    $('liveWrap').classList.toggle('live-on', st === 'live');
+    var sig = hall + st;
+    if (st === 'live') {
+      if (built !== sig) {
+        box.textContent = '';
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + H.video + '?rel=0&modestbranding=1&playsinline=1';
+        f.title = H.name + ' live stream';
+        f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        box.appendChild(f); built = sig;
+      }
+      $('liveTitle').textContent = 'Live now · ' + H.name;
+    } else if (st === 'before') {
+      built = '';
+      var ms = at(H.start) - now(), tot = Math.max(0, Math.floor(ms / 1000));
+      var hh = Math.floor(tot / 3600), mm = Math.floor(tot % 3600 / 60), ss = tot % 60;
+      box.textContent = '';
+      var wrap = document.createElement('div');
+      var a = document.createElement('div'); a.className = 'sm'; a.textContent = H.name + ' goes live';
+      var b = document.createElement('div'); b.className = 'big';
+      b.textContent = hh >= 24 ? 'Sunday 15 Nov' : (two(hh) + ':' + two(mm) + ':' + two(ss));
+      var c = document.createElement('div'); c.className = 'sm'; c.textContent = 'Sunday 15 Nov, ' + (H.start.replace(/^(\d+):(\d+)$/, function(_, x, y){ return (+x > 12 ? +x - 12 : +x) + ':' + y + (+x >= 12 ? ' PM' : ' AM'); }));
+      wrap.appendChild(a); wrap.appendChild(b); wrap.appendChild(c); box.appendChild(wrap);
+      $('liveTitle').textContent = 'Live stream · Sunday 15 Nov';
+    } else {
+      built = '';
+      box.textContent = '';
+      var d = document.createElement('div'); d.innerHTML = '<div class="big">Thank you for joining</div><div class="sm">The ' + H.name.split(' · ')[0] + ' live stream has ended.</div>';
+      box.appendChild(d);
+      $('liveTitle').textContent = 'Live stream ended';
+    }
+    var s = (st === 'live') ? sessionOf(hall) : null;
+    $('vnow').textContent = st === 'live' ? (s ? 'Now: ' + s.title : 'Live from ' + H.name) : '';
+    var sw = $('suggWrap'), sg = $('sugg');
+    if (st === 'live' && s) {
+      var sig2 = s.key;
+      if (sg.dataset.k !== sig2) {
+        sg.textContent = ''; sg.dataset.k = sig2;
+        s.q.forEach(function(q){
+          var b = document.createElement('button'); b.type = 'button'; b.textContent = q;
+          b.onclick = function(){ openAsk(true); $('askQ').value = q; $('askQ').focus(); };
+          sg.appendChild(b);
+        });
+      }
+      sw.hidden = false;
+    } else { sw.hidden = true; sg.dataset.k = ''; }
+    if (st !== 'live') $('lcount').hidden = true;
+  }
+  function openAsk(open){
+    var f = $('askForm'), b = $('askBtn');
+    f.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.textContent = open ? 'Close' : 'Ask a question';
+  }
+  $('askBtn').onclick = function(){ openAsk($('askForm').hidden); if (!$('askForm').hidden) $('askQ').focus(); };
+  function msg(t, err){ var m = $('lmsg'); m.textContent = t; m.className = 'lmsg' + (err ? ' err' : ''); }
+  $('askForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = $('askQ').value.trim();
+    if (q.length < 5) { msg('Type your question first.', true); return; }
+    var btn = $('askSend'); btn.disabled = true;
+    fetch('/api/questions', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({hall: hall, name: $('askName').value, question: q, website: $('askWeb').value})})
+      .then(function(r){ return r.json().then(function(d){ return {ok: r.ok && d.ok, d: d}; }); })
+      .then(function(x){
+        btn.disabled = false;
+        if (x.ok) { $('askQ').value = ''; openAsk(false); msg('Sent, thank you. Our team will pick questions to read out.'); }
+        else msg((x.d && x.d.error) || 'Could not send. Please try again.', true);
+      }).catch(function(){ btn.disabled = false; msg('Could not send. Check your connection and try again.', true); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(b){
+    b.onclick = function(){
+      hall = b.dataset.h; built = '';
+      Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      msg(''); $('lcount').hidden = true; render(); count();
+    };
+  });
+  function count(){
+    if (stateOf(hall) !== 'live') return;
+    var h = hall;
+    fetch('/api/live-count?hall=' + h).then(function(r){ return r.json(); }).then(function(d){
+      if (h !== hall) return;
+      if (d && d.count > 0) { $('lcountN').textContent = d.count.toLocaleString('en-IN'); $('lcount').hidden = false; }
+      else $('lcount').hidden = true;
+    }).catch(function(){});
+  }
+  function pull(){
+    ['pmos', 'diabetes'].forEach(function(h){
+      fetch('/api/live-state?hall=' + h).then(function(r){ return r.json(); }).then(function(d){ override[h] = d.session || null; render(); }).catch(function(){});
+    });
+  }
+  // The page opens on whichever hall is live. If both are, Hall 1.
+  if (stateOf('pmos') !== 'live' && stateOf('diabetes') === 'live') { hall = 'diabetes'; Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === 'diabetes' ? 'true' : 'false'); }); }
+  render(); count(); pull();
+  setInterval(render, 1000); setInterval(count, 30000); setInterval(pull, 20000);
+  if (location.hash === '#live') { var el = $('live'); if (el) el.scrollIntoView(); }
 })();
 </script>
 </body>

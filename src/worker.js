@@ -1,5 +1,6 @@
 import { onRequestPost, onRequestOptions } from "./register.js";
 import { onExport } from "./export.js";
+import { handleLive } from "./live.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -13,11 +14,13 @@ export default {
 
     if (url.pathname === "/api/export" && request.method === "GET") return onExport({ request, env });
 
-    // foot.ideaclinics.com serves the page in /foot/ at its root.
-    if (url.hostname.startsWith("foot.") && (url.pathname === "/" || url.pathname === "/index.html")) {
-      url.pathname = "/foot/";
-      return env.ASSETS.fetch(new Request(url.toString(), request));
-    }
+    const live = await handleLive(request, env, ctx, url);
+    if (live) return live;
+
+    // The old public webinar pages now live on the main page. Temporary redirects (302).
+    const LIVE_URL = "https://pmos.ideaclinics.com/#live";
+    if (url.hostname.startsWith("foot.")) return Response.redirect(LIVE_URL, 302);
+    if (url.pathname === "/webinar.html" || url.pathname === "/webinar") return Response.redirect(LIVE_URL, 302);
 
     return env.ASSETS.fetch(request);
   },
