@@ -225,10 +225,11 @@
   .vbox .sm{font-size:.85rem; color:#d8d6e2;}
   .vnow{font-size:.85rem; color:var(--muted); margin-top:8px; min-height:1.3em;}
   .lbox{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px 14px; box-shadow:var(--shadow);}
-  .lcount{display:flex; align-items:baseline; gap:8px; margin-bottom:10px;}
-  .lcount[hidden],#suggWrap[hidden]{display:none;}
-  .lcount b{font-size:1.5rem; line-height:1;}
-  .lcount span{font-size:.85rem; color:var(--muted);}
+  .lstats{display:flex; gap:8px; margin-bottom:10px;}
+  .lstat{flex:1; background:var(--accent-tint); border-radius:12px; padding:9px 10px; text-align:center; min-width:0;}
+  .lstat[hidden],#suggWrap[hidden]{display:none;}
+  .lstat b{display:block; font-size:1.5rem; line-height:1.1; color:var(--accent-deep);}
+  .lstat span{display:block; font-size:.72rem; font-weight:600; color:var(--muted); margin-top:2px; line-height:1.25;}
   .ask-open{width:100%; font:inherit; font-weight:600; font-size:.9rem; border:2px solid var(--accent); background:var(--accent); color:#fff; border-radius:999px; padding:11px 16px; cursor:pointer;}
   .ask-open[aria-expanded="true"]{background:#fff; color:var(--accent-deep);}
   #askForm{margin-top:10px;} #askForm[hidden]{display:none;}
@@ -297,8 +298,11 @@
       </div>
       <div>
         <div class="lbox">
-          <div class="lcount" id="lcount" hidden><b id="lcountN">0</b><span>watching now</span></div>
           <div id="suggWrap" hidden><p class="sugg-lab">Question ideas for this session</p><div class="sugg" id="sugg"></div></div>
+          <div class="lstats">
+            <div class="lstat" id="lcount" hidden><b id="lcountN">0</b><span>Audience watching now</span></div>
+            <div class="lstat"><b>28</b><span>Expert doctors on the panels</span></div>
+          </div>
           <button type="button" class="ask-open" id="askBtn" aria-expanded="false" aria-controls="askForm">Ask a question</button>
           <form id="askForm" hidden novalidate>
             <input type="text" id="askName" maxlength="60" placeholder="Your name (optional)" autocomplete="name">
