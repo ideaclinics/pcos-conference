@@ -268,12 +268,11 @@
   main#main{padding-top:14px;}
   @media (max-width:699px){
     main#main{padding-bottom:84px;}
-    #askBtn{position:fixed; left:16px; right:16px; bottom:calc(12px + env(safe-area-inset-bottom)); width:auto; z-index:40; box-shadow:0 6px 20px rgba(0,0,0,.25);}
     #askForm:not([hidden]){position:fixed; left:12px; right:12px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:39; background:#fff; border:1px solid var(--line); border-radius:18px; padding:12px; box-shadow:0 10px 34px rgba(0,0,0,.3); margin:0;}
     #lmsg:not(:empty){position:fixed; left:16px; right:16px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:39; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,.22); margin:0;}
     .live-sec{padding-bottom:0;}
   }
-  @media (min-width:700px){ .lbox{position:sticky; top:12px;} }
+  @media (min-width:700px){ .lbox{position:sticky; top:12px;} .lactions{flex-direction:column;} .share-btn{padding:10px 12px; font-size:.95rem;} }
 
   /* collapsible schedule */
   .sch > summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--card); border:1.5px solid var(--accent); border-radius:16px; padding:14px 16px; box-shadow:var(--shadow);}
@@ -286,6 +285,18 @@
   .sch .sch-hide,.sch[open] .sch-show{display:none;} .sch[open] .sch-hide{display:inline;}
   .sch[open] > summary{margin-bottom:14px;}
   .sch .lede{margin:0 0 12px;}
+
+  /* share with a friend */
+  .lactions{display:flex; gap:8px; align-items:stretch;}
+  .lactions .ask-open{flex:1 1 0; width:auto;}
+  .share-btn{flex:1 1 0; display:flex; align-items:center; justify-content:center; gap:7px; font:inherit; font-weight:700; font-size:.88rem; line-height:1.15; text-align:center; text-decoration:none; color:var(--ink); background:#fff; border:2px solid #25D366; border-radius:999px; padding:9px 10px;}
+  .share-btn svg{flex:none;}
+  @media (max-width:699px){
+    .lactions{position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); z-index:40; filter:drop-shadow(0 6px 14px rgba(0,0,0,.25));}
+    .lactions #askBtn{position:static; box-shadow:none;}
+    .share-btn{font-size:.82rem; padding:8px 8px;}
+    #askForm:not([hidden]),#lmsg:not(:empty){bottom:calc(76px + env(safe-area-inset-bottom));}
+  }
 </style>
 </head>
 <body data-tab="pmos">
@@ -325,7 +336,10 @@
             <div class="lstat" id="lcount" hidden><b id="lcountN">0</b><span>Viewers watching live right now<small>Live count from YouTube</small></span></div>
             <div class="lstat"><b>28</b><span>Expert doctors in the panels<small>Across both webinars</small></span></div>
           </div>
-          <button type="button" class="ask-open" id="askBtn" aria-expanded="false" aria-controls="askForm">Ask a question</button>
+          <div class="lactions">
+            <button type="button" class="ask-open" id="askBtn" aria-expanded="false" aria-controls="askForm">Ask a question</button>
+            <a class="share-btn" id="shareBtn" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="#25D366" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.8 1 3.9 1.5 6.2 1.5 7.2 0 13-5.8 13-13S23.200 3 16 3z"/><path fill="#fff" d="M22.600 19.300c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.300-.2-.3 0-.5.100-.7l.5-.6c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.6l-1-2.300c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700 3.100 1.300 3.100.9 3.600.8.600-.1 1.900-.8 2.100-1.500.3-.7.3-1.400.2-1.500-.1-.2-.3-.2-.6-.4z"/></svg><span>Share with a friend</span></a>
+          </div>
           <form id="askForm" hidden novalidate>
             <input type="text" id="askName" maxlength="60" placeholder="Your name (optional)" autocomplete="name">
             <textarea id="askQ" rows="3" maxlength="300" placeholder="Type your question" aria-label="Your question"></textarea>
@@ -567,6 +581,13 @@
     } else { sw.hidden = true; sg.dataset.k = ''; }
     if (st !== 'live') $('lcount').hidden = true;
   }
+  function shareText(){
+    var st = stateOf(hall), H = L.halls[hall];
+    var topic = hall === 'pmos' ? 'PMOS: hormones, insulin, weight, fertility and more' : 'diabetes complications: heart, kidney, foot, eyes and sexual health';
+    var head = st === 'live' ? '\ud83d\udd34 LIVE right now and free for everyone!' : (st === 'before' ? '\ud83d\udcfa Free live webinar this Sunday, 15 Nov!' : '\u2705 Free webinar by IDEA Clinics');
+    return head + '\n28 expert doctors on one screen, talking ' + topic + '.\nWatch it on your phone and send your own question to the panel \ud83d\udc47\n' + location.origin + '/#' + hall;
+  }
+  function setShare(){ $('shareBtn').href = 'https://wa.me/?text=' + encodeURIComponent(shareText()); }
   function openAsk(open){
     var f = $('askForm'), b = $('askBtn');
     f.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -591,7 +612,7 @@
     b.onclick = function(){
       hall = b.dataset.h; built = '';
       Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      msg(''); $('lcount').hidden = true; render(); count();
+      msg(''); $('lcount').hidden = true; render(); count(); setShare();
     };
   });
   function count(){
@@ -611,7 +632,7 @@
   // The page opens on whichever hall is live. If both are, Hall 1.
   if (stateOf('pmos') !== 'live' && stateOf('diabetes') === 'live') { hall = 'diabetes'; Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === 'diabetes' ? 'true' : 'false'); }); }
   if (location.hash === '#diabetes' || location.hash === '#pmos') { hall = location.hash.slice(1); Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === hall ? 'true' : 'false'); }); }
-  render(); count(); pull();
+  render(); count(); pull(); setShare(); setInterval(setShare, 5000);
   setInterval(render, 1000); setInterval(count, 30000); setInterval(pull, 20000);
   if (location.hash === '#live') { var el = $('live'); if (el) el.scrollIntoView(); }
 })();
