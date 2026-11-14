@@ -18,7 +18,7 @@ export default {
     if (live) return live;
 
     // The old public webinar pages now live on the main page. Temporary redirects (302).
-    const LIVE_URL = "https://pmos.ideaclinics.com/#live";
+    const LIVE_URL = "https://pmos.ideaclinics.com/";
     if (url.hostname.startsWith("foot.")) return Response.redirect(LIVE_URL, 302);
     if (url.pathname === "/webinar.html" || url.pathname === "/webinar") return Response.redirect(LIVE_URL, 302);
 
