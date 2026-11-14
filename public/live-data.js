@@ -4,7 +4,7 @@ window.LIVE = {
   day: "2026-11-15",
   halls: {
     pmos: {
-      name: "Hall 1 · PMOS", video: "O_aTHJc0Wwg", start: "10:30", end: "14:00",
+      name: "PMOS webinar", video: "O_aTHJc0Wwg", start: "10:30", end: "14:00",
       sessions: [
         { key: "p1", start: "10:40", title: "PMOS beyond the ovary", q: [
           "My relatives say PMOS is just a period problem. How do I explain it to my family?",
@@ -37,7 +37,7 @@ window.LIVE = {
       ]
     },
     diabetes: {
-      name: "Hall 2 · Diabetes", video: "d3XhaS5lajc", start: "10:00", end: "14:00",
+      name: "Diabetes complications webinar", video: "d3XhaS5lajc", start: "10:00", end: "14:00",
       sessions: [
         { key: "d1", start: "10:10", title: "Heart and kidney forum", q: [
           "My sugar is controlled. Can I skip the yearly heart and kidney tests?",
