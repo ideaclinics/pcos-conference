@@ -48,7 +48,8 @@
   /* ---------- Top bar ---------- */
   .top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:14px;}
   .brands{display:flex; align-items:center; gap:10px; min-width:0;}
-  .brands{flex-wrap:wrap; gap:10px 14px;}
+  .top{justify-content:center;}
+  .brands{flex-wrap:wrap; gap:10px 14px; justify-content:center; align-items:center;}
   .brands img{height:34px; width:auto; display:block;}
   .top .brands img.b-idea{height:44px;} .top .brands img.b-zio{height:28px;} .top .brands img.b-roopa{height:30px;} .top .brands{gap:8px 8px; flex-wrap:nowrap;}
   @media (min-width:700px){.top .brands{flex-wrap:wrap;} .top .brands img.b-idea{height:68px;} .top .brands img.b-zio{height:46px;} .top .brands img.b-roopa{height:52px;} .top .brands{gap:12px 24px;}}
@@ -267,9 +268,9 @@
     <div class="brands">
       <img class="b-idea" src="idea-logo.png" alt="IDEA Clinics">
       <span class="x" aria-hidden="true">×</span>
-      <img class="b-zio" src="zioheal.png" alt="ZioHeal">
-      <span class="x" aria-hidden="true">×</span>
       <img class="b-roopa" src="roopa-badge-navy.svg" alt="Roopa Health">
+      <span class="x" aria-hidden="true">×</span>
+      <img class="b-zio" src="zioheal.png" alt="ZioHeal">
     </div>
   </div>
 
@@ -689,39 +690,21 @@
   function render(){
     var st = stateOf(hall), H = L.halls[hall], box = $('vbox');
     $('liveWrap').classList.toggle('live-on', st === 'live');
-    var sig = hall + st;
-    if (st === 'live') {
-      if (built !== sig) {
-        box.textContent = '';
-        var f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + H.video + '?rel=0&modestbranding=1&playsinline=1';
-        f.title = H.name + ' live stream';
-        f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
-        f.allowFullscreen = true;
-        box.appendChild(f); built = sig;
-      }
-      $('liveTitle').textContent = 'Live now · ' + H.name;
-    } else if (st === 'before') {
-      built = '';
-      var ms = at(H.start) - now(), tot = Math.max(0, Math.floor(ms / 1000));
-      var hh = Math.floor(tot / 3600), mm = Math.floor(tot % 3600 / 60), ss = tot % 60;
+    if (built !== hall) {
       box.textContent = '';
-      var wrap = document.createElement('div');
-      var a = document.createElement('div'); a.className = 'sm'; a.textContent = H.name + ' goes live';
-      var b = document.createElement('div'); b.className = 'big';
-      b.textContent = hh >= 24 ? 'Sunday 15 Nov' : (two(hh) + ':' + two(mm) + ':' + two(ss));
-      var c = document.createElement('div'); c.className = 'sm'; c.textContent = 'Sunday 15 Nov, ' + (H.start.replace(/^(\d+):(\d+)$/, function(_, x, y){ return (+x > 12 ? +x - 12 : +x) + ':' + y + (+x >= 12 ? ' PM' : ' AM'); }));
-      wrap.appendChild(a); wrap.appendChild(b); wrap.appendChild(c); box.appendChild(wrap);
-      $('liveTitle').textContent = 'Live stream · Sunday 15 Nov';
-    } else {
-      built = '';
-      box.textContent = '';
-      var d = document.createElement('div'); d.innerHTML = '<div class="big">Thank you for joining</div><div class="sm">The ' + H.name + ' live stream has ended.</div>';
-      box.appendChild(d);
-      $('liveTitle').textContent = 'Live stream ended';
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + H.video + '?rel=0&modestbranding=1&playsinline=1';
+      f.title = H.name + ' live stream';
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      box.appendChild(f); built = hall;
     }
+    var startTxt = H.start.replace(/^(\d+):(\d+)$/, function(_, x, y){ return (+x > 12 ? +x - 12 : +x) + ':' + y + (+x >= 12 ? ' PM' : ' AM'); });
+    if (st === 'live') $('liveTitle').textContent = 'Live now \u00b7 ' + H.name;
+    else if (st === 'before') $('liveTitle').textContent = 'Live stream \u00b7 Sunday 15 Nov, ' + startTxt;
+    else $('liveTitle').textContent = 'Live stream ended';
     var s = (st === 'live') ? sessionOf(hall) : null;
-    $('vnow').textContent = st === 'live' ? (s ? 'Now: ' + s.title : 'Live from ' + H.name) : '';
+    $('vnow').textContent = st === 'live' ? (s ? 'Now: ' + s.title : 'Live from ' + H.name) : (st === 'before' ? H.name + ' goes live on Sunday 15 Nov at ' + startTxt + '. Press play when it starts.' : 'This live stream has ended. Thank you for joining.');
     var sw = $('suggWrap'), sg = $('sugg');
     if (st === 'live' && s) {
       var sig2 = s.key;
