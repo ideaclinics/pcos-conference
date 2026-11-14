@@ -38,7 +38,7 @@
 <header>
   <h1>Operator · live questions</h1>
   <div class="row">
-    <button data-f="all" class="on">All halls</button><button data-f="pmos">Hall 1</button><button data-f="diabetes">Hall 2</button>
+    <button data-f="all" class="on">Both webinars</button><button data-f="pmos">PMOS</button><button data-f="diabetes">Diabetes</button>
     <span class="meta" id="sync">Syncing…</span>
   </div>
 </header>
@@ -46,7 +46,7 @@
   <section class="box"><h2>Incoming <span class="tag" id="nNew">0</span></h2><div id="listNew"></div></section>
   <section class="box"><h2>Approved: on the stage screen <span class="tag" id="nApp">0</span></h2><div id="listApp"></div></section>
   <section class="box"><h2>Add your own question for the stage</h2>
-    <div class="row" style="margin-bottom:8px"><select id="addHall" style="width:auto"><option value="pmos">Hall 1</option><option value="diabetes">Hall 2</option></select></div>
+    <div class="row" style="margin-bottom:8px"><select id="addHall" style="width:auto"><option value="pmos">PMOS</option><option value="diabetes">Diabetes</option></select></div>
     <textarea id="addQ" rows="2" maxlength="300" placeholder="Type a question to put on the stage screen"></textarea>
     <p class="row" style="margin-top:8px"><button class="go" id="addBtn">Add to stage</button><span id="addMsg" class="meta"></span></p></section>
   <section class="box"><h2>Suggested questions shown to viewers</h2>
@@ -59,12 +59,15 @@
 (function(){
   var tok = sessionStorage.getItem('opk') || '';
   var m = location.hash.match(/key=([^&]+)/); if (m) { tok = decodeURIComponent(m[1]); sessionStorage.setItem('opk', tok); history.replaceState(null,'',location.pathname); }
-  var filter = 'all', $ = function(i){return document.getElementById(i);};
+  var $ = function(i){return document.getElementById(i);};
+  var seg = location.pathname.replace(/\/+$/,'').split('/').pop();
+  var LOCK = (seg==='pmos' || seg==='diabetes') ? seg : null;
+  var filter = LOCK || 'all';
   function api(path, body){
     return fetch(path, {method: body ? 'POST' : 'GET', headers: {'Authorization':'Bearer '+tok,'Content-Type':'application/json'}, body: body ? JSON.stringify(body) : undefined})
       .then(function(r){ if (r.status===401) throw new Error('auth'); return r.json(); });
   }
-  function hallName(h){ return h==='pmos' ? 'Hall 1' : 'Hall 2'; }
+  function hallName(h){ return h==='pmos' ? 'PMOS' : 'Diabetes'; }
   function card(r, actions){
     var d = document.createElement('div'); d.className='q';
     var meta = document.createElement('div'); meta.className='meta';
@@ -104,6 +107,7 @@
   function renderSugg(){
     var box = $('sugg'); box.textContent='';
     ['pmos','diabetes'].forEach(function(h){
+      if (LOCK && h!==LOCK) return;
       var hd = document.createElement('div'); hd.className='meta'; hd.style.marginTop='8px'; hd.textContent = hallName(h)+(cur[h] ? ' · showing: '+titleOf(h,cur[h]) : ' · automatic'); box.appendChild(hd);
       var row = document.createElement('div'); row.className='row'; row.style.marginBottom='6px';
       var auto = document.createElement('button'); auto.textContent='Auto'; if(!cur[h]) auto.className='on'; auto.onclick=function(){ push(h,null); }; row.appendChild(auto);
@@ -113,6 +117,12 @@
   }
   function titleOf(h,k){ var t=k; LIVE.halls[h].sessions.forEach(function(s){ if(s.key===k) t=s.title; }); return t; }
   function push(h,k){ api('/api/op/state',{hall:h,session:k}).then(function(){ cur[h]=k; renderSugg(); }); }
+  if (LOCK) {
+    var hdr = document.querySelector('header .row'); Array.prototype.forEach.call(hdr.querySelectorAll('[data-f]'), function(b){ b.hidden = true; });
+    $('addHall').value = LOCK; $('addHall').parentNode.hidden = true;
+    document.querySelector('header h1').textContent = 'Operator · ' + hallName(LOCK) + ' webinar';
+    document.title = 'Operator · ' + hallName(LOCK);
+  }
   ['pmos','diabetes'].forEach(function(h){ fetch('/api/live-state?hall='+h).then(function(r){return r.json();}).then(function(d){ cur[h]=d.session||null; renderSugg(); }); });
   renderSugg();
   if (tok) load(); else $('login').hidden=false;

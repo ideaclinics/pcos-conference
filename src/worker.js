@@ -22,6 +22,10 @@ export default {
     if (url.hostname.startsWith("foot.")) return Response.redirect(LIVE_URL, 302);
     if (url.pathname === "/webinar.html" || url.pathname === "/webinar") return Response.redirect(LIVE_URL, 302);
 
+    // One link per webinar for the moderator and the stage screen. /operator and /stage alone show both.
+    const m = url.pathname.match(/^\/(operator|stage)\/(pmos|diabetes)\/?$/);
+    if (m) return env.ASSETS.fetch(new Request(url.origin + "/" + m[1], request));
+
     return env.ASSETS.fetch(request);
   },
 };

@@ -33,6 +33,9 @@
   var tok = sessionStorage.getItem('stk') || '';
   var m = location.hash.match(/key=([^&]+)/); if (m) { tok = decodeURIComponent(m[1]); sessionStorage.setItem('stk', tok); history.replaceState(null,'',location.pathname); }
   var $ = function(i){return document.getElementById(i);};
+  var seg = location.pathname.replace(/\/+$/,'').split('/').pop();
+  var LOCK = (seg==='pmos' || seg==='diabetes') ? seg : null;
+  if (LOCK) { document.querySelector('header h1').textContent = (LOCK==='pmos' ? 'PMOS' : 'Diabetes') + ' webinar · questions for the stage'; document.title = 'Stage · ' + (LOCK==='pmos' ? 'PMOS' : 'Diabetes'); }
   function api(path, body){
     return fetch(path, {method: body ? 'POST' : 'GET', headers: {'Authorization':'Bearer '+tok,'Content-Type':'application/json'}, body: body ? JSON.stringify(body) : undefined})
       .then(function(r){ if (r.status===401) throw new Error('auth'); return r.json(); });
@@ -41,14 +44,14 @@
     api('/api/stage/questions').then(function(d){
       $('login').hidden=true; $('app').hidden=false;
       var box = $('list'); box.textContent='';
-      var rows = d.rows||[];
+      var rows = (d.rows||[]).filter(function(r){ return !LOCK || r.hall===LOCK; });
       if (!rows.length) { var e=document.createElement('div'); e.className='empty'; e.textContent='No approved questions yet.'; box.appendChild(e); }
       rows.forEach(function(r,i){
         if (i===0) { var l=document.createElement('p'); l.className='lab'; l.textContent='NEXT QUESTION'; box.appendChild(l); }
         if (i===1) { var l2=document.createElement('p'); l2.className='lab'; l2.textContent='QUEUE'; box.appendChild(l2); }
         var c=document.createElement('div'); c.className='card'+(i===0?' next':'');
         var left=document.createElement('div');
-        var t=document.createElement('span'); t.className='tag'; t.textContent=(r.hall==='pmos'?'Hall 1':'Hall 2'); left.appendChild(t);
+        if (!LOCK) { var t=document.createElement('span'); t.className='tag'; t.textContent=(r.hall==='pmos'?'PMOS':'Diabetes'); left.appendChild(t); }
         if (r.name) { var n=document.createElement('span'); n.className='meta'; n.style.marginLeft='10px'; n.textContent=r.name; left.appendChild(n); }
         var p=document.createElement('p'); p.textContent=r.question; left.appendChild(p);
         var b=document.createElement('button'); b.textContent='Asked'; b.onclick=function(){ api('/api/stage/asked',{id:r.id}).then(load); };
