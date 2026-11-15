@@ -187,6 +187,17 @@
     .js .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease;}
     .js .reveal.in{opacity:1; transform:none;}
   }
+
+  /* post-event */
+  .vid{position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:#1B1B2F; box-shadow:var(--shadow);}
+  .vid iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  .note-edu{font-size:.78rem; color:var(--muted); text-align:center; margin-top:10px;}
+  .notice{background:var(--accent-tint); border:1px solid #F7C9BC; border-radius:16px; padding:14px 16px; margin-top:16px; font-size:.9rem; line-height:1.5;}
+  .notice b,.notice a{color:var(--accent-deep);} .notice a{font-weight:700;}
+  footer{padding-bottom:40px;}
+  .foot-logo img{height:30px; width:auto;}
+  .foot-logo{flex-wrap:wrap; row-gap:8px;}
+  .foot-logo img{height:24px;}
 </style>
 </head>
 <body>
@@ -198,33 +209,23 @@
       <span class="x" aria-hidden="true">×</span>
       <img src="roopa-badge-navy.svg" alt="Roopa Health">
     </div>
-    <a class="btn" href="#signup">Register</a>
   </div>
 
   <div class="hero" id="hero">
     <div class="hero-inner">
       <a class="back" href="/">Part of PMOS &amp; diabetes complications CME 2026</a><br>
-      <span class="live-badge"><span class="live-dot"></span>Online session</span>
-      <p class="eyebrow" style="margin-top:14px;">Free public webinar · Watch from home</p>
-      <h1>PMOS webinar: across a woman's life</h1>
-      <p class="sub">What every woman and family should know about PMOS, at every stage of life. A free live video session, in plain language, from the doctors who treat it.</p>
-      <div class="hero-meta">
-        <span>👥 7-doctor panel</span>
-        <span class="free">✨ Free to join</span>
-      </div>
-
-      <div class="when" aria-label="Date and time">
-        <span class="when-day">Sunday</span>
-        <span class="when-date">15 November</span>
-        <span class="when-time">11:00 AM–12:00 PM IST</span>
-      </div>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#signup">Save my free seat</a>
-      </div>
-      <p class="hero-sub-note">Join by video from any phone or laptop · live Q&amp;A</p>
+      <p class="eyebrow" style="margin-top:14px;">PMOS webinar · Sunday 15 November 2026 · Recap</p>
+      <h1>Thank you for joining us</h1>
+      <p class="sub">Thank you to everyone who watched the PMOS webinar, and to our panel of doctors for answering so generously. Watch the recap below, and share it with someone who may find it useful.</p>
     </div>
   </div>
+
+  <section id="recap">
+    <div class="section-head"><p class="eyebrow">Recap of the live webinar</p><h2>Watch the replay</h2></div>
+    <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/O_aTHJc0Wwg?rel=0&modestbranding=1&playsinline=1" title="PMOS webinar recap" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>
+    <p class="note-edu">Educational session, not individual medical advice.</p>
+    <p class="notice"><b>Certificates:</b> TGMC certificates will be issued directly to your email. For any clarification, email us at <a href="mailto:info@ideaclinics.com">info@ideaclinics.com</a>. Please allow at least 7 days from the day of the event.</p>
+  </section>
 
   <div class="strip" aria-hidden="true"><div class="strip-track">
     <span>Irregular periods</span><span>Fertility</span><span>Weight</span><span>Blood sugar</span><span>Skin &amp; hair</span><span>Mood</span><span>Long-term health</span>
@@ -232,45 +233,7 @@
   </div></div>
 
 
-  <section id="stages">
-    <div class="section-head">
-      <p class="eyebrow">Across a woman's life</p>
-      <h2>Pick your stage</h2>
-      <p class="lede">No medical background needed. PMOS looks different at every age, so tap your stage to see what the panel will answer.</p>
-    </div>
-    <div class="stage-tabs" role="tablist" aria-label="Life stage">
-      <button class="stage-tab" role="tab" aria-selected="true" aria-controls="stage-card" data-stage="0" id="st-0">Teen years</button>
-      <button class="stage-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="stage-card" data-stage="1" id="st-1">Reproductive years</button>
-      <button class="stage-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="stage-card" data-stage="2" id="st-2">Pregnancy &amp; fertility</button>
-      <button class="stage-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="stage-card" data-stage="3" id="st-3">Later life</button>
-    </div>
-    <div class="stage-card" id="stage-card" role="tabpanel" aria-live="polite">
-      <h3 id="stage-title"></h3>
-      <ul id="stage-list"></ul>
-      <button type="button" class="btn line" id="stage-cta">Ask about this at the webinar</button>
-    </div>
-  </section>
 
-  <section id="steps">
-    <div class="section-head">
-      <p class="eyebrow">How it works</p>
-      <h2>Three steps, no fuss</h2>
-    </div>
-    <ol class="steps">
-      <li>
-        <span class="step-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
-        <span class="step-n">Step 1</span><h4>Save your free seat</h4><p>Takes 30 seconds. No payment.</p>
-      </li>
-      <li>
-        <span class="step-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.7 7L4 20.5l1.5-5A8 8 0 1 1 21 12z"/><path d="M9 11h6M9 14h4"/></svg></span>
-        <span class="step-n">Step 2</span><h4>Get your link on WhatsApp</h4><p>We message you the joining link before the day.</p>
-      </li>
-      <li>
-        <span class="step-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></svg></span>
-        <span class="step-n">Step 3</span><h4>Join and ask</h4><p>Watch live on 15 November and put your questions to the panel.</p>
-      </li>
-    </ol>
-  </section>
 
 
 
@@ -278,7 +241,7 @@
     <div class="section-head">
       <p class="eyebrow">Hosted by</p>
       <h2>Your panel of doctors</h2>
-      <p class="lede">Seven doctors, one session, answering your questions from every angle.</p>
+      <p class="lede">Seven doctors, one session, answering questions from every angle.</p>
     </div>
     <div class="panel-grid">
       <div class="panel-card mod"><div class="panel-photo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><h4>Dr. Nandini Muppidi</h4><p class="role">Moderator</p></div>
@@ -291,232 +254,28 @@
     </div>
   </section>
 
-  <section id="signup">
-    <div class="section-head">
-      <p class="eyebrow">Reserve your spot</p>
-      <h2>Join free, from anywhere</h2>
-      <p class="lede">Free. We'll send your joining link before 15 November, and the recording if you can't make it live.</p>
-    </div>
-    <form class="reg-form" id="form-webinar">
-      <div class="field"><label for="w-name">Full name <span class="req">*</span></label><input id="w-name" required></div>
-      <div class="field"><label for="w-email">Email <span class="req">*</span></label><input id="w-email" type="email" required></div>
-      <div class="field"><label for="w-mobile">Mobile / WhatsApp number <span class="req">*</span></label><input id="w-mobile" type="tel" required></div>
-      <div class="field"><label for="w-city">City</label><input id="w-city"></div>
-      <div class="field">
-        <label for="w-learn">What would you most like to learn about?</label>
-        <select id="w-learn">
-          <option value="">Select one</option>
-          <option>PMOS basics</option>
-          <option>Teenage years</option>
-          <option>Fertility &amp; pregnancy</option>
-          <option>Weight &amp; metabolism</option>
-          <option>Skin &amp; hair</option>
-          <option>Mental health</option>
-          <option>Later life &amp; menopause</option>
-          <option>All of the above</option>
-        </select>
-      </div>
-      <label class="checkbox-row"><input type="checkbox" id="w-ack" required checked>I understand this is an educational session and not a substitute for individual medical consultation.</label>
-      <label class="checkbox-row"><input type="checkbox" id="w-wa" checked>Send my confirmation and joining link on WhatsApp.</label>
-      <button type="submit" class="btn btn-primary" id="w-submit">Save my free seat</button>
-      <p class="reg-note">No cost. Takes 30 seconds.</p>
-      <div class="success-box" id="success-webinar">
-        <b>You're on the list 🎉</b>
-        <span>We'll send your joining link before 15 November. Add the session to your calendar so you don't miss it.</span>
-        <span class="cal-links"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=PMOS+Webinar%3A+Across+a+Woman%27s+Life&dates=20261115T053000Z/20261115T063000Z&details=Free+online+session+by+IDEA+Clinics.+Joining+link+will+be+sent+before+the+session.&ctz=Asia/Kolkata" target="_blank" rel="noopener">Google Calendar</a> · <a href="/pmos-webinar.ics" download>Apple / Outlook</a></span>
-      </div>
-      <div class="error-box" id="error-webinar">
-        <b>Something went wrong</b>
-        <span>We couldn't save your registration. Please try again in a moment.</span>
-      </div>
-    </form>
-  </section>
 
   <section id="faq">
-    <div class="section-head">
-      <p class="eyebrow">FAQ</p>
-      <h2>Good to know</h2>
-    </div>
-    <details class="faq-item" open>
-      <summary class="faq-q">Is this really free?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes, completely free. Register so we can send your joining link and the recording. It's health education, not individual medical advice.</p>
-    </details>
+    <div class="section-head"><p class="eyebrow">FAQ</p><h2>Good to know</h2></div>
     <details class="faq-item">
-      <summary class="faq-q">Is this part of the doctors' conference?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes. It is the public live stream of the 11 AM–12 PM panel at PMOS CME 2026 in Hyderabad, and anyone can watch online.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">Do I need a medical background to attend?<span class="plus">+</span></summary>
-      <p class="faq-a">Not at all. It's designed for women, families and anyone curious about PMOS — explained in plain language.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q">What if I can't attend live?<span class="plus">+</span></summary>
-      <p class="faq-a">Register anyway — we'll email the recording to everyone who signs up.</p>
+      <summary class="faq-q">Is the recording free to watch?<span class="plus">+</span></summary>
+      <p class="faq-a">Yes. The recap is free for everyone. It is health education, not individual medical advice.</p>
     </details>
     <details class="faq-item">
       <summary class="faq-q">Is PMOS the same as PCOS?<span class="plus">+</span></summary>
-      <p class="faq-a">Yes — PMOS is the terminology used in this programme, formerly and commonly known as PCOS.</p>
+      <p class="faq-a">Yes. PMOS is the terminology used in this programme, formerly and commonly known as PCOS.</p>
     </details>
   </section>
 
 </main>
 
-<div class="sticky-cta" id="sticky-cta">
-  <div class="sticky-cta-inner">
-    <div class="sticky-cta-text">
-      <b>Free · Sunday 15 Nov, 11 AM–12 PM</b>
-      <span>Live online · 7-doctor panel</span>
-    </div>
-    <a class="btn btn-primary" href="#signup">Save my free seat</a>
-  </div>
-</div>
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo brands"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"></div>
-    <p>A free public session by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
+    <div class="foot-logo brands"><img src="idea-logo.png" alt="IDEA Clinics"><span class="x" aria-hidden="true">×</span><img src="roopa-badge-navy.svg" alt="Roopa Health"><span class="x" aria-hidden="true">×</span><img src="zioheal.png" alt="ZioHeal"><span class="x" aria-hidden="true">×</span><img src="nirmaya.png" alt="Nirmaya"></div>
+    <p>A free public webinar by IDEA Clinics — Institute of Diabetes, Endocrinology &amp; Adiposity.</p>
   </div>
 </footer>
 
-<script>
-(function(){
-  // Sticky register bar — hidden while the hero (with its own CTA) or the
-  // real signup form is on screen, shown everywhere else.
-  (function(){
-    var bar = document.getElementById('sticky-cta');
-    var hero = document.getElementById('hero');
-    var signup = document.getElementById('signup');
-    if (!bar || !window.IntersectionObserver) return;
-
-    var heroVisible = true;
-    var signupVisible = false;
-
-    function sync(){
-      var shouldShow = !heroVisible && !signupVisible;
-      bar.classList.toggle('show', shouldShow);
-    }
-
-    var heroObserver = new IntersectionObserver(function(entries){
-      heroVisible = entries[0].isIntersecting;
-      sync();
-    }, { threshold: 0.15 });
-    heroObserver.observe(hero);
-
-    if (signup) {
-      var signupObserver = new IntersectionObserver(function(entries){
-        signupVisible = entries[0].isIntersecting;
-        sync();
-      }, { threshold: 0.1 });
-      signupObserver.observe(signup);
-    }
-  })();
-
-
-  // Life-stage selector
-  var stages = [
-    {t:'Teen years', q:['Are irregular periods in the teens normal, or a sign to get checked?','How is PMOS recognised in young women?','What do acne and weight changes have to do with it?']},
-    {t:'Reproductive years', q:['What does PMOS mean for periods, weight and blood sugar day to day?','Which signs mean it is time to see a doctor?','How do skin, hair and mood fit into the picture?']},
-    {t:'Pregnancy & fertility', q:['Can I get pregnant with PMOS?','What should I know before planning a pregnancy?','When is it worth seeing a specialist?']},
-    {t:'Later life', q:['Does PMOS go away after the reproductive years?','What are the long-term risks, such as diabetes and heart health?','How can I look after myself as I get older?']}
-  ];
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.stage-tab'));
-  var card = document.getElementById('stage-card');
-  function showStage(i, focus){
-    tabs.forEach(function(t, n){ t.setAttribute('aria-selected', n === i ? 'true' : 'false'); t.tabIndex = n === i ? 0 : -1; });
-    document.getElementById('stage-title').textContent = stages[i].t;
-    var ul = document.getElementById('stage-list'); ul.innerHTML = '';
-    stages[i].q.forEach(function(q){ var li = document.createElement('li'); li.textContent = q; ul.appendChild(li); });
-    card.setAttribute('aria-labelledby', 'st-' + i);
-    card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
-    if (focus) tabs[i].focus();
-    card.dataset.learn = ['Teenage years','PMOS basics','Fertility & pregnancy','Later life & menopause'][i];
-  }
-  tabs.forEach(function(t, i){
-    t.addEventListener('click', function(){ showStage(i); });
-    t.addEventListener('keydown', function(e){
-      var n = null;
-      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-      if (e.key === 'ArrowLeft') n = (i + tabs.length - 1) % tabs.length;
-      if (n !== null) { e.preventDefault(); showStage(n, true); }
-    });
-  });
-  showStage(0);
-
-  // Stage button prefills the topic in the signup form
-  var learnSel = document.getElementById('w-learn');
-  function pickTopic(val){
-    if (!learnSel) return;
-    for (var k = 0; k < learnSel.options.length; k++){
-      if (learnSel.options[k].text === val || learnSel.options[k].value === val) { learnSel.selectedIndex = k; break; }
-    }
-  }
-  var stageCta = document.getElementById('stage-cta');
-  if (stageCta) stageCta.addEventListener('click', function(){
-    pickTopic(card.dataset.learn);
-    document.getElementById('signup').scrollIntoView({behavior:'smooth'});
-  });
-  if (learnSel) learnSel.addEventListener('change', function(){ pickTopic(learnSel.value); });
-
-  // Scroll reveal
-  document.documentElement.classList.add('js');
-  var revealEls = document.querySelectorAll('section .section-head, .panel-card, .steps li, .stage-card, .reg-form, .faq-item');
-  revealEls.forEach(function(el){ el.classList.add('reveal'); });
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:0.12});
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else { revealEls.forEach(function(el){ el.classList.add('in'); }); }
-
-
-  // Webinar signup — submits to /api/register (Cloudflare Pages Function -> D1)
-  var form = document.getElementById('form-webinar');
-  var success = document.getElementById('success-webinar');
-  var errorBox = document.getElementById('error-webinar');
-  var submitBtn = document.getElementById('w-submit');
-  if (form) {
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      errorBox.classList.remove('show');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Saving…';
-
-      var payload = {
-        form_type: 'webinar',
-        full_name: document.getElementById('w-name').value.trim(),
-        email: document.getElementById('w-email').value.trim(),
-        mobile: document.getElementById('w-mobile').value.trim(),
-        city: document.getElementById('w-city').value.trim(),
-        topic_interest: document.getElementById('w-learn').value,
-        acknowledged: document.getElementById('w-ack').checked,
-        wants_updates: document.getElementById('w-wa').checked
-      };
-
-      fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
-      .then(function(result){
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Save my free seat';
-        if (result.ok && result.data.ok) {
-          form.reset();
-          success.classList.add('show');
-          success.scrollIntoView({behavior:'smooth', block:'nearest'});
-        } else {
-          errorBox.classList.add('show');
-          errorBox.scrollIntoView({behavior:'smooth', block:'nearest'});
-        }
-      })
-      .catch(function(){
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Save my free seat';
-        errorBox.classList.add('show');
-        errorBox.scrollIntoView({behavior:'smooth', block:'nearest'});
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>
