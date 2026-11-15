@@ -10,11 +10,19 @@
 const VIDEOS = { pmos: "O_aTHJc0Wwg", diabetes: "d3XhaS5lajc" };
 const HALLS = Object.keys(VIDEOS);
 
-// Displayed count = YouTube count minus `sub`, kept between `min` and `max`.
+// Displayed count = YouTube count minus `sub`, kept between `min` and `max`, always an odd number
+// on a 10-step grid (e.g. 341, 351, ... 411), plus a per-minute shift of up to two steps (+/- 20).
 const COUNT_ADJUST = { pmos: { sub: 1000, min: 340, max: 420 }, diabetes: { sub: 600, min: 200, max: 299 } };
-const adjustCount = (hall, n) => {
+const adjustCount = (hall, n, minute) => {
   const a = COUNT_ADJUST[hall];
-  return Math.min(a.max, Math.max(a.min, n - a.sub));
+  const lo = a.min % 2 ? a.min : a.min + 1;
+  const steps = Math.floor((a.max - lo) / 10);
+  const base = Math.min(a.max, Math.max(a.min, n - a.sub));
+  let idx = Math.min(steps, Math.max(0, Math.round((base - lo) / 10)));
+  let h = 2166136261;
+  for (const c of hall + ":" + minute) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  idx = Math.min(steps, Math.max(0, idx + ((h >>> 0) % 5) - 2));
+  return lo + idx * 10;
 };
 
 const json = (body, status = 200, extra = {}) =>
@@ -53,25 +61,26 @@ async function liveCount(request, env, ctx) {
   const cache = caches.default;
   const key = new Request("https://live-count.internal/" + hall);
   const hit = await cache.match(key);
-  if (hit) return new Response(hit.body, { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
-  let count = null;
-  try {
-    const res = await fetch(
-      "https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" +
-        VIDEOS[hall] + "&key=" + encodeURIComponent(env.YT_API_KEY)
-    );
-    if (res.ok) {
-      const d = await res.json();
-      const n = d.items && d.items[0] && d.items[0].liveStreamingDetails && d.items[0].liveStreamingDetails.concurrentViewers;
-      if (n !== undefined) {
-        const raw = parseInt(n, 10);
-        count = raw > 0 ? adjustCount(hall, raw) : raw;
+  let raw = null;
+  if (hit) {
+    raw = (await hit.json()).raw;
+  } else {
+    try {
+      const res = await fetch(
+        "https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" +
+          VIDEOS[hall] + "&key=" + encodeURIComponent(env.YT_API_KEY)
+      );
+      if (res.ok) {
+        const d = await res.json();
+        const n = d.items && d.items[0] && d.items[0].liveStreamingDetails && d.items[0].liveStreamingDetails.concurrentViewers;
+        if (n !== undefined) raw = parseInt(n, 10);
       }
-    }
-  } catch (e) {}
-  const body = JSON.stringify({ count });
-  ctx.waitUntil(cache.put(key, new Response(body, { headers: { "Cache-Control": "max-age=30" } })));
-  return new Response(body, { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    } catch (e) {}
+    ctx.waitUntil(cache.put(key, new Response(JSON.stringify({ raw }), { headers: { "Cache-Control": "max-age=30" } })));
+  }
+  // The real YouTube count stays server-side; only the adjusted number is returned.
+  const count = raw > 0 ? adjustCount(hall, raw, Math.floor(Date.now() / 60000)) : raw;
+  return new Response(JSON.stringify({ count }), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
 }
 
 // GET /api/live-state?hall= -> { session: key | null }  (moderator override for suggested questions)
