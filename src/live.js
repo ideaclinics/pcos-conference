@@ -10,11 +10,11 @@
 const VIDEOS = { pmos: "O_aTHJc0Wwg", diabetes: "d3XhaS5lajc" };
 const HALLS = Object.keys(VIDEOS);
 
-// Displayed count = YouTube count minus `sub`, never below `min`.
-const COUNT_ADJUST = { pmos: { sub: 1000, min: 740 }, diabetes: { sub: 500, min: 216 } };
+// Displayed count = YouTube count minus `sub`, kept between `min` and `max`.
+const COUNT_ADJUST = { pmos: { sub: 1000, min: 340, max: 420 }, diabetes: { sub: 600, min: 200, max: 299 } };
 const adjustCount = (hall, n) => {
   const a = COUNT_ADJUST[hall];
-  return Math.max(a.min, n - a.sub);
+  return Math.min(a.max, Math.max(a.min, n - a.sub));
 };
 
 const json = (body, status = 200, extra = {}) =>
