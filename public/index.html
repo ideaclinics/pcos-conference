@@ -333,7 +333,6 @@
         <div class="lbox">
           <div id="suggWrap" hidden><p class="sugg-lab">Question ideas for this session</p><div class="sugg" id="sugg"></div></div>
           <div class="lstats">
-            <div class="lstat" id="lcount" hidden><b id="lcountN">0</b><span>Viewers watching live right now<small>Live count from YouTube</small></span></div>
             <div class="lstat"><b>28</b><span>Expert doctors in the panels<small>Across both webinars</small></span></div>
           </div>
           <div class="lactions">
@@ -579,7 +578,6 @@
       }
       sw.hidden = false;
     } else { sw.hidden = true; sg.dataset.k = ''; }
-    if (st !== 'live') $('lcount').hidden = true;
   }
   function shareText(){
     var st = stateOf(hall), pm = hall === 'pmos';
@@ -613,18 +611,9 @@
     b.onclick = function(){
       hall = b.dataset.h; built = '';
       Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      msg(''); $('lcount').hidden = true; render(); count(); setShare();
+      msg(''); render(); setShare();
     };
   });
-  function count(){
-    if (stateOf(hall) !== 'live') return;
-    var h = hall;
-    fetch('/api/live-count?hall=' + h).then(function(r){ return r.json(); }).then(function(d){
-      if (h !== hall) return;
-      if (d && d.count > 0) { $('lcountN').textContent = d.count.toLocaleString('en-IN'); $('lcount').hidden = false; }
-      else $('lcount').hidden = true;
-    }).catch(function(){});
-  }
   function pull(){
     ['pmos', 'diabetes'].forEach(function(h){
       fetch('/api/live-state?hall=' + h).then(function(r){ return r.json(); }).then(function(d){ override[h] = d.session || null; render(); }).catch(function(){});
@@ -633,8 +622,8 @@
   // The page opens on whichever hall is live. If both are, Hall 1.
   if (stateOf('pmos') !== 'live' && stateOf('diabetes') === 'live') { hall = 'diabetes'; Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === 'diabetes' ? 'true' : 'false'); }); }
   if (location.hash === '#diabetes' || location.hash === '#pmos') { hall = location.hash.slice(1); Array.prototype.forEach.call(document.querySelectorAll('.hall-sw button'), function(x){ x.setAttribute('aria-pressed', x.dataset.h === hall ? 'true' : 'false'); }); }
-  render(); count(); pull(); setShare(); setInterval(setShare, 5000);
-  setInterval(render, 1000); setInterval(count, 30000); setInterval(pull, 20000);
+  render(); pull(); setShare(); setInterval(setShare, 5000);
+  setInterval(render, 1000); setInterval(pull, 20000);
   if (location.hash === '#live') { var el = $('live'); if (el) el.scrollIntoView(); }
 })();
 </script>
