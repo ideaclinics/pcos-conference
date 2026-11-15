@@ -10,6 +10,13 @@
 const VIDEOS = { pmos: "O_aTHJc0Wwg", diabetes: "d3XhaS5lajc" };
 const HALLS = Object.keys(VIDEOS);
 
+// Displayed count = YouTube count minus `sub`, never below `min`.
+const COUNT_ADJUST = { pmos: { sub: 1000, min: 740 }, diabetes: { sub: 500, min: 216 } };
+const adjustCount = (hall, n) => {
+  const a = COUNT_ADJUST[hall];
+  return Math.max(a.min, n - a.sub);
+};
+
 const json = (body, status = 200, extra = {}) =>
   new Response(JSON.stringify(body), {
     status,
@@ -56,7 +63,10 @@ async function liveCount(request, env, ctx) {
     if (res.ok) {
       const d = await res.json();
       const n = d.items && d.items[0] && d.items[0].liveStreamingDetails && d.items[0].liveStreamingDetails.concurrentViewers;
-      if (n !== undefined) count = parseInt(n, 10);
+      if (n !== undefined) {
+        const raw = parseInt(n, 10);
+        count = raw > 0 ? adjustCount(hall, raw) : raw;
+      }
     }
   } catch (e) {}
   const body = JSON.stringify({ count });
